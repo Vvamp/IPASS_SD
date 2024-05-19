@@ -1,0 +1,72 @@
+\documentclass[11pt]{article}
+\usepackage{geometry}
+\geometry{a4paper}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{hyperref}
+% For better header handling
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Casusbeschrijving Ingensche Veer}
+\chead{IPASS}
+\rhead{Vincent van Setten - 1734729}
+\rfoot{Pagina \thepage}
+
+% For colored text
+\usepackage{xcolor}
+
+\title{IPASS Casusbeschrijving}
+\author{Vincent van Setten}
+
+\begin{document}
+
+
+\section{Casusbeschrijving}
+\subsection{Probleemstelling}
+Mijn opdrachtgever werkt op de veerdienst tussen ingen en elst. Hier zet hij dagelijks
+honderden fietsers en auto's over. Hier loopt hij dagelijks tegen een probleem aan.
+Namelijk, de veerpont vaart niet met specifieke vaartijden. Tussen de openings- en
+sluitingstijden vaart de pont simpelweg op en neer wanneer er klanten zijn. Wat er vaak
+gebeurt is dat klanten nét te laat zijn om een pont te halen. Dit zorgt voor ergernis bij
+klanten, omdat zij hierdoor vaak 10 minuten moeten wachten voordat de pont weer bij
+ze is. Voor de schipper is dit ook lastig, omdat dit er voor zorgt dat een overtocht vaak drukker
+dan nodig is. De pont is vaak om en om druk: de ene overtocht is die bijna leeg, en de
+andere vaak te druk om alle auto’s mee te krijgen.
+
+\subsection{Oplossing}
+Mijn voorgestelde oplossing is een webapplicatie welke laat zien waar de veerpont nu is,
+wanneer die betrokken is en welke overtochten de veerpont heeft gemaakt. Daarnaast
+wil ik wat extra informatie over de pont zien(zoals de gemiddelde tijd van een overtocht
+en dergelijke). Het idee is dat klanten op basis van verschillende informatie kunnen
+inschatten wanneer de veerpont ongeveer vertrekt. De baas kan bijhouden hoe vaak de
+veerpont over gaat per dag en hoe snel deze is. Als laatste kan de schipper bijhouden
+hoe druk de veerpont is per overtocht, zodat de baas hier weer op kan inspelen bij het
+inhuren van potentiële kniphulpen.
+\par\smallskip
+Het bijhouden van de positie van de veerpont zal gebeuren via AIS data.
+Dit is te ontvangen via een AIS antenna, wat een mogelijkheid is voor de toekomst.
+ Voor nu is de AIS data toegankelijk via verschillende API's, zoals bij \href{https://aisstream.io}{AISstream.io}.
+Vervolgens zal deze data worden opgeslagen in de database, op basis waarven de huidige positie en richting van het schip wordt bepaald. Deze informatie zal worden opgeslagen als een 'Overtocht'. Op basis van de overtochten wordt informatie berekent zoals de gemiddelde tijd van een overtocht en de resterende duur van de huidige overtocht.
+\par\smallskip 
+Het systeem zal drie verschillende rollen hebben. \\
+\textbf{Klant}: Een klant hoef niet in te loggen. Een klant bezoekt de website en kan informatie over de veerpont zien, zoals locatie en vertrektijd van de veerpont.\\
+\textbf{Baas}: De baas kan inloggen en zit meer informatie over de pont, hoeveel banen er nu in gebruik zijn en hoeveel overtochten er zijn geweest in het afgelopen uur.\\
+\textbf{Schipper}: De schipper kan inloggen en kan bijhouden hoe druk de veerpont is per overtocht. \\
+
+\subsubsection{Domeinklassen}
+De volgende domeinklassen zullen ten minste worden geïmplementeerd. \\
+\textbf{Overtocht}: Een overtocht van de ene naar de andere oever, met daarbij onder andere de bijhorende AIS readings, de drukte van de overtocht en statistieken van de overtocht. \\
+\textbf{AIS\_Reading}: Bevat onder andere de GPS data, koers en snelheid van het schip, waaruit overtochten worden gemaakt. \\
+\textbf{Schipper}: De schipper van de veerpont. Deze klasse houdt bij hoe snel deze schipper gemiddeld is, op basis van de overtochten en de drukte. \\
+
+\subsubsection{Use Cases}
+\begin{enumerate}
+    \item Als klant wil ik de huidige postitie van de veerpont kunnen zien, zodat ik kan inschatten wanneer ik moet vertrekken om de veerpont op tijd te halen.
+    \item Als schipper wil ik kunnen bijhouden hoeveel autobanen vol zijn, zodat ik hiermee met de baas kan overleggen wanneer er extra hulp nodig is.
+    \item Als baas wil ik kunnen inzien welke schipper het snelst is, zodat ik hiermee rekening kan houden bij het inplannen van hulp.
+    \item Als schipper wil ik mijn rooster kunnen in zien, zodat ik weet wanneer ik moet werken.
+    \item Als baas wil ik het rooster van de schippers kunnen bijhouden, zodat schippers weten wanneer ze moeten werken.
+\end{enumerate}
+
+\end{document}
