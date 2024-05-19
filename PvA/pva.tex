@@ -10,7 +10,9 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{tcolorbox}
-
+\hyphenation{wacht-tijd}
+\hyphenation{wacht-tijden}
+\setlength{\textheight}{240truemm}
 % For better header handling
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -81,7 +83,7 @@
 \section{Inleiding}
 Tussen Ingen en Elst (Utrecht) ligt een veerpont. Deze gaat eigenlijk constant op en neer, zonder een vast tijdschema.
 De veerpont is vrij groot en is voor zowel voetgangers, als auto's en fietsen. Er passen ongeveer 20 auto's op en een groot aantal fietsers en voetgangers.
-De veerpont is relatief druk. Er worden dagelijks honderden mensen overgezet en is erg belangrijk voor de inwoners rondom Ingen en Elst. Het lastige met het drukte op de veerpont is dat het vaak in vlagen komt. De ene overtocht heeft slechts 2 auto's en bij de volgende staan er zoveel dat niet alle auto's tegelijk over kunnen. Dit komt vooral omdat mensen niet weten wanneer de veerpont aankomt, waardoor veel mensen hem vaak net missen en vervolgens lang moeten wachten.
+De veerpont is relatief druk. Er worden dagelijks honderden mensen overgezet en is erg belangrijk voor de inwoners rondom Ingen en Elst. Het lastige met de drukte op de veerpont is dat het vaak in vlagen komt. De ene overtocht heeft slechts twee auto's en bij de volgende staan er zoveel dat niet alle auto's tegelijk over kunnen. Dit komt vooral omdat mensen niet weten wanneer de veerpont aankomt, waardoor veel mensen hem vaak net missen en vervolgens lang moeten wachten.
 \par\smallskip 
 Dat zorgt voor veel frustratie bij de klanten en veroorzaakt ook stress bij de schipper.
 De kern van het probleem is dat klanten de aankomsttijd van de veerpont niet kunnen inschatten.
@@ -95,7 +97,7 @@ Ook worden de risico's en de planning van het project beschreven.
 
 
 \section{Projectbeschrijving}
-De webapplicatie die hierboven werd beschreven moet in ieder geval goed laten zien waar de veerpont zich bevindt, door middel van een kaart. De locatie zal worden opgehaald door middel van AIS data. AIS, wat staat voor Automatic Identification System, is een soort GPS-systeem voor schepen. Deze data wordt opgehaald via aisstream.io. Dit is een gratis API voor ais data.
+De webapplicatie die hierboven werd beschreven moet in ieder geval goed laten zien waar de veerpont zich bevindt, door middel van een kaart. De locatie zal worden opgehaald door middel van AIS data. AIS\footnote[1]{AIS staat voor: 'Automatic Identification System'} is een soort GPS-systeem voor schepen. Deze data wordt opgehaald via aisstream.io, wat een gratis API voor AIS data is.
 Het belangrijkste aan de applicatie is dat die betrouwbaar is en dat de data die wordt weergegeven ook klopt. Ook moet die natuurlijk altijd bereikbaar zijn. Minder belangrijk is de opmaak en de extra informatie. 
 Met de webapplicatie zullen klanten makkelijk kunnen zien waar de veerpont zich bevindt en hoe druk het is, waardoor de drukte zich hopelijk beter verspreid. Ook zullen mensen minder lang hoeven te wachten, omdat ze kunnen inschatten wanneer de veerpont aankomt.
 Dit zorgt simpelweg voor een betere doorloop en minder frustratie. Hierdoor zijn mensen vrolijker wat, samen met de mogelijkheid tot snellere hulp bij drukte, zorgt voor minder stress bij de schipper.
