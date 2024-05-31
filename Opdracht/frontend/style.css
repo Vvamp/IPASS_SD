@@ -1,0 +1,10 @@
+body {
+  background-color: black;
+  color: red;
+  font-weight: bold;
+}
+
+ul > li {
+  text-decoration: none;
+  list-style-type: none;
+}
