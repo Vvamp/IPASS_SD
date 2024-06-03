@@ -6,6 +6,16 @@
     <link rel="stylesheet" href="/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Veerpont App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"
+      defer
+    ></script>
+    <script type="module" src="src/map.js"></script>
+
     <script type="module" src="src/main.js"></script>
   </head>
   <body>
@@ -19,7 +29,7 @@
         <label for="todo1">Read from aisstream api</label>
       </li>
       <li>
-        <input type="checkbox" id="todo2" disabled />
+        <input type="checkbox" id="todo2" disabled checked />
         <label for="todo2">Show current loc on map</label>
       </li>
       <li>
@@ -35,5 +45,7 @@
         <label for="todo5">Show stats</label>
       </li>
     </ul>
+
+    <div id="map"></div>
   </body>
 </html>

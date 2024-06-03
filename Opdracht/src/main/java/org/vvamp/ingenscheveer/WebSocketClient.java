@@ -6,6 +6,7 @@ import javax.websocket.*;
 import java.net.URI;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 
 @ClientEndpoint
@@ -13,6 +14,7 @@ import java.util.concurrent.CountDownLatch;
 public class WebSocketClient {
     private static CountDownLatch latch;
     private static ObjectMapper objectMapper = new ObjectMapper();
+    public static ArrayList<MainMessage> shipMessages = new ArrayList<MainMessage>();
     @OnOpen
     public void onOpen(Session session) {
         System.out.println("Connected to server");
@@ -33,6 +35,7 @@ public class WebSocketClient {
 
         try {
             MainMessage data = objectMapper.readValue(json, MainMessage.class);
+            shipMessages.add(data);
             System.out.println("Deserialized data: " + data);
         } catch (Exception e) {
 //            System.err.println("Failed to deserialize message: " + e.getMessage());
