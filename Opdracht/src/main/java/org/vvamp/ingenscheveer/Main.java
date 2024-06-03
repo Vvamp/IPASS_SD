@@ -10,6 +10,7 @@ import java.util.concurrent.ScheduledExecutorService;
 public class Main implements ServletContextListener {
 
     private ScheduledExecutorService executorService;
+    public static StorageController storageController= new LocalFileStorageController("cache.json");
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {

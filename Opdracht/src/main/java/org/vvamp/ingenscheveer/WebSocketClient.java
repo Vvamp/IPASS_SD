@@ -37,6 +37,7 @@ public class WebSocketClient {
             MainMessage data = objectMapper.readValue(json, MainMessage.class);
             shipMessages.add(data);
             System.out.println("Deserialized data: " + data);
+            Main.storageController.save(data);
         } catch (Exception e) {
 //            System.err.println("Failed to deserialize message: " + e.getMessage());
 //            e.printStackTrace();
