@@ -2,7 +2,8 @@ package org.vvamp.ingenscheveer;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.vvamp.ingenscheveer.models.json.MainMessage;
+import org.vvamp.ingenscheveer.models.Ferry;
+import org.vvamp.ingenscheveer.models.json.AisSignal;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,6 +15,7 @@ import java.util.concurrent.Semaphore;
 
 public class LocalFileStorageController implements StorageController{
     private File file;
+    public String readData = "";
     private Semaphore mutex = new Semaphore(1);
     public LocalFileStorageController(String filename){
         file = new File(filename);
@@ -30,20 +32,20 @@ public class LocalFileStorageController implements StorageController{
     }
 
     @Override
-    public void save(MainMessage mainMessage) {
-        ArrayList<MainMessage> loadedMessages = new ArrayList<MainMessage>();
-        ArrayList<MainMessage> savedMessages = load();
+    public void save(AisSignal aisSignal) {
+        ArrayList<AisSignal> loadedMessages = new ArrayList<AisSignal>();
+        ArrayList<AisSignal> savedMessages = load();
 
-        for (MainMessage message : savedMessages) {
+        for (AisSignal message : savedMessages) {
             loadedMessages.add(message);
         }
-        loadedMessages.add(mainMessage);
+        loadedMessages.add(aisSignal);
 
         save(loadedMessages);
     }
 
     @Override
-    public void save(ArrayList<MainMessage> mainMessages) {
+    public void save(ArrayList<AisSignal> aisSignals) {
         FileWriter writer = null;
         try {
             writer = new FileWriter(file.getAbsoluteFile());
@@ -53,7 +55,7 @@ public class LocalFileStorageController implements StorageController{
         ObjectMapper mapper = new ObjectMapper();
         String json;
         try {
-            json = mapper.writeValueAsString(mainMessages);
+            json = mapper.writeValueAsString(aisSignals);
         }catch(Exception e){
             return; // Failed to save
         }
@@ -72,8 +74,9 @@ public class LocalFileStorageController implements StorageController{
     }
 
     @Override
-    public ArrayList<MainMessage> load() {
+    public ArrayList<AisSignal> load() {
         String json = "";
+        readData = "";
         try {
             mutex.acquire();
             Scanner myReader = new Scanner(file);
@@ -88,18 +91,20 @@ public class LocalFileStorageController implements StorageController{
                 FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
-            return new ArrayList<MainMessage>();
+            return new ArrayList<AisSignal>();
         }catch(Exception e){
             mutex.release();
         }
+        readData = json;
         ObjectMapper objectMapper = new ObjectMapper();
-        ArrayList<MainMessage> data = null;
+        ArrayList<AisSignal> data = null;
         if(json.trim().isEmpty()){
-            return new ArrayList<MainMessage>();
+            return new ArrayList<AisSignal>();
         }
         try {
-            data = objectMapper.readValue(json, new TypeReference<ArrayList<MainMessage>>() {});
+            data = objectMapper.readValue(json, new TypeReference<ArrayList<AisSignal>>() {});
         }catch(Exception e){
+            System.err.println("Failed to read ais data");
             return null;
         }
         return data;

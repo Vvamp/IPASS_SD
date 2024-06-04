@@ -1,6 +1,6 @@
 package org.vvamp.ingenscheveer;
 
-import org.vvamp.ingenscheveer.models.json.MainMessage;
+import org.vvamp.ingenscheveer.models.json.AisSignal;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.websocket.*;
 import java.net.URI;
@@ -14,7 +14,7 @@ import java.util.concurrent.CountDownLatch;
 public class WebSocketClient {
     private static CountDownLatch latch;
     private static ObjectMapper objectMapper = new ObjectMapper();
-    public static ArrayList<MainMessage> shipMessages = new ArrayList<MainMessage>();
+    public static ArrayList<AisSignal> shipMessages = new ArrayList<AisSignal>();
     @OnOpen
     public void onOpen(Session session) {
         System.out.println("Connected to server");
@@ -34,7 +34,7 @@ public class WebSocketClient {
         System.out.println("Received binary message: " + json);
 
         try {
-            MainMessage data = objectMapper.readValue(json, MainMessage.class);
+            AisSignal data = objectMapper.readValue(json, AisSignal.class);
             shipMessages.add(data);
             System.out.println("Deserialized data: " + data);
             Main.storageController.save(data);

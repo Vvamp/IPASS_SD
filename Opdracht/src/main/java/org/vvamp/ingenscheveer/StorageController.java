@@ -1,11 +1,11 @@
 package org.vvamp.ingenscheveer;
 
-import org.vvamp.ingenscheveer.models.json.MainMessage;
+import org.vvamp.ingenscheveer.models.json.AisSignal;
 
 import java.util.ArrayList;
 
 public interface StorageController {
-    public void save(MainMessage mainMessage);
-    public void save(ArrayList<MainMessage> mainMessages);
-    public ArrayList<MainMessage> load();
+    public void save(AisSignal aisSignal);
+    public void save(ArrayList<AisSignal> aisSignals);
+    public ArrayList<AisSignal> load();
 }

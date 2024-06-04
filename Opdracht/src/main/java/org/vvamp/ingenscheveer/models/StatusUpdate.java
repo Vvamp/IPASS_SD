@@ -2,18 +2,16 @@ package org.vvamp.ingenscheveer.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.vvamp.ingenscheveer.Location;
-import org.vvamp.ingenscheveer.models.json.MainMessage;
-
-import java.time.LocalDateTime;
+import org.vvamp.ingenscheveer.models.json.AisSignal;
 
 public class StatusUpdate {
     @JsonProperty("Location")
     private Location location;
 
     @JsonProperty("AIS Signal")
-    private MainMessage aisSignal;
+    private AisSignal aisSignal;
 
-    public StatusUpdate(Location location, MainMessage aisSignal) {
+    public StatusUpdate(Location location, AisSignal aisSignal) {
         this.location = location;
         this.aisSignal = aisSignal;
     }
@@ -26,7 +24,7 @@ public class StatusUpdate {
         return location;
     }
 
-    public MainMessage getAisSignal() {
+    public AisSignal getAisSignal() {
         return aisSignal;
     }
 

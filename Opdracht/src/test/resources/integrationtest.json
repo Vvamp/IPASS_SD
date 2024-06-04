@@ -1,0 +1,1890 @@
+[
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 68.6,
+        "CommunicationState": 59916,
+        "Latitude": 51.979572,
+        "Longitude": 5.49629,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0.5,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 11,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979572,
+      "longitude": 5.49629,
+      "time_utc": "2024-06-03 14:41:11.315956378 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 18.5,
+        "CommunicationState": 59916,
+        "Latitude": 51.980015,
+        "Longitude": 5.496415,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 2.2,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 11,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980015,
+      "longitude": 5.496415,
+      "time_utc": "2024-06-03 14:42:11.492486727 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 41.2,
+        "CommunicationState": 59916,
+        "Latitude": 51.980366,
+        "Longitude": 5.496772,
+        "MessageID": 3,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 1.9,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 50,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980366,
+      "longitude": 5.496772,
+      "time_utc": "2024-06-03 14:42:50.97328168 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 45.4,
+        "CommunicationState": 59916,
+        "Latitude": 51.980495,
+        "Longitude": 5.496977,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 1.9,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 11,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980495,
+      "longitude": 5.496977,
+      "time_utc": "2024-06-03 14:43:11.275385722 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.9806,
+        "Longitude": 5.4971585,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 30,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.9806,
+      "longitude": 5.4971585,
+      "time_utc": "2024-06-03 14:44:31.161102525 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 322.6,
+        "CommunicationState": 59916,
+        "Latitude": 51.980606,
+        "Longitude": 5.497145,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0.2,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 30,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980606,
+      "longitude": 5.497145,
+      "time_utc": "2024-06-03 14:45:31.403445677 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 208.9,
+        "CommunicationState": 59916,
+        "Latitude": 51.980152,
+        "Longitude": 5.496498,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 2.7,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 30,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980152,
+      "longitude": 5.496498,
+      "time_utc": "2024-06-03 14:46:31.199477675 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 180.7,
+        "CommunicationState": 59916,
+        "Latitude": 51.97957,
+        "Longitude": 5.4962482,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 1.2,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 30,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.97957,
+      "longitude": 5.4962482,
+      "time_utc": "2024-06-03 14:47:31.334930109 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 152.5,
+        "CommunicationState": 59916,
+        "Latitude": 51.97954,
+        "Longitude": 5.496255,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0.1,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 30,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.97954,
+      "longitude": 5.496255,
+      "time_utc": "2024-06-03 14:48:31.098774779 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.97955,
+        "Longitude": 5.4962482,
+        "MessageID": 3,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 1,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.97955,
+      "longitude": 5.4962482,
+      "time_utc": "2024-06-03 14:49:02.0097733 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 185.7,
+        "CommunicationState": 59916,
+        "Latitude": 51.979553,
+        "Longitude": 5.496255,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0.1,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 41,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979553,
+      "longitude": 5.496255,
+      "time_utc": "2024-06-03 14:49:42.3283538 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 18.7,
+        "CommunicationState": 59916,
+        "Latitude": 51.97974,
+        "Longitude": 5.496345,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 1.8,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 41,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.97974,
+      "longitude": 5.496345,
+      "time_utc": "2024-06-03 14:50:42.084742288 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 35.6,
+        "CommunicationState": 59916,
+        "Latitude": 51.9803,
+        "Longitude": 5.4966717,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 2,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 41,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.9803,
+      "longitude": 5.4966717,
+      "time_utc": "2024-06-03 14:51:42.322258488 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.980606,
+        "Longitude": 5.497185,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 50,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980606,
+      "longitude": 5.497185,
+      "time_utc": "2024-06-03 14:52:51.121922781 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.980595,
+        "Longitude": 5.497172,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 50,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980595,
+      "longitude": 5.497172,
+      "time_utc": "2024-06-03 14:53:51.255996058 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.9806,
+        "Longitude": 5.497165,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 0,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.9806,
+      "longitude": 5.497165,
+      "time_utc": "2024-06-03 14:55:01.07687802 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 231.4,
+        "CommunicationState": 59916,
+        "Latitude": 51.98038,
+        "Longitude": 5.496825,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 2.3,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 0,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.98038,
+      "longitude": 5.496825,
+      "time_utc": "2024-06-03 14:56:01.343167381 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 193.7,
+        "CommunicationState": 59916,
+        "Latitude": 51.979824,
+        "Longitude": 5.4962935,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 2,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 0,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979824,
+      "longitude": 5.4962935,
+      "time_utc": "2024-06-03 14:57:01.514394659 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.97954,
+        "Longitude": 5.4962635,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 10,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.97954,
+      "longitude": 5.4962635,
+      "time_utc": "2024-06-03 14:58:10.794439632 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.979527,
+        "Longitude": 5.4962816,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 10,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979527,
+      "longitude": 5.4962816,
+      "time_utc": "2024-06-03 14:59:10.555997841 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.979523,
+        "Longitude": 5.496267,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 10,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979523,
+      "longitude": 5.496267,
+      "time_utc": "2024-06-03 15:00:11.982982869 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 43.8,
+        "CommunicationState": 59916,
+        "Latitude": 51.979588,
+        "Longitude": 5.496297,
+        "MessageID": 3,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 1,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 41,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979588,
+      "longitude": 5.496297,
+      "time_utc": "2024-06-03 15:00:41.448010467 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 11.9,
+        "CommunicationState": 59916,
+        "Latitude": 51.979927,
+        "Longitude": 5.496392,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 2.1,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 20,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979927,
+      "longitude": 5.496392,
+      "time_utc": "2024-06-03 15:01:20.450862433 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 42,
+        "CommunicationState": 59916,
+        "Latitude": 51.980427,
+        "Longitude": 5.4968834,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 1.8,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 20,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980427,
+      "longitude": 5.4968834,
+      "time_utc": "2024-06-03 15:02:20.758408092 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.98057,
+        "Longitude": 5.4971766,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 31,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.98057,
+      "longitude": 5.4971766,
+      "time_utc": "2024-06-03 15:03:32.056653328 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.98058,
+        "Longitude": 5.497185,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 31,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.98058,
+      "longitude": 5.497185,
+      "time_utc": "2024-06-03 15:04:32.38123092 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.980583,
+        "Longitude": 5.497175,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 41,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980583,
+      "longitude": 5.497175,
+      "time_utc": "2024-06-03 15:05:42.024810798 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 337.4,
+        "CommunicationState": 59916,
+        "Latitude": 51.980587,
+        "Longitude": 5.497165,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0.1,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 41,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980587,
+      "longitude": 5.497165,
+      "time_utc": "2024-06-03 15:06:42.415696206 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 311.3,
+        "CommunicationState": 59916,
+        "Latitude": 51.98059,
+        "Longitude": 5.497145,
+        "MessageID": 3,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0.3,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 51,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.98059,
+      "longitude": 5.497145,
+      "time_utc": "2024-06-03 15:06:51.126645799 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 212.5,
+        "CommunicationState": 59916,
+        "Latitude": 51.980186,
+        "Longitude": 5.4965515,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 2.5,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 51,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980186,
+      "longitude": 5.4965515,
+      "time_utc": "2024-06-03 15:07:51.190450684 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 187.2,
+        "CommunicationState": 59916,
+        "Latitude": 51.979633,
+        "Longitude": 5.496267,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 1.8,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 51,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979633,
+      "longitude": 5.496267,
+      "time_utc": "2024-06-03 15:08:51.407727718 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.979538,
+        "Longitude": 5.4963017,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 51,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979538,
+      "longitude": 5.4963017,
+      "time_utc": "2024-06-03 15:09:51.95885842 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.97955,
+        "Longitude": 5.496307,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 51,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.97955,
+      "longitude": 5.496307,
+      "time_utc": "2024-06-03 15:10:51.919528793 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.979527,
+        "Longitude": 5.4962783,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 51,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979527,
+      "longitude": 5.4962783,
+      "time_utc": "2024-06-03 15:11:51.929254563 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 35.8,
+        "CommunicationState": 59916,
+        "Latitude": 51.97961,
+        "Longitude": 5.4963117,
+        "MessageID": 3,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 1.3,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 41,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.97961,
+      "longitude": 5.4963117,
+      "time_utc": "2024-06-03 15:12:42.012946286 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 13.1,
+        "CommunicationState": 59916,
+        "Latitude": 51.979687,
+        "Longitude": 5.49634,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 1.9,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 51,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979687,
+      "longitude": 5.49634,
+      "time_utc": "2024-06-03 15:12:52.009706085 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 37.2,
+        "CommunicationState": 59916,
+        "Latitude": 51.98025,
+        "Longitude": 5.496655,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 2.1,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 51,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.98025,
+      "longitude": 5.496655,
+      "time_utc": "2024-06-03 15:13:51.837075621 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 59.4,
+        "CommunicationState": 59916,
+        "Latitude": 51.980583,
+        "Longitude": 5.497172,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0.2,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 51,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980583,
+      "longitude": 5.497172,
+      "time_utc": "2024-06-03 15:14:51.963945239 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.98058,
+        "Longitude": 5.49716,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 51,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.98058,
+      "longitude": 5.49716,
+      "time_utc": "2024-06-03 15:15:52.184443679 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.980583,
+        "Longitude": 5.497165,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 0,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980583,
+      "longitude": 5.497165,
+      "time_utc": "2024-06-03 15:17:01.504332943 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 227.6,
+        "CommunicationState": 59916,
+        "Latitude": 51.980473,
+        "Longitude": 5.497007,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 1.9,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 0,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980473,
+      "longitude": 5.497007,
+      "time_utc": "2024-06-03 15:18:01.787713516 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 206,
+        "CommunicationState": 59916,
+        "Latitude": 51.98007,
+        "Longitude": 5.496445,
+        "MessageID": 3,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 2.3,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 50,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.98007,
+      "longitude": 5.496445,
+      "time_utc": "2024-06-03 15:18:50.344777249 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 195.5,
+        "CommunicationState": 59916,
+        "Latitude": 51.97985,
+        "Longitude": 5.4963183,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 2.1,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 11,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.97985,
+      "longitude": 5.4963183,
+      "time_utc": "2024-06-03 15:19:12.049410916 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.979527,
+        "Longitude": 5.4962783,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 11,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979527,
+      "longitude": 5.4962783,
+      "time_utc": "2024-06-03 15:20:12.587133489 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.979523,
+        "Longitude": 5.4962735,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 21,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979523,
+      "longitude": 5.4962735,
+      "time_utc": "2024-06-03 15:21:22.084281584 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.979527,
+        "Longitude": 5.496277,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 31,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979527,
+      "longitude": 5.496277,
+      "time_utc": "2024-06-03 15:22:31.80955188 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.979527,
+        "Longitude": 5.496275,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 31,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979527,
+      "longitude": 5.496275,
+      "time_utc": "2024-06-03 15:23:31.666656367 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 10.9,
+        "CommunicationState": 59916,
+        "Latitude": 51.979877,
+        "Longitude": 5.496355,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 2.3,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 31,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979877,
+      "longitude": 5.496355,
+      "time_utc": "2024-06-03 15:24:31.771332798 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 44.2,
+        "CommunicationState": 59916,
+        "Latitude": 51.980423,
+        "Longitude": 5.49688,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 1.8,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 31,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980423,
+      "longitude": 5.49688,
+      "time_utc": "2024-06-03 15:25:31.993464892 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.980587,
+        "Longitude": 5.49717,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 40,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980587,
+      "longitude": 5.49717,
+      "time_utc": "2024-06-03 15:26:40.295383568 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.980583,
+        "Longitude": 5.4971685,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 40,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.980583,
+      "longitude": 5.4971685,
+      "time_utc": "2024-06-03 15:27:40.341158339 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 20.4,
+        "CommunicationState": 59916,
+        "Latitude": 51.98058,
+        "Longitude": 5.49716,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0.2,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 50,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.98058,
+      "longitude": 5.49716,
+      "time_utc": "2024-06-03 15:28:50.30025534 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 201.7,
+        "CommunicationState": 59916,
+        "Latitude": 51.97996,
+        "Longitude": 5.4963865,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 2.2,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 10,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.97996,
+      "longitude": 5.4963865,
+      "time_utc": "2024-06-03 15:30:11.470498509 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 185.5,
+        "CommunicationState": 59916,
+        "Latitude": 51.979576,
+        "Longitude": 5.496265,
+        "MessageID": 3,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 1.6,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 51,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979576,
+      "longitude": 5.496265,
+      "time_utc": "2024-06-03 15:30:51.735076937 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.979515,
+        "Longitude": 5.496275,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 21,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979515,
+      "longitude": 5.496275,
+      "time_utc": "2024-06-03 15:31:21.992397321 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.979527,
+        "Longitude": 5.4962735,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 21,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.979527,
+      "longitude": 5.4962735,
+      "time_utc": "2024-06-03 15:32:21.881238167 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 360,
+        "CommunicationState": 59916,
+        "Latitude": 51.97953,
+        "Longitude": 5.4962716,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 0,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 21,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.97953,
+      "longitude": 5.4962716,
+      "time_utc": "2024-06-03 15:33:21.836358428 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 7.5,
+        "CommunicationState": 59916,
+        "Latitude": 51.97984,
+        "Longitude": 5.4963784,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 2,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 21,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.97984,
+      "longitude": 5.4963784,
+      "time_utc": "2024-06-03 15:34:21.68949995 +0000 UTC"
+    }
+  },
+  {
+    "Message": {
+      "PositionReport": {
+        "Cog": 40.6,
+        "CommunicationState": 59916,
+        "Latitude": 51.98042,
+        "Longitude": 5.496878,
+        "MessageID": 1,
+        "NavigationalStatus": 0,
+        "PositionAccuracy": true,
+        "Raim": true,
+        "RateOfTurn": -128,
+        "RepeatIndicator": 0,
+        "Sog": 1.8,
+        "Spare": 0,
+        "SpecialManoeuvreIndicator": 0,
+        "Timestamp": 31,
+        "TrueHeading": 511,
+        "UserID": 244780155,
+        "Valid": true
+      }
+    },
+    "MessageType": "PositionReport",
+    "MetaData": {
+      "MMSI": 244780155,
+      "MMSI_String": "244780155",
+      "ShipName": "GELDERSWEERT",
+      "latitude": 51.98042,
+      "longitude": 5.496878,
+      "time_utc": "2024-06-03 15:35:31.348376914 +0000 UTC"
+    }
+  }
+  ]

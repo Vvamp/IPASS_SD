@@ -4,7 +4,7 @@ package org.vvamp.ingenscheveer.webservices;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.vvamp.ingenscheveer.Main;
-import org.vvamp.ingenscheveer.models.json.MainMessage;
+import org.vvamp.ingenscheveer.models.json.AisSignal;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
@@ -21,12 +21,12 @@ public class AISResource {
     @GET
     @Produces("application/json")
     public Response getShip() {
-        ArrayList<MainMessage> shipMessages = Main.storageController.load();
+        ArrayList<AisSignal> shipMessages = Main.storageController.load();
 
         if(shipMessages.size() == 0){
             return Response.status(200).entity("").build();
         }
-        MainMessage mostRecentUpdate = shipMessages.get(shipMessages.size()-1);
+        AisSignal mostRecentUpdate = shipMessages.get(shipMessages.size()-1);
         ObjectMapper mapper = new ObjectMapper();
         try {
             String json = mapper.writeValueAsString(mostRecentUpdate);
@@ -44,7 +44,7 @@ public class AISResource {
     @Produces("application/json")
     public Response getUpdates() {
         JsonArrayBuilder jab = Json.createArrayBuilder();
-        ArrayList<MainMessage> shipMessages = Main.storageController.load();
+        ArrayList<AisSignal> shipMessages = Main.storageController.load();
 
         if(shipMessages.size() == 0){
             return Response.status(200).entity("").build();
@@ -68,7 +68,7 @@ public class AISResource {
     @Produces("application/json")
     public Response getUpdatesWithCount(@PathParam("count") int count) {
         JsonArrayBuilder jab = Json.createArrayBuilder();
-        ArrayList<MainMessage> shipMessages = Main.storageController.load();
+        ArrayList<AisSignal> shipMessages = Main.storageController.load();
 
         if(shipMessages.size() == 0){
             return Response.status(200).entity("").build();
@@ -76,7 +76,7 @@ public class AISResource {
 
         int actualCount = count <= shipMessages.size() ? count : shipMessages.size();
         Collections.reverse(shipMessages); // from new to old
-        List<MainMessage> truncatedMessages = shipMessages.stream().limit(actualCount).collect(Collectors.toList()); // limit to 'count' newest
+        List<AisSignal> truncatedMessages = shipMessages.stream().limit(actualCount).collect(Collectors.toList()); // limit to 'count' newest
 
         ObjectMapper mapper = new ObjectMapper();
 

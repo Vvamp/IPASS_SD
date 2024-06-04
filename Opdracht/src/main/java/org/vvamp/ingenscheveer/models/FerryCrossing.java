@@ -1,10 +1,8 @@
 package org.vvamp.ingenscheveer.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.vvamp.ingenscheveer.Location;
-import org.vvamp.ingenscheveer.models.json.MainMessage;
+import org.vvamp.ingenscheveer.models.json.AisSignal;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class FerryCrossing {
@@ -19,15 +17,15 @@ public class FerryCrossing {
     private StatusUpdate arrival;
 
     @JsonProperty("AIS Signals")
-    private ArrayList<MainMessage> aisSignals;
+    private ArrayList<AisSignal> aisSignals;
 
 
-    public FerryCrossing(StatusUpdate departure, StatusUpdate arrival, ArrayList<MainMessage> aisSignals) {
+    public FerryCrossing(StatusUpdate departure, StatusUpdate arrival, ArrayList<AisSignal> aisSignals) {
         this.departure = departure;
         this.arrival = arrival;
         this.aisSignals = aisSignals;
     }
-    public FerryCrossing(StatusUpdate departure, ArrayList<MainMessage> aisSignals) {
+    public FerryCrossing(StatusUpdate departure, ArrayList<AisSignal> aisSignals) {
         this.departure = departure;
         this.arrival = null;
         this.aisSignals = aisSignals;
@@ -35,7 +33,7 @@ public class FerryCrossing {
     public FerryCrossing(StatusUpdate departure) {
         this.departure = departure;
         this.arrival = null;
-        this.aisSignals = new ArrayList<MainMessage>();
+        this.aisSignals = new ArrayList<AisSignal>();
     }
 
     public StatusUpdate getDeparture() {
@@ -46,7 +44,7 @@ public class FerryCrossing {
         return arrival;
     }
 
-    public ArrayList<MainMessage> getAisSignals() {
+    public ArrayList<AisSignal> getAisSignals() {
         return aisSignals;
     }
 
@@ -58,11 +56,11 @@ public class FerryCrossing {
         this.arrival = arrival;
     }
 
-    public void setAisSignals(ArrayList<MainMessage> aisSignals) {
+    public void setAisSignals(ArrayList<AisSignal> aisSignals) {
         this.aisSignals = aisSignals;
     }
 
-    public void addAisSignal(MainMessage aisSignal) {
+    public void addAisSignal(AisSignal aisSignal) {
         this.aisSignals.add(aisSignal);
     }
 }

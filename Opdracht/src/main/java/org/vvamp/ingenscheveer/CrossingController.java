@@ -2,14 +2,14 @@ package org.vvamp.ingenscheveer;
 
 import org.vvamp.ingenscheveer.models.FerryCrossing;
 import org.vvamp.ingenscheveer.models.StatusUpdate;
-import org.vvamp.ingenscheveer.models.json.MainMessage;
+import org.vvamp.ingenscheveer.models.json.AisSignal;
 
 import java.util.ArrayList;
 
 public class CrossingController {
-    public ArrayList<StatusUpdate> getStatusUpdates(ArrayList<MainMessage> mainMessages) {
+    public ArrayList<StatusUpdate> getStatusUpdates(ArrayList<AisSignal> aisSignals) {
         ArrayList<StatusUpdate> statusUpdates = new ArrayList<>();
-        for (MainMessage message : mainMessages) {
+        for (AisSignal message : aisSignals) {
 //            Location direction = Location.UNKNOWN;
 //
 //

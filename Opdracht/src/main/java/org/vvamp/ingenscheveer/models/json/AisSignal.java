@@ -2,7 +2,7 @@ package org.vvamp.ingenscheveer.models.json;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class MainMessage {
+public class AisSignal {
     @JsonProperty("Message")
     public Message message;
 
