@@ -1,4 +1,4 @@
-package org.vvamp.ingenscheveer.models;
+package org.vvamp.ingenscheveer.models.json;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

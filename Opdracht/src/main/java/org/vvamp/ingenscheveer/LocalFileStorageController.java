@@ -1,9 +1,8 @@
 package org.vvamp.ingenscheveer;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.vvamp.ingenscheveer.models.MainMessage;
+import org.vvamp.ingenscheveer.models.json.MainMessage;
 
 import java.io.File;
 import java.io.FileNotFoundException;

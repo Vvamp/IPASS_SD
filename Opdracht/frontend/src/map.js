@@ -14,8 +14,8 @@ shipFeature.setStyle(
   new ol.style.Style({
     image: new ol.style.Icon({
       src: "/ship.png", // URL of the ship icon
-      scale: 0.1, // Adjust the scale of the icon as needed
-      anchor: [0.5, 0.5], // Center the anchor point
+      scale: 0.12, // Adjust the scale of the icon as needed
+      anchor: [0.6, 0.5], // Center the anchor point
       anchorXUnits: "fraction",
       anchorYUnits: "fraction",
     }),
@@ -59,12 +59,11 @@ function updateShipLocation(location) {
 }
 
 function resetLocation() {
-  updateShipLocation([51.98056333333333, 5.4971966666666665]);
-  console.log("set starting location");
+  updateShipLocation([51.979527, 5.496295]);
 }
 
 function loadShipLocation() {
-  let url = "/api/ship";
+  let url = "/api/ais";
   fetch(url)
     .then((res) => res.json())
     .then((out) =>

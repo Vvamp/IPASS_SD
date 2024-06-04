@@ -1,55 +1,77 @@
-package org.vvamp.ingenscheveer.models;
+package org.vvamp.ingenscheveer.models.json;
 import com.fasterxml.jackson.annotation.JsonProperty;
 public class PositionReport {
+    public PositionReport(float cog, int communicationState, float latitude, float longitude, int messageID, int navigationalStatus, boolean positionAccuracy, boolean raim, int rateOfTurn, int repeatIndicator, float sog, int spare, int specialManoeuvreIndicator, int timestamp, int trueHeading, int userID, boolean valid) {
+        this.cog = cog;
+        this.communicationState = communicationState;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.messageID = messageID;
+        this.navigationalStatus = navigationalStatus;
+        this.positionAccuracy = positionAccuracy;
+        this.raim = raim;
+        this.rateOfTurn = rateOfTurn;
+        this.repeatIndicator = repeatIndicator;
+        this.sog = sog;
+        this.spare = spare;
+        this.specialManoeuvreIndicator = specialManoeuvreIndicator;
+        this.timestamp = timestamp;
+        this.trueHeading = trueHeading;
+        this.userID = userID;
+        this.valid = valid;
+    }
+    public PositionReport(){}
+
     @JsonProperty("Cog")
-    private float cog;
+    public float cog;
 
     @JsonProperty("CommunicationState")
-    private int communicationState;
+    public int communicationState;
 
     @JsonProperty("Latitude")
-    private float latitude;
+    public float latitude;
 
     @JsonProperty("Longitude")
-    private float longitude;
+    public float longitude;
 
     @JsonProperty("MessageID")
-    private int messageID;
+    public int messageID;
 
     @JsonProperty("NavigationalStatus")
-    private int navigationalStatus;
+    public int navigationalStatus;
 
     @JsonProperty("PositionAccuracy")
-    private boolean positionAccuracy;
+    public boolean positionAccuracy;
 
     @JsonProperty("Raim")
-    private boolean raim;
+    public boolean raim;
 
     @JsonProperty("RateOfTurn")
-    private int rateOfTurn;
+    public int rateOfTurn;
 
     @JsonProperty("RepeatIndicator")
-    private int repeatIndicator;
+    public int repeatIndicator;
 
     @JsonProperty("Sog")
-    private float sog;
+    public float sog;
 
     @JsonProperty("Spare")
-    private int spare;
+    public int spare;
 
     @JsonProperty("SpecialManoeuvreIndicator")
-    private int specialManoeuvreIndicator;
+    public int specialManoeuvreIndicator;
 
     @JsonProperty("Timestamp")
-    private int timestamp;
+    public int timestamp;
 
     @JsonProperty("TrueHeading")
-    private int trueHeading;
+    public int trueHeading;
 
     @JsonProperty("UserID")
-    private int userID;
+    public int userID;
 
     @JsonProperty("Valid")
-    private boolean valid;
+    public boolean valid;
+
 
 }

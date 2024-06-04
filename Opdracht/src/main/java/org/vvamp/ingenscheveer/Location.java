@@ -1,2 +1,7 @@
-package org.vvamp.ingenscheveer;public enum Location {
+package org.vvamp.ingenscheveer;
+
+public enum Location {
+    INGEN,
+    ELST,
+    UNKNOWN
 }

@@ -4,7 +4,7 @@ package org.vvamp.ingenscheveer.webservices;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.vvamp.ingenscheveer.Main;
-import org.vvamp.ingenscheveer.models.MainMessage;
+import org.vvamp.ingenscheveer.models.json.MainMessage;
 
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;

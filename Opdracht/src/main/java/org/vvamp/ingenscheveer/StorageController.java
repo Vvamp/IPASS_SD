@@ -1,6 +1,6 @@
 package org.vvamp.ingenscheveer;
 
-import org.vvamp.ingenscheveer.models.MainMessage;
+import org.vvamp.ingenscheveer.models.json.MainMessage;
 
 import java.util.ArrayList;
 
