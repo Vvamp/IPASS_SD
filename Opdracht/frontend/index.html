@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Veerpont App</title>
+    <title>Veerdienst Ingen-Elst | Home</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css"
@@ -19,13 +19,20 @@
     <script type="module" src="src/main.js"></script>
   </head>
   <body>
-    Geldersweert
-    <br />
+    <nav>
+      <div class="nav-left">
+        <span class="nav-title">Veerdienst Ingen-Elst</span>
+      </div>
+      <div class="nav-right">
+        <button>Login</button>
+      </div>
+    </nav>
+
     <!-- Ideas:
   Timeline from left to right that shows the recent trips the feryr made(times under nodes, direction at edge)
 
 -->
-    <h2>To Do</h2>
+    <!-- <h2>To Do</h2>
     <ul>
       <li>
         <input type="checkbox" id="todo1" disabled checked />
@@ -54,8 +61,50 @@
           prijzen van pontkaart etc, tijdlijn van vaarten</label
         >
       </li>
-    </ul>
+    </ul> -->
 
-    <div id="map"></div>
+    <div class="content-wrapper">
+      <div class="row" id="row-1">
+        <div id="map"></div>
+        <div class="panel" id="statistics">
+          <div class="panel-title">
+            <p>Statistieken</p>
+          </div>
+          <div class="panel-content">
+            <div class="panel-content-row">
+              <p>Status</p>
+              <p>TODO</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Pont in vaart</p>
+              <p>TODO</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Huidige snelheid</p>
+              <p>TODO</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Gem. snelheid (24u)</p>
+              <p>TODO</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Overtochten afgelopen uur</p>
+              <p>TODO</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Laatste update</p>
+              <p>TODO</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Drukte</p>
+              <p>TODO</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Verwachte Aankomsttijd</p>
+              <p>TODO</p>
+            </div>
+          </div>
+      </div>
+    </div>
   </body>
 </html>
