@@ -10,6 +10,7 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{tcolorbox}
+\usepackage{float}
 \usepackage{tabularx}
 \hyphenation{wacht-tijd}
 \hyphenation{wacht-tijden}
@@ -98,17 +99,20 @@ Ook worden de risico's en de planning van het project beschreven.
 
 
 \section{Overzicht van het systeem}
+
+
 \section{Use Cases}
 \begin{figure}[h]
     \centering
-    \label{fig:ucd}
     \includegraphics[width=0.7\textwidth]{images/iv_ucd_color.png}
     \caption{Use Case Diagram - Ingensche Veer}
+    \label{fig:ucd}
 \end{figure}
+In het use case diagram in figuur \ref{fig:ucd} zie je de verschillende use cases. Deze zijn gekleurd naar het MoSCoW model. Rode use cases zijn Must haves, oranje use cases zijn Should haves, gele use cases zijn Could haves en groene use cases zijn Won't haves.
 
 \subsection{Actoren}
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabularx}{\textwidth}{|l|X|}
         \hline
@@ -127,7 +131,7 @@ Ook worden de risico's en de planning van het project beschreven.
 
 \subsection{Use case beschrijvingen en wireframes}
 \subsubsection{UC01 - Bekijk locatie veerpont}
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabularx}{\textwidth}{|l|X|}
         \hline
@@ -153,20 +157,20 @@ Ook worden de risico's en de planning van het project beschreven.
     \caption{Use Case Beschrijving UC01 - Bekijk locatie veerpont}
 \end{table}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \label{fig:wf1}
     \includegraphics[width=0.8\textwidth]{images/wireframe_startpagina.png}
     \caption{Wireframe UC01 - Locatie veerpont bekijken}
+    \label{fig:wf1}
 \end{figure}
 
 \section{Modellen}
 \subsection{Domeinmodel}
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \label{fig:dm}
     \includegraphics[width=0.8\textwidth]{images/ConceptueelKlassendiagram.png}
     \caption{Conceptueel Domeinmodel - Ingensche Veer}
+    \label{fig:dm}
 \end{figure}
 In het domeinmodel in figuur \ref{fig:dm} zie je de Ferry klasse. Dit is de veerpont zelf. De veerpont houdt een lijst van overtochten bij, hier ferryCrossings genoemd. Een FerryCrossing houdt een lijst met AIS Signalen bij en daarnaast het signaal dat het vertek en de aankomst aangeeft. Het AIS signaal bevat de positie en tijd. Hiermee kan de positie van de veerpont worden laten zien.
 De veerpont heeft ook een lijst met schippers. Een schipper heeft een snelheid, dat is hoeveel overtochten hij gemiddeld per uur maakt. Een schipper is, net als de baas, een gebruiker. De baas heeft zelf weer een lijst met schippers als werknemers.
