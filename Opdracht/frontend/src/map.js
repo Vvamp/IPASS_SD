@@ -43,7 +43,7 @@ var map = new ol.Map({
   ],
   view: new ol.View({
     center: centerOLCoords,
-    zoom: 18, // Adjust zoom level as needed
+    zoom: 17, // Adjust zoom level as needed
   }),
 });
 

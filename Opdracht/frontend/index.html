@@ -2,8 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="icon" type="image/png" href="public/FerryLogoOpaque.png" />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <meta name="description" content="Veerdienst Ingen-Elst" />
+    <meta
+      name="keywords"
+      content="Veerdienst, Ingen, Elst, Gelderland, Rivier, Rijn, Veerpont"
+    />
+    <meta name="author" content="Vincent van Setten" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Veerdienst Ingen-Elst | Home</title>
     <link
@@ -14,6 +20,10 @@
       src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"
       defer
     ></script>
+    <script
+      src="https://kit.fontawesome.com/67f6f13cd8.js"
+      crossorigin="anonymous"
+    ></script>
     <script type="module" src="src/map.js"></script>
 
     <script type="module" src="src/main.js"></script>
@@ -21,9 +31,16 @@
   <body>
     <nav>
       <div class="nav-left">
+        <img
+          class="nav-img"
+          src="public/FerryLogoTrans.png"
+          alt="Geldersweert logo"
+        />
         <span class="nav-title">Veerdienst Ingen-Elst</span>
+        <span class="nav-subtitle">Kom over de brug, neem de pont</span>
       </div>
       <div class="nav-right">
+        <a href="#statistics">tarieven</a>
         <button>Login</button>
       </div>
     </nav>
@@ -64,7 +81,7 @@
     </ul> -->
 
     <div class="content-wrapper">
-      <div class="row" id="row-1">
+      <div class="row">
         <div id="map"></div>
         <div class="panel" id="statistics">
           <div class="panel-title">
@@ -104,6 +121,177 @@
               <p>TODO</p>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row" style="min-height: 10vh">
+        <div class="panel" id="timeline">
+          <div class="panel-title">
+            <p>Overtochten Tijdlijn</p>
+          </div>
+          <div class="panel-content">
+            <div class="timeline-node-wrapper">
+              <div class="timeline-node start">
+                <p>12:00</p>
+                <p>Ingen</p>
+                <p></p>
+              </div>
+
+              <div class="timeline-edge travel"></div>
+              <div class="timeline-node arrival">
+                <p>12:00</p>
+                <p>Elst</p>
+              </div>
+              <div class="timeline-edge stay">
+                <p>Elst</p>
+              </div>
+              <div class="timeline-node departure">
+                <p>12:00</p>
+                <p>Elst</p>
+              </div>
+              <div class="timeline-edge travel"></div>
+              <div class="timeline-node arrival">
+                <p>12:00</p>
+                <p>Ingen</p>
+              </div>
+              <div class="timeline-edge stay">
+                <p>Ingen</p>
+              </div>
+              <div class="timeline-node departure">
+                <p>12:00</p>
+                <p>Ingen</p>
+              </div>
+              <div class="timeline-edge travel"></div>
+              <div class="timeline-node end">
+                <p>12:00</p>
+                <p>Elst</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="min-height: 10vh">
+        <div class="panel" id="tarieven">
+          <div class="panel-title">
+            <p>Tarieven</p>
+          </div>
+          <div class="panel-content">
+            <div class="panel-content-row">
+              <p>Voetgangers</p>
+              <p>€ 0,80</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Auto / Kleine Bestelbus / Brommobiel</p>
+              <p>€ 2,70</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Motor</p>
+              <p>€ 2,00</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Camper</p>
+              <p>€ 4,20</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Aanhanger</p>
+              <p>€ 2,70</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Grote Bestelbus / Bakwagen</p>
+              <p>€ 6,00</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Kleine Vragenwagen (2-as, max. 5 ton laadvermogen)</p>
+              <p>€ 8,00</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Grote Vragenwagen (3-as, max. 10 ton laadvermogen)</p>
+              <p>€ 10,00</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Kleine Bus ( + € 0,50 p.p. )</p>
+              <p>€ 8,00</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Grote Bus ( + € 0,50 p.p. ) (max. 12 meter)</p>
+              <p>€ 25,00</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Kleine Tractor (2800kg) (Aanhanger + € 3,00)</p>
+              <p>€ 5,00</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Grote Tractor (3500kg) (Aanhanger + € 5,00)</p>
+              <p>€ 7,00</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="panel-vertical-divider"></div> -->
+
+        <div class="panel-row">
+          <div class="panel" id="rittenkaarten">
+            <div class="panel-title">
+              <p>Rittenkaarten</p>
+            </div>
+            <div class="panel-content">
+              <div class="panel-content-row">
+                <p>Fiets - 10 overtochten</p>
+                <p>€ 13,50 (€ 1,35 per overtocht)</p>
+              </div>
+              <div class="panel-content-row">
+                <p>Fiets - 40 overtochten</p>
+                <p>€ 40,00 (€ 1,00 per overtocht)</p>
+              </div>
+              <div class="panel-content-row">
+                <p>Auto - 10 overtochten</p>
+                <p>€ 22,00 (€ 2,20 per overtocht)</p>
+              </div>
+              <div class="panel-content-row">
+                <p>Auto - 40 overtochten</p>
+                <p>€ 65,00 (€ 1,63 per overtocht)</p>
+              </div>
+              <div class="panel-content-row">
+                <p>Motor - 10 overtochten</p>
+                <p>€ 16,00 (€ 1,60 per overtocht)</p>
+              </div>
+              <div class="panel-content-row">
+                <p>Motor - 40 overtochten</p>
+                <p>€ 48,00 (€ 1,20 per overtocht)</p>
+              </div>
+            </div>
+          </div>
+          <div class="panel" id="openingstijden">
+            <div class="panel-title">
+              <p>Openingstijden</p>
+            </div>
+            <div class="panel-content">
+              <div class="panel-content-row">
+                <p>Maandag t/m vrijdag</p>
+                <p>06:00 - 23:00 (22:50 laatste afvaart)</p>
+              </div>
+              <div class="panel-content-row">
+                <p>Zaterdag</p>
+                <p>07:00 - 24:00 (23:50 laatste afvaart)</p>
+              </div>
+              <div class="panel-content-row">
+                <p>Zondag</p>
+                <p>09:00 - 23:00 (22:50 laatste afvaaart)</p>
+              </div>
+              <div class="panel-content-row">
+                <p>Nationale Feestdagen</p>
+                <p>09:00 - 23:00 (22:50 laatste afvaaart)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="min-height: 1vh">
+        <footer>
+          <p>
+            &copy; 2024 Vincent van Setten / In opdracht van Hogeschool Utrecht
+            / Voor Veerdienst Ingen-Elst b.v.
+          </p>
+        </footer>
       </div>
     </div>
   </body>
