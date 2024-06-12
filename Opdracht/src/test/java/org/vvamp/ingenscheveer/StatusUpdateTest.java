@@ -15,6 +15,8 @@ import org.vvamp.ingenscheveer.webservices.FerryCrossingResource;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -81,9 +83,10 @@ public class StatusUpdateTest {
         ArrayList<AisSignal> signals = lfc.load();
         CrossingController crossingController = new CrossingController();
         ArrayList<StatusUpdate> statusUpdates = crossingController.getStatusUpdates(signals);
-        ArrayList<FerryCrossing> ferryCrossings = crossingController.getFerryCrossings(statusUpdates);
+        List<FerryCrossing> ferryCrossings = crossingController.getFerryCrossings(statusUpdates);
         ferry.setFerryCrossings(ferryCrossings);
 
+        Collections.reverse(ferryCrossings);
         ObjectMapper mapper = new ObjectMapper();
         String json_before = null;
         try {
@@ -95,7 +98,12 @@ public class StatusUpdateTest {
         Main.storageController = lfc;
 
         FerryCrossingResource ferryCrossingResource = new FerryCrossingResource();
-        String json_after = (String) ferryCrossingResource.getCrossings(-1).getEntity();
+        String json_after = null;
+        try {
+            json_after = mapper.writeValueAsString(ferryCrossingResource.getCrossings(-1).getEntity());
+        } catch (JsonProcessingException e) {
+            fail("The crossings api should give back a valid json string");
+        }
 
         assertFalse(json_before.isEmpty(), "The returned json shouldn't be empty");
         assertEquals(json_before, json_after, "The crossings API should work correctly.");
