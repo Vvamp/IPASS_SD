@@ -1,41 +1,35 @@
 package org.vvamp.ingenscheveer.webservices;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.vvamp.ingenscheveer.CrossingController;
-import org.vvamp.ingenscheveer.Main;
 import org.vvamp.ingenscheveer.models.Ferry;
 import org.vvamp.ingenscheveer.models.FerryCrossing;
-import org.vvamp.ingenscheveer.models.StatusUpdate;
-import org.vvamp.ingenscheveer.models.json.AisSignal;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Path("/crossings")
 public class FerryCrossingResource {
+
     @GET
-    @Produces("application/json")
-    public Response getCrossings() {
-       ArrayList<FerryCrossing> crossings = Ferry.getFerry().getFerryCrossings();
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getCrossings(@QueryParam("limit") @DefaultValue("-1") int limit) {
 
-
-        if(crossings.size() == 0){
-            return Response.status(200).entity("").build();
-        }
-        ObjectMapper mapper = new ObjectMapper();
+        List<FerryCrossing> crossings = new ArrayList<>();
         try {
-            String json = mapper.writeValueAsString(crossings);
-            return Response.status(200).entity(crossings).build();
-        }catch(Exception e){
-            Map<String,String> messages = new HashMap<>();
-            messages.put("Error", "Failed to generate response data");
-            return Response.status(500).entity(messages).build();
-
+            crossings = Ferry.getFerry().getFerryCrossings();
+            if (limit > -1) {
+                crossings = crossings.stream().limit(limit).collect(Collectors.toList());
+            }
+        } catch (Exception e) {
+            return Response.status(500).entity(Map.of("Error", "Failed to retrieve FerryCrossing data")).build();
         }
+
+        return Response.status(Response.Status.OK).entity(crossings).build();
     }
 
 
