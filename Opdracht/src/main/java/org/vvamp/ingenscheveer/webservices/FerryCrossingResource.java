@@ -29,7 +29,7 @@ public class FerryCrossingResource {
         ObjectMapper mapper = new ObjectMapper();
         try {
             String json = mapper.writeValueAsString(crossings);
-            return Response.status(200).entity(json).build();
+            return Response.status(200).entity(crossings).build();
         }catch(Exception e){
             Map<String,String> messages = new HashMap<>();
             messages.put("Error", "Failed to generate response data");

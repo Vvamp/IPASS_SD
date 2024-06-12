@@ -9,6 +9,6 @@ public class JerseyConfig extends ResourceConfig
 {
     public JerseyConfig() {
         packages("org.vvamp.ingenscheveer.webservices");
-
+        register(org.glassfish.jersey.jackson.JacksonFeature.class);
     }
 }
