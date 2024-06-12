@@ -1,51 +1,43 @@
-// Coordinates for Utrecht (Longitude, Latitude)
-var defaultCenterCoords = [5.496378, 51.979966];
+  var defaultCenterCoords = [5.496378, 51.979966];
+  var centerOLCoords = ol.proj.fromLonLat(defaultCenterCoords);
 
-// Convert from normal coordinates to OpenLayers' projection
-var centerOLCoords = ol.proj.fromLonLat(defaultCenterCoords);
+  var shipFeature = new ol.Feature({
+    geometry: new ol.geom.Point(0, 0),
+  });
 
-// Create a feature for the ship
-var shipFeature = new ol.Feature({
-  geometry: new ol.geom.Point(0, 0),
-});
+  shipFeature.setStyle(
+    new ol.style.Style({
+      image: new ol.style.Icon({
+        src: "/ship.png",
+        scale: 0.11,
+        anchor: [0.6, 0.5],
+        anchorXUnits: "fraction",
+        anchorYUnits: "fraction",
+      }),
+    })
+  );
 
-// Create a style for the ship feature
-shipFeature.setStyle(
-  new ol.style.Style({
-    image: new ol.style.Icon({
-      src: "/ship.png", // URL of the ship icon
-      scale: 0.12, // Adjust the scale of the icon as needed
-      anchor: [0.6, 0.5], // Center the anchor point
-      anchorXUnits: "fraction",
-      anchorYUnits: "fraction",
+  var vectorSource = new ol.source.Vector({
+    features: [shipFeature],
+  });
+
+  var vectorLayer = new ol.layer.Vector({
+    source: vectorSource,
+  });
+
+  var map = new ol.Map({
+    target: "map",
+    layers: [
+      new ol.layer.Tile({
+        source: new ol.source.OSM(),
+      }),
+      vectorLayer,
+    ],
+    view: new ol.View({
+      center: centerOLCoords,
+      zoom: 17,
     }),
-  })
-);
-
-// Create a vector source and add the ship feature to it
-var vectorSource = new ol.source.Vector({
-  features: [shipFeature],
-});
-
-// Create a vector layer with the vector source
-var vectorLayer = new ol.layer.Vector({
-  source: vectorSource,
-});
-
-// Create a map
-var map = new ol.Map({
-  target: "map", // The ID of the div element
-  layers: [
-    new ol.layer.Tile({
-      source: new ol.source.OSM(), // OpenStreetMap as the source
-    }),
-    vectorLayer,
-  ],
-  view: new ol.View({
-    center: centerOLCoords,
-    zoom: 17, // Adjust zoom level as needed
-  }),
-});
+  });
 
 function updateShipLocation(location) {
   try {
@@ -54,8 +46,6 @@ function updateShipLocation(location) {
   } catch (err) {
     console.warn("No ship data (yet) available");
   }
-  // Optionally, update the map view to center on the new ship location
-  // map.getView().setCenter(newShipCoords);
 }
 
 function resetLocation() {
@@ -63,14 +53,23 @@ function resetLocation() {
 }
 
 function loadShipLocation() {
-  let url = "/api/ais";
+  let url = "/api/ais?limit=1";
   fetch(url)
-    .then((res) => res.json())
-    .then((out) =>
+    .then(function (response) {
+      if (response.ok) {
+        return response.json();
+      }
+
+      console.err("[LoadShipLocation] Response not ok");
+
+    })
+    .then(function (result) {
+      let res = result[0];
       updateShipLocation([
-        out.Message.PositionReport.Latitude,
-        out.Message.PositionReport.Longitude,
-      ])
+        res.Message.PositionReport.Latitude,
+        res.Message.PositionReport.Longitude,
+      ]);
+    }
     )
     .catch((err) => {
       //   throw err;
@@ -78,7 +77,13 @@ function loadShipLocation() {
     });
 }
 
-window.onload = function () {
+
+function init() {
   resetLocation();
   setInterval(loadShipLocation, 5000);
-};
+}
+if (window.addEventListener) // W3C standard
+{
+  window.addEventListener('load', init, false);
+}
+
