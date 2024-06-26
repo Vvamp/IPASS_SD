@@ -6,6 +6,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
+        boss: resolve(__dirname, "boss/index.html"),
       },
     },
     outDir: "../src/main/webapp/",

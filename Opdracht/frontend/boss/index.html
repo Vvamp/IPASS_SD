@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/public/FerryLogoOpaque.png" />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <meta name="description" content="Veerdienst Ingen-Elst" />
+    <meta
+      name="keywords"
+      content="Veerdienst, Ingen, Elst, Gelderland, Rivier, Rijn, Veerpont"
+    />
+    <meta name="author" content="Vincent van Setten" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Veerdienst Ingen-Elst | Home</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"
+      defer
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/67f6f13cd8.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="/src/login.js"></script>
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/nav.js"></script>
+    <script type="module" src="/src/modal.js"></script>
+  </head>
+  <body>
+    <nav>
+      <div id="nav-left">
+        <img
+          class="nav-img"
+          src="public/FerryLogoTrans.png"
+          alt="Geldersweert logo"
+        />
+        <span class="nav-title">Veerdienst Ingen-Elst</span>
+        <span class="nav-subtitle">Kom over de brug, neem de pont</span>
+      </div>
+      <div id="nav-right">
+        <a class="bluebutton" id="login-button">Login</a>
+        <a class="bluebutton" id="logout-button">Log out</a>
+      </div>
+      <template id="modal-template">
+        <div class="modal">
+          <span class="modal-close"></span>
+          <div class="modal-content">
+            <template id="login-modal-template">
+              <h1 class="modal-title">Login</h1>
+              <form id="login-form" class="modal-form">
+                <label for="username">Gebruikersnaam</label>
+                <input
+                  placeholder="Vul uw gebruikersnaam in"
+                  type="text"
+                  id="username"
+                  name="username"
+                  required
+                />
+                <label for="password">Wachtwoord</label>
+                <input
+                  placeholder="Vul uw wachtwoord in"
+                  type="password"
+                  id="password"
+                  name="password"
+                  required
+                />
+                <span class="login-form-indicator"></span>
+                <button class="bluebutton" type="submit">Login</button>
+              </form>
+            </template>
+          </div>
+        </div>
+      </template>
+    </nav>
+
+    <div class="content-wrapper">
+      <div class="row">
+          <button class="bluebutton" type="submit">Rooster</button>
+          <button class="bluebutton" type="submit">Drukte</button>
+      </div>
+    </div>
+    <div class="row" style="min-height: 1vh">
+      <footer>
+        <p>
+          &copy; 2024 Vincent van Setten / In opdracht van Hogeschool Utrecht
+          / Voor Veerdienst Ingen-Elst b.v.
+        </p>
+      </footer>
+    </div>
+  </div>
+  <template id="backdrop-template">
+    <div class="backdrop"></div>
+  </template>
+  </body>
+</html>

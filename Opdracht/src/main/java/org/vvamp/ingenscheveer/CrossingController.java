@@ -5,6 +5,7 @@ import org.vvamp.ingenscheveer.models.StatusUpdate;
 import org.vvamp.ingenscheveer.models.json.AisSignal;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CrossingController {
     public ArrayList<StatusUpdate> getStatusUpdates(ArrayList<AisSignal> aisSignals) {
@@ -44,6 +45,10 @@ public class CrossingController {
                     ferryCrossings.get(ferryCrossings.size()-1).setArrival(statusUpdate);
                 }
             }
+            if(ferryCrossings.size() > 0) {
+                ferryCrossings.get(ferryCrossings.size() - 1).addAisSignal(statusUpdate.getAisSignal());
+            }
+
             wasSailing = statusUpdate.isSailing();
             lastUpdate = statusUpdate;
 

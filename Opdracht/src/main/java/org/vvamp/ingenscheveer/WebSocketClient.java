@@ -18,6 +18,7 @@ public class WebSocketClient {
     @OnOpen
     public void onOpen(Session session) {
         System.out.println("Connected to server");
+//        String message = "{\"APIKey\":\"3c9a8ccfe72d2907179fdbc0bb5a68811af1fdd7\",\"BoundingBoxes\":[[[50,5],[53,8]]],\"FiltersShipMMSI\":[\"244780155\"], \"FilterMessageTypes\": [\"PositionReport\"]}";
         String message = "{\"APIKey\":\"3c9a8ccfe72d2907179fdbc0bb5a68811af1fdd7\",\"BoundingBoxes\":[[[50,5],[53,8]]],\"FiltersShipMMSI\":[\"244780155\"]}";
         sendMessage(session, message);
     }
@@ -31,12 +32,11 @@ public class WebSocketClient {
     public void onBinaryMessage(ByteBuffer message) {
         String json = new String(message.array(), StandardCharsets.UTF_8);
 
-        System.out.println("Received binary message: " + json);
 
         try {
             AisSignal data = objectMapper.readValue(json, AisSignal.class);
             shipMessages.add(data);
-            System.out.println("Deserialized data: " + data);
+
             Main.storageController.save(data);
         } catch (Exception e) {
 //            System.err.println("Failed to deserialize message: " + e.getMessage());

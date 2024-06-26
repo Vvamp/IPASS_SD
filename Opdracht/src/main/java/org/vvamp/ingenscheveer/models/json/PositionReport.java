@@ -1,7 +1,7 @@
 package org.vvamp.ingenscheveer.models.json;
 import com.fasterxml.jackson.annotation.JsonProperty;
 public class PositionReport {
-    public PositionReport(float cog, int communicationState, float latitude, float longitude, int messageID, int navigationalStatus, boolean positionAccuracy, boolean raim, int rateOfTurn, int repeatIndicator, float sog, int spare, int specialManoeuvreIndicator, int timestamp, int trueHeading, int userID, boolean valid) {
+    public PositionReport(double cog, int communicationState, double latitude, double longitude, int messageID, int navigationalStatus, boolean positionAccuracy, boolean raim, int rateOfTurn, int repeatIndicator, double sog, int spare, int specialManoeuvreIndicator, int timestamp, int trueHeading, int userID, boolean valid) {
         this.cog = cog;
         this.communicationState = communicationState;
         this.latitude = latitude;
@@ -23,16 +23,16 @@ public class PositionReport {
     public PositionReport(){}
 
     @JsonProperty("Cog")
-    public float cog;
+    public double cog;
 
     @JsonProperty("CommunicationState")
     public int communicationState;
 
     @JsonProperty("Latitude")
-    public float latitude;
+    public double latitude;
 
     @JsonProperty("Longitude")
-    public float longitude;
+    public double longitude;
 
     @JsonProperty("MessageID")
     public int messageID;
@@ -53,7 +53,7 @@ public class PositionReport {
     public int repeatIndicator;
 
     @JsonProperty("Sog")
-    public float sog;
+    public double sog;
 
     @JsonProperty("Spare")
     public int spare;

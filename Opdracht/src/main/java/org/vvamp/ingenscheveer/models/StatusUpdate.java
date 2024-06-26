@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.vvamp.ingenscheveer.Location;
 import org.vvamp.ingenscheveer.models.json.AisSignal;
 
+import java.time.Instant;
+import java.util.Date;
+
 public class StatusUpdate {
     @JsonProperty("Location")
     private Location location;
@@ -22,6 +25,14 @@ public class StatusUpdate {
 
     public Location getLocation() {
         return location;
+    }
+
+    public Date getDate() {
+        return aisSignal.getUtcDate();
+    }
+
+    public int getEpochSeconds(){
+        return aisSignal.getUtcTimestamp();
     }
 
     public AisSignal getAisSignal() {
