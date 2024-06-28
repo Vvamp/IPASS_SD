@@ -25,6 +25,10 @@ public class Schedule {
         return tasks;
     }
 
+    public void setTasks(List<ScheduleTask> tasks){
+        this.tasks = tasks;
+    }
+
     @JsonIgnore
     public static Schedule getGlobalSchedule(){
         List<User> users = User.getAll();
@@ -38,5 +42,7 @@ public class Schedule {
         }
         return outSchedule;
     }
+
+
 
 }

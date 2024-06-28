@@ -11,8 +11,7 @@ import org.vvamp.ingenscheveer.models.schedule.ScheduleTask;
 import org.vvamp.ingenscheveer.models.schedule.TaskType;
 
 import java.security.Key;
-import java.time.Clock;
-import java.time.Instant;
+import java.time.*;
 import java.util.*;
 
 public class LoginManager {
@@ -41,13 +40,31 @@ public class LoginManager {
     public void populate() {
         System.out.println("Populating login manager");
 
-        users.put("Vvamp", new User("Vvamp", "admin", "skipper"));
-        User a = User.getUserByName("Vvamp");
-        a.getSchedule().scheduleTask(new ScheduleTask(new Date(2024, 6, 1, 9, 0, 0), new Date(2024, 6, 1, 17, 0, 0), "Hello World", a, TaskType.SHIFT));
+        users.put("Vincent", new User("Vincent", "admin", "skipper"));
+        User a = User.getUserByName("Vincent");
+        a.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 1, 6, 0, 0), LocalDateTime.of(2024, 6, 1, 14, 30, 0), "Hello World", a, TaskType.Dienst));
+        a.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 2, 6, 0, 0), LocalDateTime.of(2024, 6, 2, 14, 30, 0), "Hello World", a, TaskType.Dienst));
+        a.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 3, 6, 0, 0), LocalDateTime.of(2024, 6, 2, 14, 30, 0), "Hello World", a, TaskType.Dienst));
+        a.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 4, 6, 0, 0), LocalDateTime.of(2024, 6, 2, 14, 30, 0), "Hello World", a, TaskType.Dienst));
+        a.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 5, 6, 0, 0), LocalDateTime.of(2024, 6, 2, 14, 30, 0), "Hello World", a, TaskType.Dienst));
+        a.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 6, 6, 0, 0), LocalDateTime.of(2024, 6, 2, 14, 30, 0), "Hello World", a, TaskType.Dienst));
+
         System.out.println("B");
-        users.put("Schipper", new User("Schipper", "schipper", "skipper"));
-        User b = User.getUserByName("Schipper");
-        b.getSchedule().scheduleTask(new ScheduleTask(new Date(2024, 6, 1, 17, 0, 0), new Date(2024, 6, 1, 23, 0, 0), "Hello World", b, TaskType.SHIFT));
+        users.put("Stephan", new User("Stephan", "schipper", "skipper"));
+        User b = User.getUserByName("Stephan");
+        b.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 1, 14, 30, 0), LocalDateTime.of(2024, 6, 1, 23, 0, 0), "Hello World", b, TaskType.Dienst));
+        b.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 2, 14, 30, 0), LocalDateTime.of(2024, 6, 1, 23, 0, 0), "Hello World", b, TaskType.Dienst));
+        b.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 3, 14, 30, 0), LocalDateTime.of(2024, 6, 1, 23, 0, 0), "Hello World", b, TaskType.Dienst));
+        b.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 4, 14, 30, 0), LocalDateTime.of(2024, 6, 1, 23, 0, 0), "Hello World", b, TaskType.Dienst));
+        b.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 5, 14, 30, 0), LocalDateTime.of(2024, 6, 1, 23, 0, 0), "Hello World", b, TaskType.Dienst));
+        b.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 6, 14, 30, 0), LocalDateTime.of(2024, 6, 1, 23, 0, 0), "Hello World", b, TaskType.Dienst));
+
+        users.put("Vincentvl", new User("Vincentvl", "schipper", "skipper"));
+        User c = User.getUserByName("Vincentvl");
+        c.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 2, 16, 0, 0), LocalDateTime.of(2024, 6, 1, 18, 30, 0), "Hello World", c, TaskType.Kniphulp));
+        c.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 4, 16, 0, 0), LocalDateTime.of(2024, 6, 1, 18, 30, 0), "Hello World", c, TaskType.Kniphulp));
+        c.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 5, 16, 0, 0), LocalDateTime.of(2024, 6, 1, 18, 30, 0), "Hello World", c, TaskType.Kniphulp));
+        c.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 6, 16, 0, 0), LocalDateTime.of(2024, 6, 1, 18, 30, 0), "Hello World", c, TaskType.Kniphulp));
 
         users.put("Baas", new User("Baas", "baas", "boss"));
 

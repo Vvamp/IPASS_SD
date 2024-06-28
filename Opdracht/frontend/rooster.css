@@ -2,7 +2,7 @@
 
 :root {
   --task-padding: 0.5rem;
-  --tasks-per-row: 5;
+  --tasks-per-row: 3;
 }
 
 .schedule-wrapper {
@@ -49,6 +49,7 @@
   background-color: var(--ship-blue-accent);
   color: white;
   border: 1px solid black;
+
   /* Calculation: 100% - 4 gaps - 10 border lines / amount */
   width: calc(
     (
@@ -62,9 +63,7 @@
   flex-direction: column;
   gap: 0.2rem;
   min-width: fit-content;
-  flex-basis: 1;
-  flex-shrink: 0;
-  flex-grow: 0;
+  flex: 1 1 calc(var(--tasks-per-row) / 5);
 }
 
 .schedule-data-day-date {

@@ -26,9 +26,9 @@
       crossorigin="anonymous"
     ></script>
     <script type="module" src="/src/login.js"></script>
-    <script type="module" src="/src/main.js"></script>
     <script type="module" src="/src/nav.js"></script>
     <script type="module" src="/src/modal.js"></script>
+    <script type="module" src="/src/rooster.js"></script>
   </head>
   <body>
     <nav>
@@ -42,6 +42,8 @@
         <span class="nav-subtitle">Kom over de brug, neem de pont</span>
       </div>
       <div id="nav-right">
+        <a class="bluebutton hidden" id="rooster-button">Rooster</a>
+        <a class="bluebutton hidden" id="drukte-button">Drukte</a>
         <a class="bluebutton" id="login-button">Login</a>
         <a class="bluebutton hidden" id="logout-button">Log out</a>
       </div>
@@ -79,140 +81,47 @@
 
     <div class="content-wrapper">
       <div class="row">
-          <div class="schedule-wrapper">
-            <span class="schedule-title">Rooster</span>
-            <div class="schedule-selections">
-              <label for="schedule-week">Week</label>
-              <input type="date" id="schedule-week" name="schedule-week"/>
-            </div>
+        <div class="schedule-wrapper">
+          <span class="schedule-title">Rooster</span>
+          <div class="schedule-selections">
+            <label for="schedule-week">Week nummer</label>
+            <input
+              type="number"
+              placeholder="Weeknummer"
+              id="schedule-week"
+              name="schedule-week"
+            />
+          </div>
 
-            <div class="schedule-data">
+          <div class="schedule-data">
+            <template id="schedule-data-day-template">
               <div class="schedule-data-day">
                 <span class="schedule-data-day-date">21/6</span>
                 <span class="schedule-data-day-add">+</span>
-                <div class="schedule-data-row">
-                  <span class="schedule-data-row-time">06:00 - 14:30</span>
-                  <span class="schedule-data-row-role">Schipper</span>
-                  <span class="schedule-data-row-name">Vincent</span>
-                  <span class="schedule-data-row-delete">x</span>
-                </div>
-                <div class="schedule-data-row">
-                  <span class="schedule-data-row-time">14:30 - 23:00</span>
-                  <span class="schedule-data-row-role">Schipper</span>
-                  <span class="schedule-data-row-name">Stephan</span>
-                  <span class="schedule-data-row-delete">x</span>
-                </div>
-
-                <div class="schedule-data-row">
-                  <span class="schedule-data-row-time">16:00 - 18:30</span>
-                  <span class="schedule-data-row-role">Spits</span>
-                  <span class="schedule-data-row-name">Vincent. v. L</span>
-                  <span class="schedule-data-row-delete">x</span>
-                </div>
+                <template id="schedule-data-row-template">
+                  <div class="schedule-data-row">
+                    <span class="schedule-data-row-time">06:00 - 14:30</span>
+                    <span class="schedule-data-row-role">Schipper</span>
+                    <span class="schedule-data-row-name">Vincent</span>
+                    <span class="schedule-data-row-delete">x</span>
+                  </div>
+                </template>
               </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>              
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>              
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-              <div class="schedule-data-day">
-                21/6<br>Geen taken
-              </div>
-
-            </div>
-
+            </template>
           </div>
+        </div>
+      </div>
+      <div class="row" style="min-height: 1vh">
+        <footer>
+          <p>
+            &copy; 2024 Vincent van Setten / In opdracht van Hogeschool Utrecht
+            / Voor Veerdienst Ingen-Elst b.v.
+          </p>
+        </footer>
       </div>
     </div>
-    <div class="row" style="min-height: 1vh">
-      <footer>
-        <p>
-          &copy; 2024 Vincent van Setten / In opdracht van Hogeschool Utrecht
-          / Voor Veerdienst Ingen-Elst b.v.
-        </p>
-      </footer>
-    </div>
-  </div>
-  <template id="backdrop-template">
-    <div class="backdrop"></div>
-  </template>
+    <template id="backdrop-template">
+      <div class="backdrop"></div>
+    </template>
   </body>
 </html>
