@@ -15,7 +15,6 @@ function refresh() {
     '[data-stats-item="lastupdate"'
   ).lastElementChild;
   service.getStats().then((stats) => {
-    console.log(stats);
     cspeed.textContent = stats.CurrentSpeed.toFixed(2) + " kts";
     avgspeed.textContent = stats.AverageSpeed.toFixed(2) + " kts";
     crossings.textContent = stats.CrossingCount;

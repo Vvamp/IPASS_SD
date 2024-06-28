@@ -24,8 +24,11 @@ export default class LoginService {
           else throw "Wrong username and/or password";
         })
         .then(function (result) {
-          window.localStorage.setItem("user", user);
           window.localStorage.setItem("loginToken", result.token);
+          window.localStorage.setItem("username", result.username);
+          window.localStorage.setItem("role", result.role);
+
+          console.log("Set role to " + result.role);
           return result.token;
         })
         .catch((error) => console.error(error))
@@ -57,6 +60,14 @@ export default class LoginService {
           return false;
         })
     );
+  }
+
+  getRole() {
+    return window.localStorage.getItem("role");
+  }
+
+  getUsername() {
+    return window.localStorage.getItem("username");
   }
 
   logout() {

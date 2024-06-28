@@ -18,8 +18,8 @@ public class WebSocketClient {
     @OnOpen
     public void onOpen(Session session) {
         System.out.println("Connected to server");
-//        String message = "{\"APIKey\":\"3c9a8ccfe72d2907179fdbc0bb5a68811af1fdd7\",\"BoundingBoxes\":[[[50,5],[53,8]]],\"FiltersShipMMSI\":[\"244780155\"], \"FilterMessageTypes\": [\"PositionReport\"]}";
-        String message = "{\"APIKey\":\"3c9a8ccfe72d2907179fdbc0bb5a68811af1fdd7\",\"BoundingBoxes\":[[[50,5],[53,8]]],\"FiltersShipMMSI\":[\"244780155\"]}";
+        String message = "{\"APIKey\":\"3c9a8ccfe72d2907179fdbc0bb5a68811af1fdd7\",\"BoundingBoxes\":[[[50,5],[53,8]]],\"FiltersShipMMSI\":[\"244780155\"], \"FilterMessageTypes\": [\"PositionReport\"]}";
+//        String message = "{\"APIKey\":\"3c9a8ccfe72d2907179fdbc0bb5a68811af1fdd7\",\"BoundingBoxes\":[[[50,5],[53,8]]],\"FiltersShipMMSI\":[\"244780155\"]}";
         sendMessage(session, message);
     }
 
@@ -36,12 +36,14 @@ public class WebSocketClient {
         try {
             AisSignal data = objectMapper.readValue(json, AisSignal.class);
             shipMessages.add(data);
+            System.out.println("Received known message: " + json);
 
             Main.storageController.save(data);
         } catch (Exception e) {
 //            System.err.println("Failed to deserialize message: " + e.getMessage());
 //            e.printStackTrace();
-            System.out.println("Unkown message received");
+            System.out.println("Unknown message received: ");
+            System.out.println(json);
         }
     }
     @OnClose

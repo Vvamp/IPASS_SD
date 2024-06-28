@@ -9,6 +9,7 @@ export default class Login {
 
   isLoggedIn() {
     return service.isLoggedIn();
+    // return true;
   }
 
   login(username, password) {
@@ -27,6 +28,13 @@ export default class Login {
 
   logout() {
     service.logout().then(this.refresh());
+  }
+
+  getRole() {
+    return service.getRole();
+  }
+  get username() {
+    return service.getUsername();
   }
 }
 

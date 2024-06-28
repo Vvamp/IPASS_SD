@@ -1,4 +1,4 @@
-package org.vvamp.ingenscheveer.webservices.requests;
+package org.vvamp.ingenscheveer.models.api;
 
 public class LogonRequest {
     public String user;

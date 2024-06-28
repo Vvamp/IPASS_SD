@@ -9,8 +9,8 @@ import javax.ws.rs.ApplicationPath;
 public class JerseyConfig extends ResourceConfig
 {
     public JerseyConfig() {
-        packages("org.vvamp.ingenscheveer.webservices, nl.hu.bep.ingenscheveer.security");
-        register(org.glassfish.jersey.jackson.JacksonFeature.class);
+        packages("org.vvamp.ingenscheveer.webservices, org.vvamp.ingenscheveer.security");
         register(RolesAllowedDynamicFeature.class);
+        register(org.glassfish.jersey.jackson.JacksonFeature.class);
     }
 }

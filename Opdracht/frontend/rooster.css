@@ -1,0 +1,107 @@
+@import url("variables.css");
+
+:root {
+  --task-padding: 0.5rem;
+  --tasks-per-row: 5;
+}
+
+.schedule-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--ship-blue);
+  padding: 1.5rem;
+  gap: 1rem;
+}
+
+.schedule-title {
+  margin-top: 0;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.schedule-wrapper label {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.schedule-selections {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.schedule-data {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+  height: 100%;
+  justify-content: left;
+}
+
+.schedule-data-day {
+  position: relative;
+  padding: var(--task-padding);
+  background-color: var(--ship-blue-accent);
+  color: white;
+  border: 1px solid black;
+  /* Calculation: 100% - 4 gaps - 10 border lines / amount */
+  width: calc(
+    (
+        100% - (0.5rem * (var(--tasks-per-row) - 1)) -
+          (1px * 2 * var(--tasks-per-row)) -
+          (var(--task-padding) * 2 * var(--tasks-per-row))
+      ) / var(--tasks-per-row)
+  );
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: fit-content;
+  flex-basis: 1;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.schedule-data-day-date {
+  display: block;
+  filter: contrast(0.8);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.schedule-data-day-add {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.schedule-data-row {
+  background-color: var(--ship-blue-accent);
+  filter: contrast(1.5) saturate(1.5);
+  padding: 0.2rem 0.7rem;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  justify-content: left;
+  min-width: fit-content;
+}
+
+.schedule-data-row:nth-of-type(odd) {
+  filter: contrast(1.5) saturate(1.5) hue-rotate(-30deg);
+}
+
+.schedule-data-row > *:not(:nth-last-child(-n + 2))::after {
+  content: " /";
+  font-weight: bold;
+}
+.schedule-data-row-delete {
+  margin-left: auto;
+}

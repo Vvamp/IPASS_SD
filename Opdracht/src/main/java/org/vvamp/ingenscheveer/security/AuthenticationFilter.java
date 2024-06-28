@@ -1,6 +1,7 @@
 package org.vvamp.ingenscheveer.security;
 
 
+import org.vvamp.ingenscheveer.Main;
 import org.vvamp.ingenscheveer.security.authentication.LoginManager;
 import org.vvamp.ingenscheveer.security.authentication.ValidationResult;
 import org.vvamp.ingenscheveer.security.authentication.ValidationStatus;
@@ -20,16 +21,17 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         boolean isSecure = requestCtx.getSecurityContext().isSecure();
         String scheme = requestCtx.getUriInfo().getRequestUri().getScheme();
         // users are quests until valid jqt
-        LoginManager loginManager = new LoginManager();
+        LoginManager loginManager = Main.loginManager;
         MySecurityContext msc = new MySecurityContext(null, scheme);
         String authHeader = requestCtx.getHeaderString(HttpHeaders.AUTHORIZATION);
-
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             String token = authHeader.substring("Bearer".length()).trim();
-
             ValidationResult tokenResult = loginManager.checkTokenValidity(token);
             if (tokenResult.getStatus() == ValidationStatus.VALID) {
                 msc = new MySecurityContext(tokenResult.getUser(), scheme);
+                System.out.println("Successs");
+            }else{
+                System.out.println("Invalid token");
             }
 
         }

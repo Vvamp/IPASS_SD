@@ -6,6 +6,9 @@ import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
+import org.vvamp.ingenscheveer.models.schedule.Schedule;
+import org.vvamp.ingenscheveer.models.schedule.ScheduleTask;
+import org.vvamp.ingenscheveer.models.schedule.TaskType;
 
 import java.security.Key;
 import java.time.Clock;
@@ -20,7 +23,6 @@ public class LoginManager {
 
     public LoginManager() {
         this(Clock.systemDefaultZone());
-        populate();
     }
 
     public LoginManager(Clock clock) {
@@ -37,8 +39,18 @@ public class LoginManager {
     }
 
     public void populate() {
-        users = new HashMap<>();
-        users.put("Vvamp", new User("Vvamp", "admin", "user"));
+        System.out.println("Populating login manager");
+
+        users.put("Vvamp", new User("Vvamp", "admin", "skipper"));
+        User a = User.getUserByName("Vvamp");
+        a.getSchedule().scheduleTask(new ScheduleTask(new Date(2024, 6, 1, 9, 0, 0), new Date(2024, 6, 1, 17, 0, 0), "Hello World", a, TaskType.SHIFT));
+        System.out.println("B");
+        users.put("Schipper", new User("Schipper", "schipper", "skipper"));
+        User b = User.getUserByName("Schipper");
+        b.getSchedule().scheduleTask(new ScheduleTask(new Date(2024, 6, 1, 17, 0, 0), new Date(2024, 6, 1, 23, 0, 0), "Hello World", b, TaskType.SHIFT));
+
+        users.put("Baas", new User("Baas", "baas", "boss"));
+
 
     }
 
@@ -100,12 +112,20 @@ public class LoginManager {
         }
 
         Instant now = clock.instant();
-
         if (claims.getExpiration().before(Date.from(now))) {
             return new ValidationResult(ValidationStatus.EXPIRED, String.format("The token has expired. ( %s < %s )", claims.getExpiration().toString(), Date.from(now).getTime()));
         }
 
         return new ValidationResult(ValidationStatus.VALID, "No issues with the token were found.", user);
+    }
+
+    public String getRole(String token){
+        if(checkTokenValidity(token).getStatus() != ValidationStatus.VALID)
+            return "";
+
+        JwtParser parser = Jwts.parser().setSigningKey(key);
+        Claims claims = parser.parseClaimsJws(token).getBody();
+        return claims.get("role", String.class);
     }
 
     public void invalidateToken(String token) {
