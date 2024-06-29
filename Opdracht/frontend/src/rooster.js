@@ -47,10 +47,27 @@ export default class Rooster {
     document.querySelectorAll(".schedule-data-day").forEach((e) => e.remove());
     service.getRooster(weekNr, getAll).then((rooster) => {
       if (rooster != "fail") {
-        rooster.forEach((day) => {
-          const dt = new Date(day.Day);
-          new RoosterDayItem(day.Tasks);
-        });
+        document
+          .querySelectorAll(".no-schedule-text")
+          .forEach((e) => e.remove());
+
+        if (rooster.length == 0) {
+          const h = document.createElement("h1");
+          h.className = "no-schedule-text";
+          if (roosterAll) {
+            h.textContent = "Nog geen diensten ingepland deze week.";
+          } else {
+            h.textContent = "Geen diensten deze week 🎉";
+          }
+          h.style.textAlign = "center";
+          h.style.color = "white";
+          document.querySelector(".schedule-data").appendChild(h);
+        } else {
+          rooster.forEach((day) => {
+            const dt = new Date(day.Day);
+            new RoosterDayItem(day.Tasks);
+          });
+        }
       } else {
         document.querySelector(".content-wrapper").innerHTML =
           "<h1>You are not allowed to access this page</h1>";
