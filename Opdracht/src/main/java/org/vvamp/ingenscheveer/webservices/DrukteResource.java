@@ -36,6 +36,9 @@ public class DrukteResource {
     public Response getDrukte() {
         List<Drukte> allDrukte = Drukte.getAll();
         Drukte filtered = allDrukte.stream().max(Comparator.comparing(Drukte::getTime)).orElse(null);
+        if(filtered == null) {
+            filtered = new Drukte(-1, LocalDateTime.now());
+        }
         return Response.ok(filtered).build();
     }
 }

@@ -25,8 +25,11 @@ export default class DrukteService {
     };
     return Promise.resolve(
       fetch("/api/drukte", fetchoptions).then((response) => {
-        if (response.ok) return response.json();
-        else return null;
+        if (response.ok) {
+          return response.json();
+        } else {
+          return null;
+        }
       })
     );
   }
