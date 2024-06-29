@@ -1,5 +1,6 @@
 package org.vvamp.ingenscheveer;
 
+import org.vvamp.ingenscheveer.database.DatabaseStorageController;
 import org.vvamp.ingenscheveer.models.json.AisSignal;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import javax.websocket.*;
@@ -38,7 +39,8 @@ public class WebSocketClient {
             shipMessages.add(data);
             System.out.println("Received known message: " + json);
 
-            Main.storageController.save(data);
+//            Main.storageController.save(data);
+            DatabaseStorageController.getDatabaseAisController().writeAisData(data);
         } catch (Exception e) {
 //            System.err.println("Failed to deserialize message: " + e.getMessage());
 //            e.printStackTrace();

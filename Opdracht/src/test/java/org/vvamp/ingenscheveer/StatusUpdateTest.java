@@ -33,14 +33,14 @@ public class StatusUpdateTest {
 
     @Test
     public void testIsSailing_true() {
-        aisSignal.message.positionReport.sog = 0.31F;
+        aisSignal.message.positionReport.sog = 0.21F;
         StatusUpdate statusUpdate = new StatusUpdate(Location.UNKNOWN, aisSignal);
         assertTrue(statusUpdate.isSailing());
     }
 
     @Test
     public void testIsSailing_false() {
-        aisSignal.message.positionReport.sog = 0.29F;
+        aisSignal.message.positionReport.sog = 0.19F;
         StatusUpdate statusUpdate = new StatusUpdate(Location.UNKNOWN, aisSignal);
         assertFalse(statusUpdate.isSailing());
     }
@@ -80,9 +80,9 @@ public class StatusUpdateTest {
         File integrationTestFile = new File(resource.getFile());
 
         LocalFileStorageController lfc = new LocalFileStorageController(integrationTestFile.getAbsolutePath());
-        ArrayList<AisSignal> signals = lfc.load();
+        List<AisSignal> signals = lfc.load();
         CrossingController crossingController = new CrossingController();
-        ArrayList<StatusUpdate> statusUpdates = crossingController.getStatusUpdates(signals);
+        List<StatusUpdate> statusUpdates = crossingController.getStatusUpdates(signals);
         List<FerryCrossing> ferryCrossings = crossingController.getFerryCrossings(statusUpdates);
         ferry.setFerryCrossings(ferryCrossings);
 

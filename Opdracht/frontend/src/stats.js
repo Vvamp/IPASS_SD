@@ -52,7 +52,7 @@ function refresh() {
 
   service.getStatus().then((result) => {
     let status = "";
-    if (status.active && status.Arrival != null) {
+    if (result.Arrival == null) {
       let direction = result.Departure.Location == "Ingen" ? "Elst" : "Ingen";
       status = "Onderweg (" + direction + ")";
     } else {

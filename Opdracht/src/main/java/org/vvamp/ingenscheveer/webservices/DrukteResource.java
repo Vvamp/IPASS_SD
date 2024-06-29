@@ -1,12 +1,15 @@
 package org.vvamp.ingenscheveer.webservices;
 
+import org.vvamp.ingenscheveer.database.DatabaseStorageController;
 import org.vvamp.ingenscheveer.models.Drukte;
 import org.vvamp.ingenscheveer.models.api.DrukteCreateRequest;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,8 +21,10 @@ public class DrukteResource {
     @Path("/add")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addDrukte(DrukteCreateRequest request) {
-        LocalDateTime now = LocalDateTime.now();
-        Drukte dr = new Drukte(request.drukte, now);
+        Instant utc = Instant.now();
+
+        Drukte dr = new Drukte(request.drukte, LocalDateTime.ofInstant(utc, ZoneOffset.UTC));
+        DatabaseStorageController.getDatabaseDrukteController().writeDrukte(dr);
         return Response.ok().build();
     }
 

@@ -2,6 +2,7 @@ package org.vvamp.ingenscheveer.models;
 
 import org.vvamp.ingenscheveer.CrossingController;
 import org.vvamp.ingenscheveer.Main;
+import org.vvamp.ingenscheveer.database.DatabaseStorageController;
 import org.vvamp.ingenscheveer.models.json.AisSignal;
 
 import java.util.ArrayList;
@@ -18,9 +19,10 @@ public class Ferry {
 
     public Ferry(String name) {
 
-        ArrayList<AisSignal> aisSignals = Main.storageController.load();
+//        ArrayList<AisSignal> aisSignals = Main.storageController.load();
+        List<AisSignal> aisSignals = DatabaseStorageController.getDatabaseAisController().getAllAisSignals();
         CrossingController crossingController = new CrossingController();
-        ArrayList<StatusUpdate> statusUpdates = crossingController.getStatusUpdates(aisSignals);
+        List<StatusUpdate> statusUpdates = crossingController.getStatusUpdates(aisSignals);
         ferryCrossings = crossingController.getFerryCrossings(statusUpdates);
         this.name = name;
     }
@@ -34,9 +36,9 @@ public class Ferry {
     }
 
     public List<FerryCrossing> getFerryCrossings() {
-        ArrayList<AisSignal> aisSignals = Main.storageController.load();
+        List<AisSignal> aisSignals = Main.storageController.load();
         CrossingController crossingController = new CrossingController();
-        ArrayList<StatusUpdate> statusUpdates = crossingController.getStatusUpdates(aisSignals);
+        List<StatusUpdate> statusUpdates = crossingController.getStatusUpdates(aisSignals);
         ferryCrossings = crossingController.getFerryCrossings(statusUpdates);
         return ferryCrossings;
     }

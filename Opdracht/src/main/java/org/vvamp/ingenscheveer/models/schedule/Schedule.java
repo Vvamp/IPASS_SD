@@ -26,9 +26,9 @@ public class Schedule {
         return tasks;
     }
 
-    public ScheduleTask getTaskById(String uuid) {
+    public ScheduleTask getTaskById(int uuid) {
         for (ScheduleTask task : tasks) {
-            if (task.getUuid().equals(uuid)) {
+            if (task.getUuid() == uuid) {
                 System.out.println("Matched for " + uuid);
                 return task;
             }else{
@@ -39,12 +39,14 @@ public class Schedule {
 //        return tasks.stream().filter(task -> task.getUuid().equals(uuid)).findFirst().orElse(null);
     }
 
+
+
     public void setTasks(List<ScheduleTask> tasks){
         this.tasks = tasks;
     }
 
-    public boolean removeTask(String taskUuid){
-        ScheduleTask foundTask = tasks.stream().filter(t -> t.getUuid().equals(taskUuid)).findFirst().orElse(null);
+    public boolean removeTask(int taskUuid){
+        ScheduleTask foundTask = tasks.stream().filter(t -> t.getUuid() == taskUuid).findFirst().orElse(null);
         if(foundTask != null){
             tasks.remove(foundTask);
         }

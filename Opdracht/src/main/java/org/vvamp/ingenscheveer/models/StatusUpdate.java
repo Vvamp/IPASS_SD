@@ -20,7 +20,7 @@ public class StatusUpdate {
     }
 
     public boolean isSailing() {
-        return aisSignal.message.positionReport.sog > 0.3;
+        return aisSignal.message.positionReport.sog > 0.2;
     }
 
     public Location getLocation() {

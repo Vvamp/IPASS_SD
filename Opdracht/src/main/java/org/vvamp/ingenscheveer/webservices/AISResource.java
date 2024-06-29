@@ -2,6 +2,7 @@ package org.vvamp.ingenscheveer.webservices;
 
 
 import org.vvamp.ingenscheveer.Main;
+import org.vvamp.ingenscheveer.database.DatabaseStorageController;
 import org.vvamp.ingenscheveer.models.json.AisSignal;
 
 import javax.ws.rs.*;
@@ -19,7 +20,7 @@ public class AISResource {
     public Response getUpdates(@QueryParam("limit") @DefaultValue("-1") int limit) {
         List<AisSignal> shipMessages;
         try {
-            shipMessages = Main.storageController.load();
+            shipMessages = DatabaseStorageController.getDatabaseAisController().getAllAisSignals();
             Collections.reverse(shipMessages);
             if (limit > -1) {
                 shipMessages = shipMessages.stream().limit(limit).collect(Collectors.toList());

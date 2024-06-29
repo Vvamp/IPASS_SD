@@ -6,17 +6,15 @@ import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.impl.crypto.MacProvider;
-import org.vvamp.ingenscheveer.models.schedule.Schedule;
-import org.vvamp.ingenscheveer.models.schedule.ScheduleTask;
-import org.vvamp.ingenscheveer.models.schedule.TaskType;
+import org.vvamp.ingenscheveer.database.DatabaseStorageController;
 
 import java.security.Key;
-import java.time.*;
+import java.time.Clock;
+import java.time.Instant;
 import java.util.*;
 
 public class LoginManager {
     private static Map<String, User> users;
-    private static List<String> validatedTokens;
     private static Key key;
     private final Clock clock;
 
@@ -28,9 +26,8 @@ public class LoginManager {
         if (users == null) {
             users = new HashMap<>();
         }
-        if (validatedTokens == null) {
-            validatedTokens = new ArrayList<>();
-        }
+        DatabaseStorageController.getDatabaseTokenController().getAllTokens();
+
         if (key == null) {
             key = MacProvider.generateKey();
         }
@@ -38,34 +35,11 @@ public class LoginManager {
     }
 
     public void populate() {
-        users.put("Vincent", new User("Vincent", "admin", "skipper"));
-        User a = User.getUserByName("Vincent");
-        a.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 1, 6, 0, 0), LocalDateTime.of(2024, 6, 1, 14, 30, 0), "Hello World", a, TaskType.Dienst));
-        a.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 2, 6, 0, 0), LocalDateTime.of(2024, 6, 2, 14, 30, 0), "Hello World", a, TaskType.Dienst));
-        a.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 3, 6, 0, 0), LocalDateTime.of(2024, 6, 2, 14, 30, 0), "Hello World", a, TaskType.Dienst));
-        a.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 4, 6, 0, 0), LocalDateTime.of(2024, 6, 2, 14, 30, 0), "Hello World", a, TaskType.Dienst));
-        a.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 5, 6, 0, 0), LocalDateTime.of(2024, 6, 2, 14, 30, 0), "Hello World", a, TaskType.Dienst));
-        a.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 6, 6, 0, 0), LocalDateTime.of(2024, 6, 2, 14, 30, 0), "Hello World", a, TaskType.Dienst));
-
-        users.put("Stephan", new User("Stephan", "schipper", "skipper"));
-        User b = User.getUserByName("Stephan");
-        b.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 1, 14, 30, 0), LocalDateTime.of(2024, 6, 1, 23, 0, 0), "Hello World", b, TaskType.Dienst));
-        b.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 2, 14, 30, 0), LocalDateTime.of(2024, 6, 1, 23, 0, 0), "Hello World", b, TaskType.Dienst));
-        b.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 3, 14, 30, 0), LocalDateTime.of(2024, 6, 1, 23, 0, 0), "Hello World", b, TaskType.Dienst));
-        b.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 4, 14, 30, 0), LocalDateTime.of(2024, 6, 1, 23, 0, 0), "Hello World", b, TaskType.Dienst));
-        b.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 5, 14, 30, 0), LocalDateTime.of(2024, 6, 1, 23, 0, 0), "Hello World", b, TaskType.Dienst));
-        b.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 6, 14, 30, 0), LocalDateTime.of(2024, 6, 1, 23, 0, 0), "Hello World", b, TaskType.Dienst));
-
-        users.put("Vincentvl", new User("Vincentvl", "schipper", "skipper"));
-        User c = User.getUserByName("Vincentvl");
-        c.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 2, 16, 0, 0), LocalDateTime.of(2024, 6, 1, 18, 30, 0), "Hello World", c, TaskType.Kniphulp));
-        c.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 4, 16, 0, 0), LocalDateTime.of(2024, 6, 1, 18, 30, 0), "Hello World", c, TaskType.Kniphulp));
-        c.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 5, 16, 0, 0), LocalDateTime.of(2024, 6, 1, 18, 30, 0), "Hello World", c, TaskType.Kniphulp));
-        c.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 6, 16, 0, 0), LocalDateTime.of(2024, 6, 1, 18, 30, 0), "Hello World", c, TaskType.Kniphulp));
-
-        users.put("Baas", new User("Baas", "baas", "boss"));
-
-
+        List<User> users = DatabaseStorageController.getDatabaseUserController().getAllUsers();
+        for (User user : users) {
+            addUser(user);
+            user.loadSchedule();
+        }
     }
 
 
@@ -97,7 +71,7 @@ public class LoginManager {
     }
 
     public void validateToken(String token) {
-        validatedTokens.add(token);
+        DatabaseStorageController.getDatabaseTokenController().writeToken(token);
     }
 
     public ValidationResult checkTokenValidity(String token) {
@@ -105,7 +79,7 @@ public class LoginManager {
     }
 
     public ValidationResult checkTokenValidity(String token, String username) {
-        if (!validatedTokens.contains(token)) {
+        if (!DatabaseStorageController.getDatabaseTokenController().getAllTokens().contains(token)) {
             return new ValidationResult(ValidationStatus.INVALID, "The token was not in the authorisation list.");
         }
 
@@ -125,9 +99,8 @@ public class LoginManager {
         return new ValidationResult(ValidationStatus.VALID, "No issues with the token were found.", user);
     }
 
-    public String getRole(String token){
-        if(checkTokenValidity(token).getStatus() != ValidationStatus.VALID)
-            return "";
+    public String getRole(String token) {
+        if (checkTokenValidity(token).getStatus() != ValidationStatus.VALID) return "";
 
         JwtParser parser = Jwts.parser().setSigningKey(key);
         Claims claims = parser.parseClaimsJws(token).getBody();
@@ -136,7 +109,7 @@ public class LoginManager {
 
     public void invalidateToken(String token) {
         try {
-            validatedTokens.remove(token);
+            DatabaseStorageController.getDatabaseTokenController().removeToken(token);
         } catch (Exception e) {
         }
     }

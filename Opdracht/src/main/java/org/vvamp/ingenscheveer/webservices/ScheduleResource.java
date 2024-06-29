@@ -1,5 +1,6 @@
 package org.vvamp.ingenscheveer.webservices;
 
+import org.vvamp.ingenscheveer.database.DatabaseStorageController;
 import org.vvamp.ingenscheveer.models.api.TaskCreateRequest;
 import org.vvamp.ingenscheveer.models.api.TaskDeleteRequest;
 import org.vvamp.ingenscheveer.models.schedule.GroupedSchedule;
@@ -54,6 +55,7 @@ public class ScheduleResource {
     public Response addScheduleItemForUser(TaskCreateRequest request){
         User user = User.getUserByName(request.username);
         if (user == null) return Response.status(Response.Status.BAD_REQUEST).build();
+        user.loadSchedule();
         Schedule schedule = user.getSchedule();
         if (schedule == null) return Response.status(Response.Status.BAD_REQUEST).build();
 
@@ -66,7 +68,7 @@ public class ScheduleResource {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
         LocalDateTime begin = LocalDateTime.parse(request.start, formatter);
         LocalDateTime end = LocalDateTime.parse(request.end, formatter);
-        ScheduleTask scheduleTask = new ScheduleTask(begin, end, "", user, type);
+        ScheduleTask scheduleTask = new ScheduleTask(begin, end, user, type);
         schedule.scheduleTask(scheduleTask);
         return Response.ok().build();
 
@@ -83,11 +85,12 @@ public class ScheduleResource {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
-
         User target = User.getUserByName(task.getUsername());
         if (target == null) return Response.status(Response.Status.BAD_REQUEST).build();
 
+        DatabaseStorageController.getDatabaseScheduleController().deleteScheduleTask(task.getUuid());
         target.getSchedule().removeTask(task.getUuid());
+
         return Response.ok().build();
 
     }

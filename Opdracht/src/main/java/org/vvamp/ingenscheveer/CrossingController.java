@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CrossingController {
-    public ArrayList<StatusUpdate> getStatusUpdates(ArrayList<AisSignal> aisSignals) {
-        ArrayList<StatusUpdate> statusUpdates = new ArrayList<>();
+    public List<StatusUpdate> getStatusUpdates(List<AisSignal> aisSignals) {
+        List<StatusUpdate> statusUpdates = new ArrayList<>();
+
+
         for (AisSignal message : aisSignals) {
 //            Location direction = Location.UNKNOWN;
 //
@@ -23,6 +25,7 @@ public class CrossingController {
 //            }
             Location location = message.message.positionReport.latitude > 51.98 ? Location.ELST : Location.INGEN;
             StatusUpdate statusUpdate = new StatusUpdate(location,message);
+            // Add location if its the first or if the status since the previous update changed from sailing to not sailing or the location changed
             if(statusUpdates.size() == 0 || statusUpdates.get(statusUpdates.size()-1) != statusUpdate) {
                 statusUpdates.add(statusUpdate);
             }
@@ -30,8 +33,8 @@ public class CrossingController {
         return statusUpdates;
     }
 
-    public ArrayList<FerryCrossing> getFerryCrossings(ArrayList<StatusUpdate> statusUpdates) {
-        ArrayList<FerryCrossing> ferryCrossings = new ArrayList<>();
+    public List<FerryCrossing> getFerryCrossings(List<StatusUpdate> statusUpdates) {
+        List<FerryCrossing> ferryCrossings = new ArrayList<>();
         StatusUpdate lastUpdate = null;
         boolean wasSailing = false;
         for(StatusUpdate statusUpdate : statusUpdates) {
@@ -52,15 +55,6 @@ public class CrossingController {
             wasSailing = statusUpdate.isSailing();
             lastUpdate = statusUpdate;
 
-//            if(lastUpdate == null){
-//                lastUpdate = statusUpdate;
-//                FerryCrossing ferryCrossing = new FerryCrossing(statusUpdate);
-//                ferryCrossings.add(ferryCrossing);
-//                continue;
-//            }
-//
-//
-//            lastUpdate = statusUpdate;
         }
 
         return ferryCrossings;

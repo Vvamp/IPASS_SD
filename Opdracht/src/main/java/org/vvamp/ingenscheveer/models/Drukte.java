@@ -2,19 +2,19 @@ package org.vvamp.ingenscheveer.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.vvamp.ingenscheveer.database.DatabaseStorageController;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Drukte {
     private int severity;
     private LocalDateTime time;
-    private static ArrayList<Drukte> druktes = new ArrayList<>();
 
     public Drukte(int severity, LocalDateTime time) {
         this.severity = severity;
         this.time = time;
-        this.druktes.add(this);
     }
 
     @JsonProperty("Severity")
@@ -39,7 +39,7 @@ public class Drukte {
         this.time = time;
     }
     @JsonIgnore
-    public static ArrayList<Drukte> getAll(){
-        return druktes;
+    public static List<Drukte> getAll(){
+        return DatabaseStorageController.getDatabaseDrukteController().getAllDrukte();
     }
 }

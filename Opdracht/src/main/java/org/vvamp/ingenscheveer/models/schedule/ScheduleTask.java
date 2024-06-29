@@ -2,6 +2,7 @@ package org.vvamp.ingenscheveer.models.schedule;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.vvamp.ingenscheveer.database.DatabaseStorageController;
 import org.vvamp.ingenscheveer.security.authentication.User;
 
 import java.time.LocalDateTime;
@@ -11,8 +12,7 @@ import java.time.ZoneOffset;
 public class ScheduleTask {
     private LocalDateTime start;
     private LocalDateTime end;
-    private String description;
-    private String uuid;
+    private int uuid;
 
 
 
@@ -20,13 +20,22 @@ public class ScheduleTask {
     private User user;
     private TaskType type;
 
-    public ScheduleTask(LocalDateTime start, LocalDateTime end, String description, User user, TaskType type) {
+    public ScheduleTask(LocalDateTime start, LocalDateTime end, User user, TaskType type, int id) {
         this.start = start;
         this.end = end;
-        this.description = description;
         this.user = user;
         this.type = type;
-        this.uuid = java.util.UUID.randomUUID().toString();
+        this.uuid = id;
+    }
+
+
+    public ScheduleTask(LocalDateTime start, LocalDateTime end, User user, TaskType type) {
+        this.start = start;
+        this.end = end;
+        this.user = user;
+        this.type = type;
+        this.uuid = DatabaseStorageController.getDatabaseScheduleController().writeScheduleTask(this);
+
     }
 
     @JsonIgnore
@@ -69,21 +78,14 @@ public class ScheduleTask {
         this.type = type;
     }
 
-    @JsonProperty("Description")
-    public String getDescription() {
-        return description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
     @JsonProperty("Username")
     public String getUsername(){
         return user.getName();
     }
 
     @JsonProperty("UUID")
-    public String getUuid() {
+    public int getUuid() {
         return uuid;
     }
     public void setUser(User user) {

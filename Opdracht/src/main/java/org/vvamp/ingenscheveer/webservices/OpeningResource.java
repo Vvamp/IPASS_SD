@@ -27,7 +27,7 @@ public class OpeningResource {
 
     private LocalDateTime getClosingTimeForDay(LocalDateTime date) {
         OperatingSchedule schedule = new OperatingSchedule();
-        int day = date.getDayOfWeek().getValue();
+        int day = date.getDayOfWeek().getValue()-1;
         LocalTime closingTime = schedule.getDays().get(day).closingTime;
         LocalDateTime closingToday = LocalDateTime.of(date.getYear(), date.getMonth(), date.getDayOfMonth(), closingTime.getHour(), closingTime.getMinute(), closingTime.getSecond());
         if(date.getDayOfWeek() == DayOfWeek.SATURDAY) {
