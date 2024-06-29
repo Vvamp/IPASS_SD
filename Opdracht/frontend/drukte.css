@@ -53,3 +53,9 @@
   border-radius: 50%;
   font-size: large;
 }
+
+#drukte-status-indicator {
+  padding: 1rem;
+  border-radius: 10%;
+  font-size: large;
+}

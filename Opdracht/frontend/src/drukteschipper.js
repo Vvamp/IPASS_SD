@@ -14,15 +14,20 @@ wrapper.querySelectorAll("li").forEach((li) => {
 
 const form = document.querySelector("#drukte-form");
 const submit = form.querySelector(".bluebutton");
+const statusIndicator = form.querySelector("#drukte-status-indicator");
 submit.addEventListener("click", (e) => {
   e.preventDefault();
   let radio = wrapper.querySelector('input[type="radio"]:checked');
   ds.setDrukte(radio.value).then((ok) => {
     if (ok) {
-      //   window.location.href = "/drukte";
-      alert("Success");
+      statusIndicator.textContent = "Toegevoegd!";
+      statusIndicator.style.backgroundColor = "lime";
+      statusIndicator.style.color = "black";
     } else {
-      alert("Er is iets misgegaan bij het opslaan van de drukte.");
+      statusIndicator.textContent =
+        "Er is iets mis gegaan. Probeer het later opnieuw!";
+      statusIndicator.style.backgroundColor = "red";
+      statusIndicator.style.color = "white";
     }
   });
 });
