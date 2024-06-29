@@ -56,7 +56,6 @@ public class LoginResource {
         response.put("isValid", result.getStatus() == ValidationStatus.VALID);
         response.put("details", result.getDetails());
         response.put("token", token);
-        System.out.println("Valid? " + (result.getStatus() == ValidationStatus.VALID));
         return Response.ok().entity(response).build();
     }
 

@@ -15,19 +15,20 @@ export default class Login {
   login(username, password) {
     return service.login(username, password).then((token) => {
       if (token) {
-        console.log("true");
         this.refresh();
         return true;
       } else {
         this.refresh();
-        console.log("false");
         return false;
       }
     });
   }
 
   logout() {
-    service.logout().then(this.refresh());
+    service.logout().then(() => {
+      this.refresh();
+      window.location.href = "/";
+    });
   }
 
   getRole() {

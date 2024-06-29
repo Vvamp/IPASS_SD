@@ -29,9 +29,6 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             ValidationResult tokenResult = loginManager.checkTokenValidity(token);
             if (tokenResult.getStatus() == ValidationStatus.VALID) {
                 msc = new MySecurityContext(tokenResult.getUser(), scheme);
-                System.out.println("Successs");
-            }else{
-                System.out.println("Invalid token");
             }
 
         }

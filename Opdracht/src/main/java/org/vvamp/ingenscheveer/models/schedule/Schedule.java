@@ -20,13 +20,36 @@ public class Schedule {
         tasks.add(scheduleDay);
     }
 
+
     @JsonProperty("Tasks")
     public List<ScheduleTask> getTasks(){
         return tasks;
     }
 
+    public ScheduleTask getTaskById(String uuid) {
+        for (ScheduleTask task : tasks) {
+            if (task.getUuid().equals(uuid)) {
+                System.out.println("Matched for " + uuid);
+                return task;
+            }else{
+                System.out.println("No match " + uuid + " -- " + task.getUuid());
+            }
+        }
+        return null;
+//        return tasks.stream().filter(task -> task.getUuid().equals(uuid)).findFirst().orElse(null);
+    }
+
     public void setTasks(List<ScheduleTask> tasks){
         this.tasks = tasks;
+    }
+
+    public boolean removeTask(String taskUuid){
+        ScheduleTask foundTask = tasks.stream().filter(t -> t.getUuid().equals(taskUuid)).findFirst().orElse(null);
+        if(foundTask != null){
+            tasks.remove(foundTask);
+        }
+
+        return foundTask != null;
     }
 
     @JsonIgnore

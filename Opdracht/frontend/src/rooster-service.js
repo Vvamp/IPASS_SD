@@ -1,31 +1,61 @@
 export default class RoosterService {
-  getRooster(weekNr) {
+  getRooster(weekNr, getAll) {
     let fetchoptions = {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          "Bearer " +
-          "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJCYWFzIiwiZXhwIjoxNzE5NTkwNTQwLCJyb2xlIjoiYm9zcyIsImlhdCI6MTcxOTU4ODc0MH0.d2pTpJcn8rpjf4jYi7gTCQLS3OQh8zFftKW1KZ6rrl0",
+        Authorization: "Bearer " + window.localStorage.getItem("loginToken"),
       },
     };
+
+    let url = "/api/schedules";
+    if (!getAll) {
+      url = "/api/schedules/" + window.localStorage.getItem("username");
+    }
     return Promise.resolve(
-      fetch("/api/schedules?weeknr=" + weekNr, fetchoptions)
+      fetch(url + "?weeknr=" + weekNr, fetchoptions)
         .then(function (response) {
           if (response.ok) {
-            console.log("Response ok:");
-            console.log(response);
-            // console.log(response.json());
             return response.json();
           } else {
-            console.log("response not ok:");
-            console.log(response);
+            return "fail";
           }
         })
         .catch(function (error) {
           console.error(error);
-          return false;
+          return "fail";
         })
+    );
+  }
+  addRoosterItem(data) {
+    let fetchoptions = {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + window.localStorage.getItem("loginToken"),
+      },
+    };
+    return Promise.resolve(
+      fetch("/api/schedules/add", fetchoptions).then((response) => {
+        return response.ok;
+      })
+    );
+  }
+
+  removeRoosterItem(uuid) {
+    let fetchoptions = {
+      method: "DELETE",
+      body: JSON.stringify({ uuid: uuid }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + window.localStorage.getItem("loginToken"),
+      },
+    };
+    return Promise.resolve(
+      fetch("/api/schedules/delete", fetchoptions).then((response) => {
+        return response.ok;
+      })
     );
   }
 }

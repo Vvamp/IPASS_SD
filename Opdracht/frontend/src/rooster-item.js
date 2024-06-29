@@ -1,3 +1,6 @@
+import RoosterService from "./rooster-service";
+const service = new RoosterService();
+
 function formatTime(date) {
   const hours = String(date.getUTCHours()).padStart(2, "0");
   const minutes = String(date.getUTCMinutes()).padStart(2, "0");
@@ -34,6 +37,20 @@ export default class RoosterDayItem {
       taskitem.querySelector(".schedule-data-row-role").textContent = task.Type;
       taskitem.querySelector(".schedule-data-row-name").textContent =
         task.Username;
+      const taskelement = taskitem.querySelector(".schedule-data-row");
+      const deleteElement = taskelement.querySelector(
+        ".schedule-data-row-delete"
+      );
+
+      if (deleteElement) {
+        deleteElement.dataset.uuid = task.UUID;
+        deleteElement.addEventListener("click", (e) => {
+          service.removeRoosterItem(task.UUID).then(() => {
+            deleteElement.closest(".schedule-data-row").remove();
+          });
+        });
+      }
+
       dataelement.appendChild(taskitem);
     });
 

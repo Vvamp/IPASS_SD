@@ -1,5 +1,6 @@
 import Login from "./login.js";
-
+import RoosterService from "./rooster-service.js";
+const rs = new RoosterService();
 const ls = new Login();
 let isModalActive = false;
 function dismissModal(event, id) {
@@ -51,11 +52,41 @@ export function createModal(id) {
       if (ls.login(user, password)) {
         loginForm.reset();
         dismissModal(e, id);
-        console.log("Logged in");
       } else {
         errorElement.textContent = "Wrong username and/or password";
         errorElement.style.display = "block";
       }
+    });
+  } else if (id == "addrooster-modal") {
+    const addRoosterForm = document.querySelector("#addrooster-form");
+    const submitButton = addRoosterForm.querySelector("button[type='submit']");
+    const errorElement = addRoosterForm.querySelector(
+      ".addrooster-form-indicator"
+    );
+    submitButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      const formData = new FormData(addRoosterForm);
+      const username = formData.get("username");
+      const role = formData.get("role");
+      const start = formData.get("startdate");
+      const end = formData.get("enddate");
+
+      const data = {
+        username: username,
+        role: role,
+        start: start,
+        end: end,
+      };
+      rs.addRoosterItem(data).then((response) => {
+        if (response) {
+          addRoosterForm.reset();
+          window.location.reload();
+          dismissModal(e, id);
+        } else {
+          errorElement.textContent = "Error adding rooster item";
+          errorElement.style.display = "block";
+        }
+      });
     });
   }
   return modalElement;

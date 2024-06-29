@@ -33,11 +33,12 @@
   <body>
     <nav>
       <div id="nav-left">
-        <img
-          class="nav-img"
-          src="/FerryLogoTrans.png"
-          alt="Geldersweert logo"
-        />
+        <a href="/index.html"
+          ><img
+            class="nav-img"
+            src="/FerryLogoTrans.png"
+            alt="Geldersweert logo"
+        /></a>
         <span class="nav-title">Veerdienst Ingen-Elst</span>
         <span class="nav-subtitle">Kom over de brug, neem de pont</span>
       </div>
@@ -74,6 +75,42 @@
                 <button class="bluebutton" type="submit">Login</button>
               </form>
             </template>
+            <template id="addrooster-modal-template">
+              <h1 class="modal-title">Nieuw Rooster Item</h1>
+              <form id="addrooster-form" class="modal-form">
+                <label for="username">Gebruikersnaam</label>
+                <input
+                  placeholder="Vul gebruikersnaam van medewerker in"
+                  type="text"
+                  id="username"
+                  name="username"
+                  required
+                />
+
+                <label for="startdate">Startdatum</label>
+                <input
+                  type="datetime-local"
+                  id="addrooster-startdate"
+                  name="startdate"
+                  required
+                />
+                <label for="enddate">Einddatum</label>
+                <input
+                  type="datetime-local"
+                  id="addrooster-enddate"
+                  name="enddate"
+                  required
+                />
+
+                <label for="role">Rol</label>
+                <select name="role" id="role">
+                  <option value="dienst" selected>Dienst</option>
+                  <option value="kniphulp">Kniphulp</option>
+                </select>
+                <span class="addrooster-form-indicator"></span>
+                <button class="bluebutton" type="submit">Voeg toe</button>
+              </form>
+            </template>
           </div>
         </div>
       </template>
@@ -83,6 +120,10 @@
       <div class="row">
         <div class="schedule-wrapper">
           <span class="schedule-title">Rooster</span>
+          <span
+            id="add-schedule"
+            class="schedule-add fa-solid fa-circle-plus"
+          ></span>
           <div class="schedule-selections">
             <label for="schedule-week">Week nummer</label>
             <input
@@ -97,13 +138,15 @@
             <template id="schedule-data-day-template">
               <div class="schedule-data-day">
                 <span class="schedule-data-day-date">21/6</span>
-                <span class="schedule-data-day-add">+</span>
+                <!-- <span class="schedule-data-day-add">+</span> -->
                 <template id="schedule-data-row-template">
                   <div class="schedule-data-row">
                     <span class="schedule-data-row-time">06:00 - 14:30</span>
                     <span class="schedule-data-row-role">Schipper</span>
                     <span class="schedule-data-row-name">Vincent</span>
-                    <span class="schedule-data-row-delete">x</span>
+                    <span
+                      class="schedule-data-row-delete fa-solid fa-trash"
+                    ></span>
                   </div>
                 </template>
               </div>

@@ -103,6 +103,7 @@ nav {
   font-weight: 640;
   transition: filter 0.4s;
   user-select: none;
+  text-decoration: none;
 }
 
 .bluebutton:hover {

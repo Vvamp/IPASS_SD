@@ -12,6 +12,9 @@ public class ScheduleTask {
     private LocalDateTime start;
     private LocalDateTime end;
     private String description;
+    private String uuid;
+
+
 
     @JsonIgnore
     private User user;
@@ -23,6 +26,7 @@ public class ScheduleTask {
         this.description = description;
         this.user = user;
         this.type = type;
+        this.uuid = java.util.UUID.randomUUID().toString();
     }
 
     @JsonIgnore
@@ -78,7 +82,10 @@ public class ScheduleTask {
         return user.getName();
     }
 
-
+    @JsonProperty("UUID")
+    public String getUuid() {
+        return uuid;
+    }
     public void setUser(User user) {
         this.user = user;
     }

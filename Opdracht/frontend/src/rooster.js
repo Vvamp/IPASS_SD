@@ -1,5 +1,6 @@
 import RoosterService from "./rooster-service.js";
 import RoosterDayItem from "./rooster-item.js";
+import { createModal } from "./modal.js";
 
 const service = new RoosterService();
 Date.prototype.getWeek = function (dowOffset) {
@@ -36,29 +37,36 @@ Date.prototype.getWeek = function (dowOffset) {
 
 var weekNr = new Date().getWeek();
 
+var roosterType = document.querySelector(".schedule-data").dataset.roostertype;
+let roosterAll = true;
+if (roosterType == "personal") {
+  roosterAll = false;
+}
 export default class Rooster {
-  loadSchedule() {
+  loadSchedule(getAll) {
     document.querySelectorAll(".schedule-data-day").forEach((e) => e.remove());
-    service.getRooster(weekNr).then((rooster) => {
-      rooster.forEach((day) => {
-        const dt = new Date(day.Day);
-        console.log("Detected day: " + dt);
-        console.log("Items: " + day.Tasks.length);
-        new RoosterDayItem(day.Tasks);
-      });
+    service.getRooster(weekNr, getAll).then((rooster) => {
+      if (rooster != "fail") {
+        rooster.forEach((day) => {
+          const dt = new Date(day.Day);
+          new RoosterDayItem(day.Tasks);
+        });
+      } else {
+        document.querySelector(".content-wrapper").innerHTML =
+          "<h1>You are not allowed to access this page</h1>";
+      }
     });
   }
 }
 
 const rooster = new Rooster();
-rooster.loadSchedule();
+rooster.loadSchedule(roosterAll);
 
 const scheduleWeekInput = document.querySelector("#schedule-week");
 function updateWeek(weekNumber) {
   if (weekNumber == -1) {
     weekNumber = scheduleWeekInput.value;
   }
-  console.log("Week number: " + weekNumber);
   scheduleWeekInput.value = weekNumber;
   weekNr = weekNumber;
 }
@@ -66,5 +74,12 @@ function updateWeek(weekNumber) {
 updateWeek(weekNr);
 scheduleWeekInput.addEventListener("change", () => {
   updateWeek(-1);
-  rooster.loadSchedule();
+  rooster.loadSchedule(roosterAll);
 });
+
+const addRoosterButton = document.querySelector("#add-schedule");
+if (addRoosterButton) {
+  addRoosterButton.addEventListener("click", () => {
+    createModal("addrooster-modal");
+  });
+}

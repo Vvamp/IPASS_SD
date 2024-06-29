@@ -38,8 +38,6 @@ public class LoginManager {
     }
 
     public void populate() {
-        System.out.println("Populating login manager");
-
         users.put("Vincent", new User("Vincent", "admin", "skipper"));
         User a = User.getUserByName("Vincent");
         a.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 1, 6, 0, 0), LocalDateTime.of(2024, 6, 1, 14, 30, 0), "Hello World", a, TaskType.Dienst));
@@ -49,7 +47,6 @@ public class LoginManager {
         a.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 5, 6, 0, 0), LocalDateTime.of(2024, 6, 2, 14, 30, 0), "Hello World", a, TaskType.Dienst));
         a.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 6, 6, 0, 0), LocalDateTime.of(2024, 6, 2, 14, 30, 0), "Hello World", a, TaskType.Dienst));
 
-        System.out.println("B");
         users.put("Stephan", new User("Stephan", "schipper", "skipper"));
         User b = User.getUserByName("Stephan");
         b.getSchedule().scheduleTask(new ScheduleTask(LocalDateTime.of(2024, 6, 1, 14, 30, 0), LocalDateTime.of(2024, 6, 1, 23, 0, 0), "Hello World", b, TaskType.Dienst));
@@ -101,10 +98,6 @@ public class LoginManager {
 
     public void validateToken(String token) {
         validatedTokens.add(token);
-        System.out.println("Added token to valid list. Items:");
-        for(String t : validatedTokens) {
-            System.out.println("> " + t);
-        }
     }
 
     public ValidationResult checkTokenValidity(String token) {
@@ -113,10 +106,6 @@ public class LoginManager {
 
     public ValidationResult checkTokenValidity(String token, String username) {
         if (!validatedTokens.contains(token)) {
-            System.out.println("Token " + token + " not found in items:");
-            for(String t : validatedTokens) {
-                System.out.println("> " + t);
-            }
             return new ValidationResult(ValidationStatus.INVALID, "The token was not in the authorisation list.");
         }
 

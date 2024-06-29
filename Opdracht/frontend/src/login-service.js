@@ -27,8 +27,6 @@ export default class LoginService {
           window.localStorage.setItem("loginToken", result.token);
           window.localStorage.setItem("username", result.username);
           window.localStorage.setItem("role", result.role);
-
-          console.log("Set role to " + result.role);
           return result.token;
         })
         .catch((error) => console.error(error))
