@@ -8,6 +8,9 @@
     "build": "vite build --emptyOutDir",
     "preview": "vite preview"
   },
+  "dependencies": {
+    "ol": "^8.1.0"
+  },
   "devDependencies": {
     "@eslint/js": "^9.3.0",
     "eslint": "^9.3.0",

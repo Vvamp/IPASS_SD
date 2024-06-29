@@ -5,26 +5,47 @@ const ds = new DrukteService();
 function refresh() {
   const statsPanel = document.querySelector("#statistics");
   const cspeed = statsPanel.querySelector(
-    '[data-stats-item="currentspeed"'
+    '[data-stats-item="currentspeed"]'
   ).lastElementChild;
   const avgspeed = statsPanel.querySelector(
-    '[data-stats-item="avgspeed"'
+    '[data-stats-item="avgspeed"]'
   ).lastElementChild;
   const crossings = statsPanel.querySelector(
-    '[data-stats-item="crossings"'
+    '[data-stats-item="crossings"]'
   ).lastElementChild;
   const lastupdate = statsPanel.querySelector(
-    '[data-stats-item="lastupdate"'
+    '[data-stats-item="lastupdate"]'
   ).lastElementChild;
+  const drukteItem = statsPanel.querySelector(
+    '[data-stats-item="drukte"]'
+  ).lastElementChild;
+
+  const etaItem = statsPanel.querySelector(
+    '[data-stats-item="eta"]'
+  ).lastElementChild;
+  const statusItem = document.querySelector('[data-stats-item="status"]');
+
   service.getStats().then((stats) => {
     cspeed.textContent = stats.CurrentSpeed.toFixed(2) + " kts";
     avgspeed.textContent = stats.AverageSpeed.toFixed(2) + " kts";
     crossings.textContent = stats.CrossingCount;
     lastupdate.textContent = new Date(stats.LastUpdate).toLocaleTimeString();
   });
-  const drukteItem = statsPanel.querySelector(
-    '[data-stats-item="drukte"'
-  ).lastElementChild;
+
+  service.getEta().then((eta) => {
+    etaItem.textContent = eta.eta;
+  });
+
+  service.getStatus().then((result) => {
+    let status = "";
+    if (status.active && status.Arrival != null) {
+      let direction = result.Departure.Location == "Ingen" ? "Elst" : "Ingen";
+      status = "Onderweg (" + direction + ")";
+    } else {
+      status = "Aangemeerd (" + result.Arrival.Location + ")";
+    }
+    statusItem.lastElementChild.textContent = status;
+  });
 
   ds.getDrukte().then((drukte) => {
     switch (drukte.Severity) {
