@@ -23,7 +23,21 @@ function refresh() {
   const etaItem = statsPanel.querySelector(
     '[data-stats-item="eta"]'
   ).lastElementChild;
-  const statusItem = document.querySelector('[data-stats-item="status"]');
+  const statusItem = statsPanel.querySelector(
+    '[data-stats-item="status"]'
+  ).lastElementChild;
+
+  const openItem = statsPanel.querySelector(
+    '[data-stats-item="isopen"]'
+  ).lastElementChild;
+
+  service.getIsOpen().then((result) => {
+    if (result.isOpen) {
+      openItem.textContent = "Ja (Sluit om " + result.closingTime + ")";
+    } else {
+      openItem.textContent = "Nee (Opent om " + result.openingTime + ")";
+    }
+  });
 
   service.getStats().then((stats) => {
     cspeed.textContent = stats.CurrentSpeed.toFixed(2) + " kts";
@@ -44,7 +58,7 @@ function refresh() {
     } else {
       status = "Aangemeerd (" + result.Arrival.Location + ")";
     }
-    statusItem.lastElementChild.textContent = status;
+    statusItem.textContent = status;
   });
 
   ds.getDrukte().then((drukte) => {

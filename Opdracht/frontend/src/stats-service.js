@@ -37,6 +37,25 @@ export default class StatsService {
     );
   }
 
+  getIsOpen() {
+    let fetchoptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    return Promise.resolve(
+      fetch("/api/operatingtimes/now", fetchoptions)
+        .then(function (response) {
+          if (response.ok) return response.json();
+        })
+        .catch(function (error) {
+          console.error(error);
+          return false;
+        })
+    );
+  }
+
   getStatus() {
     let fetchoptions = {
       method: "GET",
