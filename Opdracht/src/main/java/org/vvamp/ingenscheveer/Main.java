@@ -10,7 +10,9 @@ import org.vvamp.ingenscheveer.security.authentication.LoginManager;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
+import java.time.ZoneId;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -23,6 +25,10 @@ public class Main implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+        System.setProperty("user.timezone", "UTC");
+        ZoneId.systemDefault().normalized();
+
         loginManager.populate();
 
 //        List<AisSignal> signals = storageController.load();

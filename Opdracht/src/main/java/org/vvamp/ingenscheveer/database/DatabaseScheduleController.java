@@ -60,7 +60,7 @@ public class DatabaseScheduleController {
                 ScheduleTask data = new ScheduleTask(rs.getTimestamp("start").toInstant().atZone(ZoneOffset.UTC).toLocalDateTime(), rs.getTimestamp("end").toInstant().atZone(ZoneOffset.UTC).toLocalDateTime(), user, TaskType.valueOf(rs.getString("taskType")), id);
                 tasks.add(data);
             }
-            System.out.println("get tasks for user " + userId + ", results in " + tasks.size() + " tasks");
+//            System.out.println("get tasks for user " + userId + ", results in " + tasks.size() + " tasks");
             return tasks;
         } catch (SQLException e) {
             throw new RuntimeException(e);

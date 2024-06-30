@@ -35,7 +35,7 @@ public class Statistics {
 
     @JsonProperty("AverageSpeed")
     public double getAverageSpeed() {
-        int limit = current_time - (60 * 24);
+        int limit = current_time - (60 * 60 * 24);
         // Get all ais signals from all crossings where timestamp > now-24h
         List<AisData> signals = crossings.stream().flatMap(c -> c.getAisData().stream()).filter(signal -> signal.getUtcTimestamp() > limit && signal.sog
         > 0).distinct().collect(Collectors.toList());
@@ -54,7 +54,7 @@ public class Statistics {
 
     @JsonProperty("CrossingCount")
     public int getCrossingCount() {
-        int limit = current_time;
+        int limit = current_time - (60 * 60); // 1 hour
         List<FerryCrossing> lastCrossings = crossings.stream().filter(crossing -> crossing.getDeparture().getEpochSeconds() > limit).collect(Collectors.toList());
         return lastCrossings.size();
     }

@@ -29,10 +29,10 @@ public class Schedule {
     public ScheduleTask getTaskById(int uuid) {
         for (ScheduleTask task : tasks) {
             if (task.getUuid() == uuid) {
-                System.out.println("Matched for " + uuid);
+//                System.out.println("Matched for " + uuid);
                 return task;
             }else{
-                System.out.println("No match " + uuid + " -- " + task.getUuid());
+//                System.out.println("No match " + uuid + " -- " + task.getUuid());
             }
         }
         return null;

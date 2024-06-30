@@ -8,8 +8,7 @@ import org.vvamp.ingenscheveer.models.api.FerryCrossingEtaResult;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Comparator;
@@ -58,9 +57,12 @@ public class FerryCrossingResource {
         FerryCrossing latestCrossing = crossings.get(crossings.size() - 1);
 
         var res = new FerryCrossingEtaResult();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-        LocalDateTime datetime = LocalDateTime.ofEpochSecond(latestCrossing.getDeparture().getEpochSeconds(), 0, ZoneOffset.UTC).plusMinutes(2).plusSeconds(30);
-        res.eta = datetime.format(formatter);
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+//        ZonedDateTime datetime = ZonedDateTime.ofInstant(
+//                Instant.ofEpochSecond(latestCrossing.getDeparture().getEpochSeconds()),
+//                ZoneId.systemDefault()
+//        ).plusMinutes(2).plusSeconds(30);
+        res.eta = latestCrossing.getDeparture().getEpochSeconds() + 150;
         return Response.status(Response.Status.OK).entity(res).build();
 
     }

@@ -21,9 +21,9 @@ export default class Crossings {
         nodeDivA.classList.add("timeline-node");
         let ptime = document.createElement("p");
         let date = new Date(0);
-        date.setSeconds(overtocht.Departure.epochSeconds);
+        date.setUTCSeconds(overtocht.Departure.epochSeconds);
         ptime.innerHTML =
-          (date.getHours() - 1).toString().padStart(2, "0") +
+          date.getHours().toString().padStart(2, "0") +
           ":" +
           date.getMinutes().toString().padStart(2, "0");
         nodeDivA.appendChild(ptime);
@@ -52,17 +52,17 @@ export default class Crossings {
             ptext.innerHTML = "INGEN".toLowerCase();
           }
           date = new Date(0);
-          date.setSeconds(overtocht.Departure.epochSeconds + 150);
+          date.setUTCSeconds(overtocht.Departure.epochSeconds + 150);
           ptime.innerHTML =
-            (date.getHours() - 1).toString().padStart(2, "0") +
+            date.getHours().toString().padStart(2, "0") +
             ":" +
             date.getMinutes().toString().padStart(2, "0");
         } else {
           ptext.innerHTML = overtocht.Arrival.Location.toLowerCase();
           date = new Date(0);
-          date.setSeconds(overtocht.Arrival.epochSeconds);
+          date.setUTCSeconds(overtocht.Arrival.epochSeconds);
           ptime.innerHTML =
-            (date.getHours() - 1).toString().padStart(2, "0") +
+            date.getHours().toString().padStart(2, "0") +
             ":" +
             date.getMinutes().toString().padStart(2, "0");
         }
@@ -89,8 +89,6 @@ export default class Crossings {
           timelinewrapper.appendChild(edgeDivB);
         }
       });
-
-      console.log(overtochten);
     });
   }
 }

@@ -30,7 +30,7 @@ public class LocalFileStorageController implements StorageController{
 
 //            file.mkdirs();
         }
-        System.out.println(file.getAbsoluteFile());
+//        System.out.println(file.getAbsoluteFile());
     }
 
     @Override
@@ -92,7 +92,7 @@ public class LocalFileStorageController implements StorageController{
 
         } catch (
                 FileNotFoundException e) {
-            System.out.println("An error occurred.");
+            System.err.println("An error occurred.");
             e.printStackTrace();
             return new ArrayList<AisSignal>();
         }catch(Exception e){

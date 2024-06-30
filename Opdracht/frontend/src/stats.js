@@ -51,9 +51,13 @@ function refresh() {
     avgspeed.textContent = stats.AverageSpeed.toFixed(2) + " kts";
     crossings.textContent = stats.CrossingCount;
     let date = new Date(0);
-    date.setMilliseconds(stats.LastUpdate / 1000);
-    date.setHours(date.getHours() + 1);
-    lastupdate.textContent = date.toLocaleTimeString();
+    date.setUTCMilliseconds(stats.LastUpdate / 1000);
+    lastupdate.textContent =
+      date.getHours().toString().padStart(2, "0") +
+      ":" +
+      date.getMinutes().toString().padStart(2, "0") +
+      ":" +
+      date.getSeconds().toString().padStart(2, "0");
   });
 
   service.getStatus().then((result) => {
@@ -71,9 +75,9 @@ function refresh() {
     lastStatus = status.toLowerCase();
     if (result.Arrival == null) {
       let date = new Date(0);
-      date.setSeconds(result.Departure.epochSeconds);
+      date.setUTCSeconds(result.Departure.epochSeconds);
       vertrekItem.textContent =
-        (date.getHours() - 1).toString().padStart(2, "0") +
+        date.getHours().toString().padStart(2, "0") +
         ":" +
         date.getMinutes().toString().padStart(2, "0") +
         ":" +
@@ -85,7 +89,14 @@ function refresh() {
 
     if (result.Arrival == null) {
       service.getEta().then((eta) => {
-        etaItem.textContent = eta.eta;
+        let date = new Date(0);
+        date.setUTCSeconds(eta.eta);
+        etaItem.textContent =
+          date.getHours().toString().padStart(2, "0") +
+          ":" +
+          date.getMinutes().toString().padStart(2, "0") +
+          ":" +
+          date.getSeconds().toString().padStart(2, "0");
         etaItem.parentElement.style.display = "";
       });
     } else {

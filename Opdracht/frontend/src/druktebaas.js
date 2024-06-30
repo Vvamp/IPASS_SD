@@ -7,7 +7,6 @@ const drukteTs = document.querySelector("#drukte-timestamp");
 function updateDrukte() {
   // let drukte = ds.getDrukte();
   ds.getDrukte().then((drukte) => {
-    console.log(drukte);
     if (drukte.Severity == 1) {
       drukteIndicator.innerHTML = "Rustig";
       drukteIndicator.style.backgroundColor = "green";

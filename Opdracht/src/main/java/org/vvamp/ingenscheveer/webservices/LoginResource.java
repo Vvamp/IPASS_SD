@@ -35,7 +35,7 @@ public class LoginResource {
 
             return Response.ok(lr).build();
         } catch (JwtException | IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
             return Response.status(Response.Status.UNAUTHORIZED).build();
         } catch (Exception e) {
             System.err.println(e.getMessage());
