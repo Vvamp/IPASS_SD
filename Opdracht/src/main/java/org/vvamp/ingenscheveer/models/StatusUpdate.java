@@ -1,10 +1,13 @@
 package org.vvamp.ingenscheveer.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.vvamp.ingenscheveer.Location;
-import org.vvamp.ingenscheveer.models.json.AisSignal;
+import org.vvamp.ingenscheveer.database.models.AisData;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Date;
 
 public class StatusUpdate {
@@ -12,30 +15,28 @@ public class StatusUpdate {
     private Location location;
 
     @JsonProperty("AIS Signal")
-    private AisSignal aisSignal;
+    private AisData aisSignal;
 
-    public StatusUpdate(Location location, AisSignal aisSignal) {
+    public StatusUpdate(Location location, AisData aisSignal) {
         this.location = location;
         this.aisSignal = aisSignal;
     }
 
     public boolean isSailing() {
-        return aisSignal.message.positionReport.sog > 0.2;
+        return aisSignal.sog > 0.2;
     }
 
     public Location getLocation() {
         return location;
     }
 
-    public Date getDate() {
-        return aisSignal.getUtcDate();
-    }
 
     public int getEpochSeconds(){
-        return aisSignal.getUtcTimestamp();
+        LocalDateTime dt = aisSignal.timestamp.toLocalDateTime();
+        return (int) dt.toEpochSecond(ZoneOffset.UTC);
     }
-
-    public AisSignal getAisSignal() {
+    @JsonIgnore
+    public AisData getAisData() {
         return aisSignal;
     }
 

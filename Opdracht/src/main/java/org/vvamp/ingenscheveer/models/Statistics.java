@@ -1,6 +1,7 @@
 package org.vvamp.ingenscheveer.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.vvamp.ingenscheveer.database.models.AisData;
 import org.vvamp.ingenscheveer.models.json.AisSignal;
 
 import java.time.Instant;
@@ -24,19 +25,19 @@ public class Statistics {
             return -1;
         }
 
-        AisSignal mostRecentSignal = crossings.stream().flatMap(c -> c.getAisSignals().stream()).sorted((s1, s2) -> Long.compare(s2.getUtcTimestamp(), s1.getUtcTimestamp())).findFirst().orElse(null);
+        AisData mostRecentSignal = crossings.stream().flatMap(c -> c.getAisData().stream()).sorted((s1, s2) -> Long.compare(s2.getUtcTimestamp(), s1.getUtcTimestamp())).findFirst().orElse(null);
         if (mostRecentSignal == null) {
             return -1;
         }
 
-        return mostRecentSignal.message.positionReport.sog;
+        return mostRecentSignal.sog;
     }
 
     @JsonProperty("AverageSpeed")
     public double getAverageSpeed() {
         int limit = current_time - (60 * 60 * 24);
         // Get all ais signals from all crossings where timestamp > now-24h
-        List<AisSignal> signals = crossings.stream().flatMap(c -> c.getAisSignals().stream()).filter(signal -> signal.getUtcTimestamp() > limit && signal.message.positionReport.sog
+        List<AisData> signals = crossings.stream().flatMap(c -> c.getAisData().stream()).filter(signal -> signal.getUtcTimestamp() > limit && signal.sog
         > 0).distinct().collect(Collectors.toList());
 
         if(signals.size() <= 0){
@@ -44,8 +45,8 @@ public class Statistics {
         }
 
         double sum = 0;
-        for(AisSignal signal : signals){
-            sum += signal.message.positionReport.sog;
+        for(AisData signal : signals){
+            sum += signal.sog;
         }
         double avg = sum/ signals.size();
         return avg;
@@ -60,7 +61,7 @@ public class Statistics {
 
     @JsonProperty("LastUpdate")
     public Date getLatestUpdate() {
-        AisSignal mostRecentSignal = crossings.stream().flatMap(c -> c.getAisSignals().stream()).sorted((s1, s2) -> Long.compare(s2.getUtcTimestamp(), s1.getUtcTimestamp())).findFirst().orElse(null);
+        AisData mostRecentSignal = crossings.stream().flatMap(c -> c.getAisData().stream()).sorted((s1, s2) -> Long.compare(s2.getUtcTimestamp(), s1.getUtcTimestamp())).findFirst().orElse(null);
         if (mostRecentSignal == null) {
             return Date.from(Instant.EPOCH);
         }

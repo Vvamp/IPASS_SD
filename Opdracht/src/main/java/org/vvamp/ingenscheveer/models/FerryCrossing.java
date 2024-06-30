@@ -1,7 +1,7 @@
 package org.vvamp.ingenscheveer.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.vvamp.ingenscheveer.models.json.AisSignal;
+import org.vvamp.ingenscheveer.database.models.AisData;
 
 import java.util.ArrayList;
 
@@ -16,16 +16,15 @@ public class FerryCrossing {
     @JsonProperty("Arrival")
     private StatusUpdate arrival;
 
-    @JsonProperty("AIS Signals")
-    private ArrayList<AisSignal> aisSignals;
+    private ArrayList<AisData> aisSignals;
 
 
-    public FerryCrossing(StatusUpdate departure, StatusUpdate arrival, ArrayList<AisSignal> aisSignals) {
+    public FerryCrossing(StatusUpdate departure, StatusUpdate arrival, ArrayList<AisData> aisSignals) {
         this.departure = departure;
         this.arrival = arrival;
         this.aisSignals = aisSignals;
     }
-    public FerryCrossing(StatusUpdate departure, ArrayList<AisSignal> aisSignals) {
+    public FerryCrossing(StatusUpdate departure, ArrayList<AisData> aisSignals) {
         this.departure = departure;
         this.arrival = null;
         this.aisSignals = aisSignals;
@@ -33,7 +32,7 @@ public class FerryCrossing {
     public FerryCrossing(StatusUpdate departure) {
         this.departure = departure;
         this.arrival = null;
-        this.aisSignals = new ArrayList<AisSignal>();
+        this.aisSignals = new ArrayList<AisData>();
     }
 
     public StatusUpdate getDeparture() {
@@ -44,7 +43,8 @@ public class FerryCrossing {
         return arrival;
     }
 
-    public ArrayList<AisSignal> getAisSignals() {
+    @JsonProperty("AIS Signals")
+    public ArrayList<AisData> getAisData() {
         return aisSignals;
     }
 
@@ -56,11 +56,11 @@ public class FerryCrossing {
         this.arrival = arrival;
     }
 
-    public void setAisSignals(ArrayList<AisSignal> aisSignals) {
+    public void addAisDatas(ArrayList<AisData> aisSignals) {
         this.aisSignals = aisSignals;
     }
 
-    public void addAisSignal(AisSignal aisSignal) {
+    public void addAisData(AisData aisSignal) {
         this.aisSignals.add(aisSignal);
     }
 }

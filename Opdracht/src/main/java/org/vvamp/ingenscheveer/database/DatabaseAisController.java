@@ -35,57 +35,16 @@ public class DatabaseAisController {
         }
     }
 
-    private AisSignal convertFromAisData(AisData data) {
-        ObjectMapper mapper = new ObjectMapper();
-        AisSignal signal = null;
-        try {
-            signal = mapper.readValue(data.raw_json, AisSignal.class);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-        return signal;
-    }
-
-    public List<AisSignal> getXMostRecentSignals(int count){
+    public List<AisData> getXMostRecentData(int count){
         if (isDirty || aisDataList.isEmpty()) {
             getAllAisData();
         }
         if(count <= -1){
             count= aisDataList.size();
         }
-
-        List<AisSignal> signals = new ArrayList<>();
-        List<AisData> dataList = aisDataList.subList(Math.max(aisDataList.size()-count, 0), aisDataList.size());
-        for (AisData dataSignal : dataList) {
-            signals.add(convertFromAisData(dataSignal));
-        }
-        return signals;
-
+        return aisDataList.subList(Math.max(aisDataList.size()-count, 0), aisDataList.size());
     }
 
-    public void SaveAllAisSignals(List<AisSignal> signals) {
-        String sql = "INSERT IGNORE INTO " + tableName + " (timestamp, sog, longitude, latitude, raw_json) VALUES (?, ?, ?, ?, ?)";
-        List<AisData> datas = new ArrayList<>();
-        for (AisSignal signal : signals) {
-            datas.add(convertToAisData(signal));
-        }
-
-        try (Connection conn = DatabaseConnection.getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            for (AisData data : datas) {
-                pstmt.setTimestamp(1, data.timestamp);
-                pstmt.setDouble(2, data.sog);
-                pstmt.setDouble(3, data.longitude);
-                pstmt.setDouble(4, data.latitude);
-                pstmt.setString(5, data.raw_json);
-                pstmt.addBatch();
-            }
-            pstmt.executeBatch();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-    }
 
     public void removeAll(){
         String sql = "DELETE FROM " + tableName;
@@ -143,13 +102,4 @@ public class DatabaseAisController {
         return getAllAisData(false);
     }
 
-    public List<AisSignal> getAllAisSignals() {
-        List<AisSignal> signals = new ArrayList<>();
-        List<AisData> data = getAllAisData();
-        for (AisData dataSignal : data) {
-            signals.add(convertFromAisData(dataSignal));
-        }
-
-        return signals;
-    }
 }

@@ -80,10 +80,7 @@ function loadShipLocation() {
     })
     .then(function (result) {
       let res = result[0];
-      updateShipLocation([
-        res.Message.PositionReport.Latitude,
-        res.Message.PositionReport.Longitude,
-      ]);
+      updateShipLocation([res.latitude, res.longitude]);
     })
     .catch((err) => {
       //   throw err;

@@ -37,22 +37,14 @@ public class FerryCrossingResource {
 
         return Response.status(Response.Status.OK).entity(crossings).build();
     }
-    // create resource to get all since 'x' using sql query
+
     @GET
     @Path("latest")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCrossings() {
         List<FerryCrossing> crossings = Ferry.getFerry().getFerryCrossings();
-        FerryCrossing latestCrossing = null;
-        for (FerryCrossing crossing : crossings) {
-            if(latestCrossing == null) {
-                latestCrossing = crossing;
-                continue;
-            }
-            if(crossing.getDeparture().getEpochSeconds() > latestCrossing.getDeparture().getEpochSeconds()) {
-                latestCrossing = crossing;
-            }
-        }
+        FerryCrossing latestCrossing = crossings.get(crossings.size() - 1);
+
 
         return Response.status(Response.Status.OK).entity(latestCrossing).build();
     }
@@ -62,16 +54,8 @@ public class FerryCrossingResource {
     @Path("eta")
     public Response getEta() {
         List<FerryCrossing> crossings = Ferry.getFerry().getFerryCrossings();
-        FerryCrossing latestCrossing = null;
-        for (FerryCrossing crossing : crossings) {
-            if(latestCrossing == null) {
-                latestCrossing = crossing;
-                continue;
-            }
-            if(crossing.getDeparture().getEpochSeconds() > latestCrossing.getDeparture().getEpochSeconds()) {
-                latestCrossing = crossing;
-            }
-        }
+        FerryCrossing latestCrossing = crossings.get(crossings.size() - 1);
+
         var res = new FerryCrossingEtaResult();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalDateTime datetime = LocalDateTime.ofEpochSecond(latestCrossing.getDeparture().getEpochSeconds(), 0, ZoneOffset.UTC).plusMinutes(2).plusSeconds(30);

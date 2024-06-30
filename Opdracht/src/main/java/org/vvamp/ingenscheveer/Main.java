@@ -3,6 +3,7 @@ package org.vvamp.ingenscheveer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.vvamp.ingenscheveer.database.DatabaseStorageController;
+import org.vvamp.ingenscheveer.database.models.AisData;
 import org.vvamp.ingenscheveer.models.json.AisSignal;
 import org.vvamp.ingenscheveer.security.authentication.LoginManager;
 
@@ -27,7 +28,7 @@ public class Main implements ServletContextListener {
 //        List<AisSignal> signals = storageController.load();
 //        DatabaseStorageController.getDatabaseAisController().SaveAllAisSignals(signals);
 
-        List<AisSignal> newSignals = DatabaseStorageController.getDatabaseAisController().getAllAisSignals(); // precache
+        List<AisData> newSignals = DatabaseStorageController.getDatabaseAisController().getAllAisData(); // precache
 
         executorService = Executors.newSingleThreadScheduledExecutor();
         executorService.submit(() -> {

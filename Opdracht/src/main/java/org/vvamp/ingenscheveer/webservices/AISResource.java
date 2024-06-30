@@ -3,6 +3,7 @@ package org.vvamp.ingenscheveer.webservices;
 
 import org.vvamp.ingenscheveer.Main;
 import org.vvamp.ingenscheveer.database.DatabaseStorageController;
+import org.vvamp.ingenscheveer.database.models.AisData;
 import org.vvamp.ingenscheveer.models.json.AisSignal;
 
 import javax.ws.rs.*;
@@ -18,9 +19,9 @@ public class AISResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getUpdates(@QueryParam("limit") @DefaultValue("-1") int limit) {
-        List<AisSignal> shipMessages;
+        List<AisData> shipMessages;
         try {
-            shipMessages = DatabaseStorageController.getDatabaseAisController().getXMostRecentSignals(limit);
+            shipMessages = DatabaseStorageController.getDatabaseAisController().getXMostRecentData(limit);
             Collections.reverse(shipMessages);
 
         } catch (Exception e) {

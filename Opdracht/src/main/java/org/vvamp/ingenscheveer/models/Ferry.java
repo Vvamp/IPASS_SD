@@ -3,6 +3,7 @@ package org.vvamp.ingenscheveer.models;
 import org.vvamp.ingenscheveer.CrossingController;
 import org.vvamp.ingenscheveer.Main;
 import org.vvamp.ingenscheveer.database.DatabaseStorageController;
+import org.vvamp.ingenscheveer.database.models.AisData;
 import org.vvamp.ingenscheveer.models.json.AisSignal;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class Ferry {
     public Ferry(String name) {
 
 //        ArrayList<AisSignal> aisSignals = Main.storageController.load();
-        List<AisSignal> aisSignals = DatabaseStorageController.getDatabaseAisController().getAllAisSignals();
+        List<AisData> aisSignals = DatabaseStorageController.getDatabaseAisController().getAllAisData();
         CrossingController crossingController = new CrossingController();
         List<StatusUpdate> statusUpdates = crossingController.getStatusUpdates(aisSignals);
         ferryCrossings = crossingController.getFerryCrossings(statusUpdates);
@@ -37,13 +38,14 @@ public class Ferry {
 
 
     public List<FerryCrossing> getFerryCrossings() {
-        return getFerryCrossings(100);
+        return getFerryCrossings(1440);
     }
 
         public List<FerryCrossing> getFerryCrossings(int aisLimit) {
-        List<AisSignal> aisSignals = DatabaseStorageController.getDatabaseAisController().getXMostRecentSignals(aisLimit);
+//        List<AisSignal> aisSignals = DatabaseStorageController.getDatabaseAisController().getXMostRecentSignals(aisLimit);
+        List<AisData> aisData =DatabaseStorageController.getDatabaseAisController().getXMostRecentData(aisLimit);
         CrossingController crossingController = new CrossingController();
-        List<StatusUpdate> statusUpdates = crossingController.getStatusUpdates(aisSignals);
+        List<StatusUpdate> statusUpdates = crossingController.getStatusUpdates(aisData);
         ferryCrossings = crossingController.getFerryCrossings(statusUpdates);
         return ferryCrossings;
     }

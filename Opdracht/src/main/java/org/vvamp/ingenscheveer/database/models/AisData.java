@@ -16,4 +16,8 @@ public class AisData {
         this.latitude = latitude;
         this.raw_json = raw_json;
     }
+
+    public long getUtcTimestamp() {
+        return timestamp.getTime();
+    }
 }
