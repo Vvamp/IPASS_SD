@@ -1,0 +1,26 @@
+@startuml 
+
+left to right direction 
+
+
+
+actor "Klant" as k 
+actor "Schipper" as s 
+actor "Baas" as b
+rectangle "UCD Ingensche Veer"{
+    usecase "Positie veerpont zien" as UC1 #Red
+    usecase "Drukte bijhouden" as UC4 #Red
+    usecase "Rooster bijhouden" as UC2 #Yellow
+    usecase "Statistieken inzien" as UC5 #Red
+    usecase "Recente overtochten inzien" as UC6 #Orange
+}
+
+k --> UC1 
+s --> UC2 
+s --> UC4 
+UC2 <-- b 
+UC4 <-- b
+
+k --> UC5 
+k --> UC6
+@enduml

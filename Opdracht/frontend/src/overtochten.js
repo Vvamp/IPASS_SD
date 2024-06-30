@@ -3,12 +3,12 @@ let os = new OvertochtenService();
 export default class Crossings {
   loadOvertochten() {
     const timelinewrapper = document.querySelector(".timeline-node-wrapper");
-    timelinewrapper.innerHTML = "";
     os.getOvertochten().then((overtochten) => {
       if (overtochten == "fail") {
         console.error("Failed to load overtochten");
         return;
       }
+      timelinewrapper.innerHTML = "";
 
       overtochten.reverse(); // from old to new
       overtochten.forEach((overtocht, index) => {

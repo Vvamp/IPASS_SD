@@ -1,0 +1,578 @@
+@startuml
+set namespaceSeparator none
+skinparam classAttributeIconSize 0
+!theme crt-green
+top to bottom direction
+skinparam linetype ortho
+skinparam groupInheritance 2
+scale 0.5
+
+class AisData {
+  + longitude: double
+  + latitude: double
+  + sog: double
+  + raw_json: String
+  + timestamp: Timestamp
+  + getUtcTimestamp(): long
+  + getSog(): double
+}
+class AisSignal {
+  + metaData: MetaData
+  + messageType: MessageType
+  + message: Message
+  + getUtcTimestamp(): int
+  + getUtcDate(): Date
+}
+class AuthenticationFilter {
+  + filter(ContainerRequestContext): void
+}
+class CrossingController {
+  + getStatusUpdates(List<AisData>): List<StatusUpdate>
+  + getFerryCrossings(List<StatusUpdate>): List<FerryCrossing>
+}
+class DatabaseConnection {
+  - USER: String
+  - URL: String
+  - PASSWORD: String
+  + getConnection(): Connection
+}
+
+together{
+  class ScheduleResource {
+  + getSchedule(int): Response
+  + deleteSchedule(TaskDeleteRequest): Response
+  + getScheduleForUser(String, int, ContainerRequestContext): Response
+  + addScheduleItemForUser(TaskCreateRequest): Response
+}
+class DrukteResource {
+  + addDrukte(DrukteCreateRequest): Response
+  + getDrukte(): Response
+  + getDrukteAll(): Response
+}
+class FerryCrossingResource {
+  + getCrossings(int): Response
+  + getEta(): Response
+  + getCrossings(): Response
+}
+class LoginResource {
+  + authenticateUser(LogonRequest): Response
+  + validateToken(String): Response
+  + logoutUser(TokenRequest): Response
+}
+class OpeningResource {
+  - getClosingTimeForDay(LocalDateTime): LocalDateTime
+  - getOpeningTimeForDay(LocalDateTime): LocalDateTime
+  + now(): Response
+}
+class AISResource {
+  + getUpdates(int): Response
+}
+class StatisticsController {
+  + getCurrentSpeed(): Response
+  + getStatistics(): Response
+}
+}
+
+together{
+  class DatabaseAisController {
+    - aisDataList: List<AisData>
+    - isDirty: boolean
+    - tableName: String
+    + getAllAisData(boolean): List<AisData>
+    + writeAisData(AisData): void
+    + getAllAisData(): List<AisData>
+    + convertToAisData(AisSignal): AisData
+    + getXMostRecentData(int): List<AisData>
+    + removeAll(): void
+    + writeAisData(AisSignal): void
+  }
+  class DatabaseDrukteController {
+    - isDirty: boolean
+    - drukteDataList: List<Drukte>
+    + writeDrukte(Drukte): void
+    + getAllDrukte(): List<Drukte>
+    + getAllDrukte(boolean): List<Drukte>
+  }
+  class DatabaseScheduleController {
+    - scheduleTask: List<ScheduleTask>
+    - isDirty: boolean
+    - tableName: String
+    + getTaskForUser(int): List<ScheduleTask>
+    + getAllScheduleTask(boolean): List<ScheduleTask>
+    + deleteScheduleTask(int): void
+    + deleteAllScheduleTasks(): void
+    + writeScheduleTask(ScheduleTask): int
+    + getAllScheduleTask(): List<ScheduleTask>
+  }
+  class DatabaseStorageController {
+    - databaseDrukteController: DatabaseDrukteController
+    - useTest: boolean
+    - databaseAisControllerTest: DatabaseAisController
+    - databaseTokenController: DatabaseTokenController
+    - databaseUserController: DatabaseUserController
+    - databaseScheduleController: DatabaseScheduleController
+    - databaseScheduleControllerTest: DatabaseScheduleController
+    - databaseUserControllerTest: DatabaseUserController
+    - databaseAisController: DatabaseAisController
+    + getDatabaseUserController(): DatabaseUserController
+    + getDatabaseDrukteController(): DatabaseDrukteController
+    + setUseTest(boolean): void
+    + getDatabaseScheduleController(): DatabaseScheduleController
+    + getDatabaseTokenController(): DatabaseTokenController
+    + getDatabaseAisController(): DatabaseAisController
+  }
+  class DatabaseTokenController {
+    - isDirty: boolean
+    - tokenDataList: List<String>
+    + getAllTokens(boolean): List<String>
+    + getAllTokens(): List<String>
+    + removeToken(String): void
+    + writeToken(String): void
+    + removeAllTokens(): void
+  }
+  class DatabaseUserController {
+    - isDirty: boolean
+    - userDataList: List<User>
+    - tableName: String
+    + deleteAllUsers(): void
+    + getAllUsers(boolean): List<User>
+    + writeUser(User): int
+    + deleteUserById(int): void
+    + findUserById(int): User
+    + findUserId(String): int
+    + getAllUsers(): List<User>
+  }
+}
+class Drukte {
+  - time: LocalDateTime
+  - severity: int
+  + getSeverity(): int
+  + setTime(LocalDateTime): void
+  + getTime(): LocalDateTime
+  + setSeverity(int): void
+  + getAll(): List<Drukte>
+  + getTimestampString(): String
+}
+class DrukteCreateRequest {
+  + drukte: int
+}
+
+class Ferry {
+  - name: String
+  - ferry: Ferry
+  - ferryCrossings: List<FerryCrossing>
+  + setFerryCrossings(List<FerryCrossing>): void
+  + getFerryCrossings(): List<FerryCrossing>
+  + getFerryCrossings(int): List<FerryCrossing>
+  + getFerry(): Ferry
+  + getName(): String
+}
+class FerryCrossing {
+  - departure: StatusUpdate
+  - arrival: StatusUpdate
+  - aisSignals: ArrayList<AisData>
+  + getDeparture(): StatusUpdate
+  + getAisData(): ArrayList<AisData>
+  + getArrival(): StatusUpdate
+  + addAisDatas(ArrayList<AisData>): void
+  + setArrival(StatusUpdate): void
+  + isActive(): boolean
+  + addAisData(AisData): void
+}
+class FerryCrossingEtaResult {
+  + eta: int
+}
+
+class GroupedSchedule {
+  - groupedScheduleDays: ArrayList<GroupedScheduleDay>
+  + getGlobalScheduleGrouped(User): List<GroupedScheduleDay>
+  + getGlobalScheduleGrouped(int): List<GroupedScheduleDay>
+  + getGlobalScheduleGrouped(): List<GroupedScheduleDay>
+  + getGlobalScheduleGroupedForUser(int, User): List<GroupedScheduleDay>
+}
+class GroupedScheduleDay {
+  - tasks: List<ScheduleTask>
+  - date: long
+  + getTasks(): List<ScheduleTask>
+  + setTasks(List<ScheduleTask>): void
+  + getDate(): long
+  + addTask(ScheduleTask): void
+}
+class Hasher {
+  + getSalt(): byte[]
+  + hashPassword(char[], byte[], int, int): String
+}
+class LocalFileStorageController {
+  - file: File
+  + readData: String
+  - mutex: Semaphore
+  + save(AisSignal): void
+  + save(ArrayList<AisSignal>): void
+  + load(): ArrayList<AisSignal>
+}
+enum Location << enumeration >> {
+  + INGEN: 
+  + ELST: 
+  + UNKNOWN: 
+}
+class LoginManager {
+  - key: Key
+  - users: Map<String, User>
+  - clock: Clock
+  + checkTokenValidity(String): ValidationResult
+  + validateLogin(String, String): String
+  + invalidateToken(String): void
+  + getUsers(): List<User>
+  + createToken(String, String): String
+  + populate(): void
+  + getRole(String): String
+  + validateToken(String): void
+  + checkTokenValidity(String, String): ValidationResult
+  + addUser(User): void
+}
+
+class LoginResult {
+  + role: String
+  + token: String
+  + username: String
+}
+class LogonRequest {
+  + user: String
+  + password: String
+}
+class Main {
+  - executorService: ScheduledExecutorService
+  + storageController: StorageController
+  + loginManager: LoginManager
+  + contextInitialized(ServletContextEvent): void
+  + contextDestroyed(ServletContextEvent): void
+}
+class Message {
+  + positionReport: PositionReport
+}
+enum MessageType << enumeration >> {
+  + PositionReport: 
+  + Unknown: 
+}
+class MetaData {
+  + MMSI_String: String
+  + time_utc: String
+  + ShipName: String
+  + longitude: float
+  + latitude: float
+  + MMSI: int
+}
+class MySecurityContext {
+  - scheme: String
+  - user: User
+  + isSecure(): boolean
+  + isUserInRole(String): boolean
+  + getUserPrincipal(): Principal
+  + getAuthenticationScheme(): String
+}
+
+class OpeningTimeResult {
+  + openingTime: String
+  + closingTime: String
+  + isOpen: boolean
+}
+class OperatingDay {
+  + day: String
+  + openingTime: LocalTime
+  + closingTime: LocalTime
+}
+class OperatingSchedule {
+  - days: List<OperatingDay>
+  + getDays(): List<OperatingDay>
+}
+class PositionReport {
+  + rateOfTurn: int
+  + userID: int
+  + messageID: int
+  + raim: boolean
+  + positionAccuracy: boolean
+  + valid: boolean
+  + specialManoeuvreIndicator: int
+  + longitude: double
+  + navigationalStatus: int
+  + communicationState: int
+  + latitude: double
+  + trueHeading: int
+  + spare: int
+  + sog: double
+  + repeatIndicator: int
+  + cog: double
+  + timestamp: int
+}
+class Schedule {
+  - tasks: List<ScheduleTask>
+  + getTaskById(int): ScheduleTask
+  + scheduleTask(ScheduleTask): void
+  + removeTask(int): boolean
+  + setTasks(List<ScheduleTask>): void
+  + getGlobalSchedule(): Schedule
+  + getTasks(): List<ScheduleTask>
+}
+
+class ScheduleTask {
+  - type: TaskType
+  - user: User
+  - start: LocalDateTime
+  - end: LocalDateTime
+  - uuid: int
+  + getEndEpochMS(): long
+  + equals(Object): boolean
+  + hashCode(): int
+  + getStart(): LocalDateTime
+  + getUser(): User
+  + setStart(LocalDateTime): void
+  + getUsername(): String
+  + setType(TaskType): void
+  + setUser(User): void
+  + getEnd(): LocalDateTime
+  + getStartEpochMS(): long
+  + setEnd(LocalDateTime): void
+  + getType(): TaskType
+  + getUuid(): int
+}
+class Statistics {
+  - crossings: List<FerryCrossing>
+  - current_time: int
+  + getMaxSpeedTimestamp(): long
+  + getAverageSpeed(): double
+  + getMaxSpeed(): double
+  - getAllRecentWithinLimit(int): List<AisData>
+  + getCrossingCount(): int
+  + getLatestUpdate(): Date
+  + getCurrentSpeed(): double
+}
+
+class StatusUpdate {
+  - location: Location
+  - aisSignal: AisData
+  + getLocation(): Location
+  + equals(Object): boolean
+  + isSailing(): boolean
+  + getEpochSeconds(): int
+  + getAisData(): AisData
+}
+interface StorageController << interface >> {
+  + save(AisSignal): void
+  + load(): ArrayList<AisSignal>
+  + save(ArrayList<AisSignal>): void
+}
+class TaskCreateRequest {
+  + username: String
+  + role: String
+  + start: String
+  + end: String
+}
+class TaskDeleteRequest {
+  + uuid: int
+}
+enum TaskType << enumeration >> {
+  + Kniphulp: 
+  + Dienst: 
+}
+class TokenRequest {
+  + token: String
+}
+class User {
+  - salt: byte[]
+  - schedule: Schedule
+  - role: String
+  - id: int
+  - name: String
+  - password: String
+  + equals(Object): boolean
+  + hashCode(): int
+  + getRole(): String
+  + getAll(): List<User>
+  + loadSchedule(): void
+  + getUserByName(String): User
+  + getSalt(): byte[]
+  - addUser(User): boolean
+  + matchCredentials(String, String): boolean
+  + getSchedule(): Schedule
+  + getPassword(): String
+  + getName(): String
+}
+class ValidationResult {
+  - status: ValidationStatus
+  - details: String
+  - user: User
+  + getStatus(): ValidationStatus
+  + getDetails(): String
+  + getUser(): User
+}
+enum ValidationStatus << enumeration >> {
+  + INVALID: 
+  + VALID: 
+  + EXPIRED: 
+}
+class WebSocketClient {
+  + shipMessages: ArrayList<AisSignal>
+  - latch: CountDownLatch
+  - objectMapper: ObjectMapper
+  + onOpen(Session): void
+  + sendMessage(Session, String): void
+  + onClose(Session, CloseReason): void
+  + onBinaryMessage(ByteBuffer): void
+  + onError(Session, Throwable): void
+  + main(String[]): void
+  + onMessage(String): void
+}
+
+AISResource                 -[#595959,plain]->  AisData                    
+AISResource                 -[#595959,plain]->  DatabaseAisController      
+AISResource                 -[#595959,plain]->  DatabaseStorageController  
+AisSignal                  "1" *-[#595959,plain]-> "message\n1" Message                    
+AisSignal                  "1" *-[#595959,plain]-> "messageType\n1" MessageType                
+AisSignal                  "1" *-[#595959,plain]-> "metaData\n1" MetaData                   
+AuthenticationFilter        -[#595959,plain]->  LoginManager               
+AuthenticationFilter        -[#595959,plain]->  Main                       
+AuthenticationFilter        -[#595959,plain]->  MySecurityContext          : ""
+AuthenticationFilter        -[#595959,plain]->  ValidationResult           
+AuthenticationFilter        -[#595959,plain]->  ValidationStatus           
+CrossingController          -[#595959,plain]->  AisData                    
+CrossingController          -[#595959,plain]->  FerryCrossing              : ""
+CrossingController          -[#595959,plain]->  Location                   
+CrossingController          -[#595959,plain]->  StatusUpdate               : ""
+DatabaseAisController      "1" *-[#595959,plain]-> "aisDataList\n*" AisData                    
+DatabaseAisController       -[#595959,plain]->  AisData                    : ""
+DatabaseAisController       -[#595959,plain]->  AisSignal                  
+DatabaseAisController       -[#595959,plain]->  DatabaseAisController      
+DatabaseAisController       -[#595959,plain]->  DatabaseConnection         
+DatabaseDrukteController    -[#595959,plain]->  DatabaseConnection         
+DatabaseDrukteController    -[#595959,plain]->  DatabaseDrukteController   
+DatabaseDrukteController   "1" *-[#595959,plain]-> "drukteDataList\n*" Drukte                     
+DatabaseDrukteController    -[#595959,plain]->  Drukte                     : ""
+DatabaseScheduleController  -[#595959,plain]->  DatabaseConnection         
+DatabaseScheduleController  -[#595959,plain]->  DatabaseScheduleController 
+DatabaseScheduleController  -[#595959,plain]->  DatabaseStorageController  
+DatabaseScheduleController  -[#595959,plain]->  DatabaseUserController     
+DatabaseScheduleController  -[#595959,plain]->  ScheduleTask               : ""
+DatabaseScheduleController "1" *-[#595959,plain]-> "scheduleTask\n*" ScheduleTask               
+DatabaseScheduleController  -[#595959,plain]->  TaskType                   
+DatabaseScheduleController  -[#595959,plain]->  User                       
+DatabaseStorageController  "1" *-[#595959,plain]-> "databaseAisController\n1" DatabaseAisController      
+DatabaseStorageController   -[#595959,plain]->  DatabaseAisController      : ""
+DatabaseStorageController   -[#595959,plain]->  DatabaseDrukteController   : ""
+DatabaseStorageController  "1" *-[#595959,plain]-> "databaseDrukteController\n1" DatabaseDrukteController   
+DatabaseStorageController   -[#595959,plain]->  DatabaseScheduleController : ""
+DatabaseStorageController  "1" *-[#595959,plain]-> "databaseScheduleController\n1" DatabaseScheduleController 
+DatabaseStorageController   -[#595959,plain]->  DatabaseTokenController    : ""
+DatabaseStorageController  "1" *-[#595959,plain]-> "databaseTokenController\n1" DatabaseTokenController    
+DatabaseStorageController  "1" *-[#595959,plain]-> "databaseUserController\n1" DatabaseUserController     
+DatabaseStorageController   -[#595959,plain]->  DatabaseUserController     : ""
+DatabaseTokenController     -[#595959,plain]->  DatabaseConnection         
+DatabaseTokenController     -[#595959,plain]->  DatabaseTokenController    
+DatabaseUserController      -[#595959,plain]->  DatabaseConnection         
+DatabaseUserController      -[#595959,plain]->  DatabaseUserController     
+DatabaseUserController      -[#595959,plain]->  User                       : ""
+DatabaseUserController     "1" *-[#595959,plain]-> "userDataList\n*" User                       
+Drukte                      -[#595959,plain]->  DatabaseDrukteController   
+Drukte                      -[#595959,plain]->  DatabaseStorageController  
+Drukte                      -[#595959,plain]->  Drukte                     
+DrukteResource              -[#595959,plain]->  DatabaseDrukteController   
+DrukteResource              -[#595959,plain]->  DatabaseStorageController  
+DrukteResource              -[#595959,plain]->  Drukte                     : ""
+DrukteResource              -[#595959,plain]->  DrukteCreateRequest        
+Ferry                       -[#595959,plain]->  AisData                    
+Ferry                       -[#595959,plain]->  CrossingController         : ""
+Ferry                       -[#595959,plain]->  DatabaseAisController      
+Ferry                       -[#595959,plain]->  DatabaseStorageController  
+Ferry                      "1" *-[#595959,plain]-> "ferry\n1" Ferry                      
+Ferry                       -[#595959,plain]->  Ferry                      : ""
+Ferry                      "1" *-[#595959,plain]-> "ferryCrossings\n*" FerryCrossing              
+Ferry                       -[#595959,plain]->  StatusUpdate               
+FerryCrossing              "1" *-[#595959,plain]-> "aisSignals\n*" AisData                    
+FerryCrossing              "1" *-[#595959,plain]-> "departure\n1" StatusUpdate               
+FerryCrossingResource       -[#595959,plain]->  Ferry                      
+FerryCrossingResource       -[#595959,plain]->  FerryCrossing              
+FerryCrossingResource       -[#595959,plain]->  FerryCrossingEtaResult     : ""
+FerryCrossingResource       -[#595959,plain]->  StatusUpdate               
+GroupedSchedule             -[#595959,plain]->  GroupedSchedule            
+GroupedSchedule            "1" *-[#595959,plain]-> "groupedScheduleDays\n*" GroupedScheduleDay         
+GroupedSchedule             -[#595959,plain]->  GroupedScheduleDay         : ""
+GroupedSchedule             -[#595959,plain]->  Schedule                   : ""
+GroupedSchedule             -[#595959,plain]->  ScheduleTask               
+GroupedSchedule             -[#595959,plain]->  User                       
+GroupedScheduleDay         "1" *-[#595959,plain]-> "tasks\n*" ScheduleTask               
+LocalFileStorageController  -[#595959,plain]->  AisSignal                  
+LocalFileStorageController  -[#595959,plain]->  LocalFileStorageController 
+LocalFileStorageController  -[#008200,plain]-^  StorageController          
+LoginManager                -[#595959,plain]->  DatabaseStorageController  
+LoginManager                -[#595959,plain]->  DatabaseTokenController    
+LoginManager                -[#595959,plain]->  DatabaseUserController     
+LoginManager                -[#595959,plain]->  LoginManager               
+LoginManager               "1" *-[#595959,plain]-> "users\n*" User                       
+LoginManager                -[#595959,plain]->  ValidationResult           : ""
+LoginManager                -[#595959,plain]->  ValidationStatus           
+LoginResource               -[#595959,plain]->  LoginManager               
+LoginResource               -[#595959,plain]->  LoginResult                : ""
+LoginResource               -[#595959,plain]->  LogonRequest               
+LoginResource               -[#595959,plain]->  Main                       
+LoginResource               -[#595959,plain]->  TokenRequest               
+LoginResource               -[#595959,plain]->  ValidationResult           
+LoginResource               -[#595959,plain]->  ValidationStatus           
+Main                        -[#595959,plain]->  AisData                    
+Main                        -[#595959,plain]->  DatabaseAisController      
+Main                        -[#595959,plain]->  DatabaseStorageController  
+Main                        -[#595959,plain]->  DatabaseTokenController    
+Main                        -[#595959,plain]->  LocalFileStorageController : ""
+Main                        -[#595959,plain]->  LoginManager               : ""
+Main                       "1" *-[#595959,plain]-> "loginManager\n1" LoginManager               
+Main                       "1" *-[#595959,plain]-> "storageController\n1" StorageController          
+Main                        -[#595959,plain]->  WebSocketClient            
+Message                     -[#000082,plain]-^  PositionReport             
+Message                    "1" *-[#595959,plain]-> "positionReport\n1" PositionReport             
+MySecurityContext          "1" *-[#595959,plain]-> "user\n1" User                       
+OpeningResource             -[#595959,plain]->  OpeningResource            
+OpeningResource             -[#595959,plain]->  OpeningTimeResult          : ""
+OpeningResource             -[#595959,plain]->  OperatingSchedule          : ""
+OperatingSchedule          "1" *-[#595959,plain]-> "days\n*" OperatingDay               
+OperatingSchedule           -[#595959,plain]->  OperatingDay               : ""
+Schedule                    -[#595959,plain]->  Schedule                   : ""
+Schedule                   "1" *-[#595959,plain]-> "tasks\n*" ScheduleTask               
+Schedule                    -[#595959,plain]->  User                       
+ScheduleResource            -[#595959,plain]->  DatabaseScheduleController 
+ScheduleResource            -[#595959,plain]->  DatabaseStorageController  
+ScheduleResource            -[#595959,plain]->  GroupedSchedule            
+ScheduleResource            -[#595959,plain]->  MySecurityContext          
+ScheduleResource            -[#595959,plain]->  Schedule                   
+ScheduleResource            -[#595959,plain]->  ScheduleTask               : ""
+ScheduleResource            -[#595959,plain]->  TaskCreateRequest          
+ScheduleResource            -[#595959,plain]->  TaskDeleteRequest          
+ScheduleResource            -[#595959,plain]->  TaskType                   
+ScheduleResource            -[#595959,plain]->  User                       
+ScheduleTask                -[#595959,plain]->  DatabaseScheduleController 
+ScheduleTask                -[#595959,plain]->  DatabaseStorageController  
+ScheduleTask                -[#595959,plain]->  ScheduleTask               
+ScheduleTask               "1" *-[#595959,plain]-> "type\n1" TaskType                   
+ScheduleTask               "1" *-[#595959,plain]-> "user\n1" User                       
+Statistics                  -[#595959,plain]->  AisData                    
+Statistics                  -[#595959,plain]->  Ferry                      
+Statistics                 "1" *-[#595959,plain]-> "crossings\n*" FerryCrossing              
+Statistics                  -[#595959,plain]->  Statistics                 
+Statistics                  -[#595959,plain]->  StatusUpdate               
+StatisticsController        -[#595959,plain]->  Statistics                 : ""
+StatusUpdate               "1" *-[#595959,plain]-> "aisSignal\n1" AisData                    
+StatusUpdate               "1" *-[#595959,plain]-> "location\n1" Location                   
+StatusUpdate                -[#595959,plain]->  StatusUpdate               
+StorageController           -[#595959,plain]->  AisSignal                  
+User                        -[#595959,plain]->  DatabaseScheduleController 
+User                        -[#595959,plain]->  DatabaseStorageController  
+User                        -[#595959,plain]->  DatabaseUserController     
+User                        -[#595959,plain]->  Hasher                     
+User                        -[#595959,plain]->  Schedule                   : ""
+User                       "1" *-[#595959,plain]-> "schedule\n1" Schedule                   
+User                        -[#595959,plain]->  ScheduleTask               
+User                        -[#595959,plain]->  User                       
+ValidationResult           "1" *-[#595959,plain]-> "user\n1" User                       
+ValidationResult           "1" *-[#595959,plain]-> "status\n1" ValidationStatus           
+WebSocketClient            "1" *-[#595959,plain]-> "shipMessages\n*" AisSignal                  
+WebSocketClient             -[#595959,plain]->  DatabaseAisController      
+WebSocketClient             -[#595959,plain]->  DatabaseStorageController  
+WebSocketClient             -[#595959,plain]->  WebSocketClient            
+@enduml

@@ -56,7 +56,7 @@
         \vfill
       \end{center}
       \textbf{Datum:} \today \\
-      \textbf{Versie:} 1.0 \\
+      \textbf{Versie:} 2.0 \\
       \textbf{Auteur:} Vincent van Setten \\
       \textbf{Studentnummer:} 1734729 \\
       \textbf{Klas:} V1C\\
@@ -75,6 +75,7 @@
           \textbf{Versie} & \textbf{Datum} & \textbf{Omschrijving}  \\
           \hline
           1.0  & 04-06-2024 & Eerste Versie \\
+          2.0 & 30-06-2024 & Tweede Versie \\
           \hline
   
       \end{tabular}
@@ -102,13 +103,19 @@ Ook worden de risico's en de planning van het project beschreven.
 
 
 \section{Use Cases}
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{images/iv_ucd_color.png}
+    \includegraphics[width=0.7\textwidth]{images/ucd.png}
     \caption{Use Case Diagram - Ingensche Veer}
     \label{fig:ucd}
 \end{figure}
+
 In het use case diagram in figuur \ref{fig:ucd} zie je de verschillende use cases. Deze zijn gekleurd naar het MoSCoW model. Rode use cases zijn Must haves, oranje use cases zijn Should haves, gele use cases zijn Could haves en groene use cases zijn Won't haves.
+Het use case diagram laat alleen de daadwerkelijke geimplementeerde use cases zien. 
+Terugblikkend op het Plan van Aanpak is er vrij veel geimplementeerd.
+Van de Must Haves is alles geimplementeerd. van de Should Haves is ook alles geimplementeerd. Van de Could Haves zijn de roosters geimplementeerd, maar de geschatte drukte, snelheid van invididuele schippers en integratie met weersomstandigheden niet. Van de Won't Haves is niks geimplementeerd.
+Alle statistieken van de Must haves, could haves and should haves zijn geimplementeerd onder de enkele use case 'statistieken inzien'.
+
 
 \subsection{Actoren}
 
@@ -168,12 +175,15 @@ In het use case diagram in figuur \ref{fig:ucd} zie je de verschillende use case
 \subsection{Domeinmodel}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/ConceptueelKlassendiagram.png}
-    \caption{Conceptueel Domeinmodel - Ingensche Veer}
+    \includegraphics[width=1\textwidth]{images/FunctioneelKlassendiagram.png}
+    \caption{Functioneel Domeinmodel - Ingensche Veer}
     \label{fig:dm}
 \end{figure}
-In het domeinmodel in figuur \ref{fig:dm} zie je de Ferry klasse. Dit is de veerpont zelf. De veerpont houdt een lijst van overtochten bij, hier ferryCrossings genoemd. Een FerryCrossing houdt een lijst met AIS Signalen bij en daarnaast het signaal dat het vertek en de aankomst aangeeft. Het AIS signaal bevat de positie en tijd. Hiermee kan de positie van de veerpont worden laten zien.
-De veerpont heeft ook een lijst met schippers. Een schipper heeft een snelheid, dat is hoeveel overtochten hij gemiddeld per uur maakt. Een schipper is, net als de baas, een gebruiker. De baas heeft zelf weer een lijst met schippers als werknemers.
+In het domeinmodel in figuur \ref{fig:dm} zie je elke klassen in mijn implementatie. Bovenin zijn de verschillende resources te zien. De resource klassen regelen de API calls. Aan deze klassen zijn verschillende andere klassen gekoppeld die ze nodig hebben. Dit zijn veelal data klassen. Zo gebruiken de resources veel 'request' en 'result' klassen, zoals de TaskCreateRequest. Dit is een simpele klasse die helpt met het serialiseren en deserialiseren van de objecten naar de frontend. 
+In het midden van het model zijn een aantal Database controller klassen. De klasse 'DatabaseStorageController' is de storage controller die weer verschillende DatabaseController klassen heeft. Deze klassen maken verbinding met hun eigen database tabel. Zo is DatabaseAisController verantwoordelijk voor de tabel met de AIS signalen in de database.
+Rechtsonderin het diagram is de AisSignal klassen te zien, samen met de subklassen. Dit zijn simpelweg json implemtatie klassen, om de inkomende json data te kunnen parsen.
+De testklassen zijn buiten beschouwing gelaten in dit diagram, omdat deze niet relevant zijn voor het domeinmodel en het diagram onnodig nog groter maken.
+
 
 \subsection{Business Rules}
 Bij het domeinmodel in  figuur \ref{fig:dm} horen de volgende business rules:
@@ -185,7 +195,24 @@ Bij het domeinmodel in  figuur \ref{fig:dm} horen de volgende business rules:
     \item \textbf{Tuple Rule:} De datum van het verteksignaal is altijd kleiner dan de datum van het aankomstsignaal.
 \end{enumerate} 
 
-% \subsection{Datamodellen} alleeen als database
+\subsection{Datamodellen}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/erd.png}
+    \caption{Database ERD - Ingensche Veer}
+    \label{fig:erd}
+\end{figure}
+In figuur \ref{fig:erd} is het ERD van de database te zien. Sommige tabellen hebben een kopie. Deze heten <tabel>Test. Dit zijn tabellen die gebruikt worden tijdens de tests, zodat deze niet de echte data aantasten.
+Ik zal de entiteiten hieronder kort toelichten.
+\begin{enumerate}
+    \item \textbf{ScheduleTasks}: Deze tabel bevat een taak. Een taak is een dienst op de veerpont. Deze is gekoppeld aan een gebruiker.
+    \item \textbf{Users}: Deze tabel bevat de gebruikers en inlogdata van de gebruikers.
+    \item \textbf{Tokens}: Deze tabel bevat de JWT tokens. Deze tabel is eigenlijk onnodig en dit had lokaal gedaan kunnen worden. Ik kwam er pas later achter dat tokens niet hoeven te persisten, omdat deze geinvalidate worden zodra de applicatie opnieuw opstart.
+    \item \textbf{Drukte}: Deze tabel bevat een 'drukte' signaal. Een schipper kan deze doorgeven, wat de baas vervolgens weer kan inzien.
+    \item \textbf{AisSignals}: Deze tabel bevat de AIS data. Dit zijn de signalen die de veerpont uitzendt.
+\end{enumerate}
+\textit{Ik heb geen fysiek of conceptueel datamodel gemaakt, omdat ik dit nooit heb gehad. Ik heb een oude versie van modelling gevolgd(in 2019) en dit niet gehad.}
+
 \section{Technologieen}
 \begin{enumerate}
     \item UML
@@ -195,10 +222,32 @@ Bij het domeinmodel in  figuur \ref{fig:dm} horen de volgende business rules:
     \item Javascript 
     \item Jax-RS(Rest)
     \item HTTP-Protocol 
+    \item MySQL
 \end{enumerate}
 
-\section{Overdracht}
-\section{Referenties}
+\section{Overdracht} 
+\subsection{Installatie}
+\begin{enumerate}
+    \item Clone de repository  
+    \item Ga naar de frontend folder 
+    \item Run 'npm install'
+    \item Run 'npm run build'
+    \item Ga terug naar de source folder 
+    \item Open het project in intellij idea 
+    \item Laad de maven dependencies in de pom.xml 
+    \item Stel de applicatie in als tomcat applicatie
+    \item Run de applicatie
+\end{enumerate}
+\subsection{Wachtwoorden}
+\begin{itemize}
+    \item \textbf{Vincent}: admin 
+    \item \textbf{Stephan}: schipper 
+    \item \textbf{Vincentvl}: schipper 
+    \item \textbf{Baas}: baas
+\end{itemize}
 
+
+\section{Referenties}
+Er zijn geen referenties.
 
 \end{document}

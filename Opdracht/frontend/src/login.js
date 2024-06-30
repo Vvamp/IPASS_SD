@@ -41,3 +41,4 @@ export default class Login {
 
 let login = new Login();
 window.login = login;
+login.refresh();
