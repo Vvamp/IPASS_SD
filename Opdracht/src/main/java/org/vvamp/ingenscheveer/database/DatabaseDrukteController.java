@@ -49,7 +49,7 @@ public class DatabaseDrukteController {
     }
 
     public List<Drukte> getAllDrukte() {
-        return getAllDrukte(false);
+        return getAllDrukte(true);
     }
 
 }
