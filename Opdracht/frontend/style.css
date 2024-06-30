@@ -346,6 +346,7 @@ ul > li {
 }
 
 .underway::after {
+  position: absolute;
   content: "onderweg";
   background-image: url("ship.png");
   top: 4.5em;
@@ -390,6 +391,13 @@ ul > li {
     top: 1em;
   }
 
+  .timeline-node:last-child > p:nth-child(2) {
+    display: block;
+    position: absolute;
+    right: -4em;
+    top: 1em;
+  }
+
   .timeline-edge {
     border-bottom: 0px solid white;
     border-right: 2px solid white;
@@ -399,14 +407,42 @@ ul > li {
     left: -5em;
   }
 
+  .timeline-edge > p {
+    position: absolute;
+    top: 0.6em;
+    right: -4em;
+  }
+
   .timeline-edge.travel {
     border-bottom: 0px solid white;
     border-right: 2px solid white;
+    min-height: 2rem;
   }
 
   .timeline-edge.stay {
     border-bottom: 0px dotted white;
     border-right: 2px dotted white;
+  }
+
+  .timeline-edge.underway {
+    border-bottom: 0px dashed white;
+    border-right: 2px dashed white;
+    top: 0em;
+    left: -1.5em;
+  }
+
+  .timeline-node.departure::after,
+  .timeline-node.start::after,
+  .timeline-node.arrival::after,
+  .timeline-node.end::after {
+    top: 1.5em;
+    left: -2em;
+  }
+
+  .underway::after {
+    top: 2em;
+    transform: rotate(90deg);
+    left: 3em;
   }
 }
 
