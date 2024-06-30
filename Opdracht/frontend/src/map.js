@@ -99,3 +99,9 @@ if (window.addEventListener) {
   // W3C standard
   window.addEventListener("load", init, false);
 }
+
+window.onresize = () => {
+  setTimeout(() => {
+    map.updateSize();
+  }, 500);
+};
