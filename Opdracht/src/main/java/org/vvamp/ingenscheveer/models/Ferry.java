@@ -35,8 +35,13 @@ public class Ferry {
         return name;
     }
 
+
     public List<FerryCrossing> getFerryCrossings() {
-        List<AisSignal> aisSignals = DatabaseStorageController.getDatabaseAisController().getAllAisSignals();
+        return getFerryCrossings(100);
+    }
+
+        public List<FerryCrossing> getFerryCrossings(int aisLimit) {
+        List<AisSignal> aisSignals = DatabaseStorageController.getDatabaseAisController().getXMostRecentSignals(aisLimit);
         CrossingController crossingController = new CrossingController();
         List<StatusUpdate> statusUpdates = crossingController.getStatusUpdates(aisSignals);
         ferryCrossings = crossingController.getFerryCrossings(statusUpdates);

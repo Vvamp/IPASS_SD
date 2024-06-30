@@ -46,6 +46,22 @@ public class DatabaseAisController {
         return signal;
     }
 
+    public List<AisSignal> getXMostRecentSignals(int count){
+        if (isDirty || aisDataList.isEmpty()) {
+            getAllAisData();
+        }
+        if(count <= -1){
+            count= aisDataList.size();
+        }
+
+        List<AisSignal> signals = new ArrayList<>();
+        List<AisData> dataList = aisDataList.subList(Math.max(aisDataList.size()-count, 0), aisDataList.size());
+        for (AisData dataSignal : dataList) {
+            signals.add(convertFromAisData(dataSignal));
+        }
+        return signals;
+
+    }
 
     public void SaveAllAisSignals(List<AisSignal> signals) {
         String sql = "INSERT IGNORE INTO " + tableName + " (timestamp, sog, longitude, latitude, raw_json) VALUES (?, ?, ?, ?, ?)";
@@ -106,7 +122,7 @@ public class DatabaseAisController {
             return aisDataList;
         }
 
-        String sql = "SELECT * FROM " + tableName;
+        String sql = "SELECT * FROM " + tableName + " ORDER BY timestamp";
         List<AisData> signals = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
@@ -128,7 +144,6 @@ public class DatabaseAisController {
     }
 
     public List<AisSignal> getAllAisSignals() {
-        String sql = "SELECT * FROM " + tableName;
         List<AisSignal> signals = new ArrayList<>();
         List<AisData> data = getAllAisData();
         for (AisData dataSignal : data) {

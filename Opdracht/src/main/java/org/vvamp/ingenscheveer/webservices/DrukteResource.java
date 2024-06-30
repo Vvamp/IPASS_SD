@@ -39,11 +39,10 @@ public class DrukteResource {
 
     @Produces(MediaType.APPLICATION_JSON)
     public Response getDrukte() {
-        List<Drukte> allDrukte = Drukte.getAll();
-        Drukte filtered = allDrukte.stream().max(Comparator.comparing(Drukte::getTime)).orElse(null);
-        if(filtered == null) {
-            filtered = new Drukte(-1, LocalDateTime.now());
+        Drukte drukte = Drukte.getAll().get(0);
+        if(drukte == null) {
+            drukte = new Drukte(-1, LocalDateTime.now());
         }
-        return Response.ok(filtered).build();
+        return Response.ok(drukte).build();
     }
 }

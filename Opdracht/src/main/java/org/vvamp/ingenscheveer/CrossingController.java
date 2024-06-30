@@ -12,7 +12,7 @@ public class CrossingController {
     public List<StatusUpdate> getStatusUpdates(List<AisSignal> aisSignals) {
         List<StatusUpdate> statusUpdates = new ArrayList<>();
 
-        aisSignals = aisSignals.stream().sorted(Comparator.comparing(AisSignal::getUtcTimestamp)).toList();
+//        aisSignals = aisSignals.stream().sorted(Comparator.comparing(AisSignal::getUtcTimestamp)).toList(); should already be sorted
         for (AisSignal message : aisSignals) {
             int messagIndex = aisSignals.indexOf(message);
 

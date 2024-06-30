@@ -13,7 +13,7 @@ public class Statistics {
     private final int current_time;
 
     public Statistics() {
-        crossings = Ferry.getFerry().getFerryCrossings().stream().sorted((c1, c2) -> c1.getDeparture().getDate().compareTo(c2.getDeparture().getDate())).collect(Collectors.toList());
+        crossings = Ferry.getFerry().getFerryCrossings(1440); //1440 24h limit
         current_time = (int) Instant.now().getEpochSecond();
     }
 

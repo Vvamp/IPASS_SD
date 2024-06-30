@@ -31,7 +31,7 @@ public class DatabaseDrukteController {
             return drukteDataList;
         }
 
-        String sql = "SELECT * FROM Drukte";
+        String sql = "SELECT * FROM Drukte ORDER BY time DESC LIMIT 5";
         List<Drukte> signals = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {

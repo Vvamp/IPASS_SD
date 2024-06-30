@@ -1,7 +1,11 @@
 import StatsService from "./stats-service.js";
 import DrukteService from "./drukte-service.js";
+import Crossings from "./overtochten.js";
+
+const cs = new Crossings();
 const service = new StatsService();
 const ds = new DrukteService();
+let lastStatus = "";
 function refresh() {
   const statsPanel = document.querySelector("#statistics");
   const cspeed = statsPanel.querySelector(
@@ -57,7 +61,11 @@ function refresh() {
     } else {
       status = "Aangemeerd (" + result.Arrival.Location + ")";
     }
+    if (status != lastStatus) {
+      cs.loadOvertochten();
+    }
     statusItem.textContent = status.toLowerCase();
+    lastStatus = status.toLowerCase();
     if (result.Arrival == null) {
       let date = new Date(0);
       date.setSeconds(result.Departure.epochSeconds);
@@ -102,5 +110,6 @@ function refresh() {
     }
   });
 }
+cs.loadOvertochten();
 
-setInterval(refresh, 1000);
+setInterval(refresh, 5000);

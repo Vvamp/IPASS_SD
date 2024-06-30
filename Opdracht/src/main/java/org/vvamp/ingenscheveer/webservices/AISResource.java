@@ -20,11 +20,8 @@ public class AISResource {
     public Response getUpdates(@QueryParam("limit") @DefaultValue("-1") int limit) {
         List<AisSignal> shipMessages;
         try {
-            shipMessages = DatabaseStorageController.getDatabaseAisController().getAllAisSignals();
+            shipMessages = DatabaseStorageController.getDatabaseAisController().getXMostRecentSignals(limit);
             Collections.reverse(shipMessages);
-            if (limit > -1) {
-                shipMessages = shipMessages.stream().limit(limit).collect(Collectors.toList());
-            }
 
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(Map.of("Error", "Failed to generate response data")).build();

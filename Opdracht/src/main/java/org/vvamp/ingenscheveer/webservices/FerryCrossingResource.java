@@ -26,18 +26,18 @@ public class FerryCrossingResource {
 
         List<FerryCrossing> crossings;
         try {
-            crossings = Ferry.getFerry().getFerryCrossings();
-            Collections.reverse(crossings);
-            if (limit > -1) {
-                crossings = crossings.stream().limit(limit).collect(Collectors.toList());
+            if(limit <= -1){
+                limit = 50;
             }
+            crossings = Ferry.getFerry().getFerryCrossings().stream().limit(limit).collect(Collectors.toList());
+            Collections.reverse(crossings);
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(Map.of("Error", "Failed to retrieve FerryCrossing data")).build();
         }
 
         return Response.status(Response.Status.OK).entity(crossings).build();
     }
-
+    // create resource to get all since 'x' using sql query
     @GET
     @Path("latest")
     @Produces(MediaType.APPLICATION_JSON)

@@ -104,7 +104,7 @@
                     <schemaVersion>v2</schemaVersion>
                     <resourceGroup>IngenscheVeer-1717431870030-rg</resourceGroup>
                     <appName>IngenscheVeer-1717431870030</appName>
-                    <pricingTier>B1</pricingTier>
+                    <pricingTier>B2</pricingTier>
                     <region>centralus</region>
                     <runtime>
                         <os>Linux</os>
