@@ -14,6 +14,9 @@ function refresh() {
   const avgspeed = statsPanel.querySelector(
     '[data-stats-item="avgspeed"]'
   ).lastElementChild;
+  const maxspeed = statsPanel.querySelector(
+    '[data-stats-item="maxspeed"]'
+  ).lastElementChild;
   const crossings = statsPanel.querySelector(
     '[data-stats-item="crossings"]'
   ).lastElementChild;
@@ -47,10 +50,19 @@ function refresh() {
   });
 
   service.getStats().then((stats) => {
-    cspeed.textContent = stats.CurrentSpeed.toFixed(2) + " kts";
-    avgspeed.textContent = stats.AverageSpeed.toFixed(2) + " kts";
-    crossings.textContent = stats.CrossingCount;
+    cspeed.textContent = stats.CurrentSpeed.toFixed(2) + " kn";
+    avgspeed.textContent = stats.AverageSpeed.toFixed(2) + " kn";
+    maxspeed.textContent = stats.MaxSpeed.toFixed(2) + " kn";
     let date = new Date(0);
+    date.setUTCMilliseconds(stats.MaxSpeedTimestamp);
+    maxspeed.textContent +=
+      " @ " +
+      date.getHours().toString().padStart(2, "0") +
+      ":" +
+      date.getMinutes().toString().padStart(2, "0") +
+      "";
+    crossings.textContent = stats.CrossingCount;
+    date = new Date(0);
     date.setUTCMilliseconds(stats.LastUpdate / 1000);
     lastupdate.textContent =
       date.getHours().toString().padStart(2, "0") +

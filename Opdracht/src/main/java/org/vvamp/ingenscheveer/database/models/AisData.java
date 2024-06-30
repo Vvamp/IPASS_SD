@@ -1,9 +1,14 @@
 package org.vvamp.ingenscheveer.database.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.sql.Timestamp;
 
 public class AisData {
     public Timestamp timestamp;
+
+    @JsonProperty("sog")
     public double sog;
     public double longitude;
     public double latitude;
@@ -19,5 +24,10 @@ public class AisData {
 
     public long getUtcTimestamp() {
         return timestamp.getTime();
+    }
+
+    @JsonIgnore
+    public double getSog(){
+        return sog;
     }
 }
