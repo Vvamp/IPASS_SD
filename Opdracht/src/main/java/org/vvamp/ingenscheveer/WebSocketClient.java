@@ -1,5 +1,7 @@
 package org.vvamp.ingenscheveer;
 
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.vvamp.ingenscheveer.database.DatabaseStorageController;
 import org.vvamp.ingenscheveer.models.json.AisSignal;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,7 +16,8 @@ import java.util.concurrent.CountDownLatch;
 
 public class WebSocketClient {
     private static CountDownLatch latch;
-    private static ObjectMapper objectMapper = new ObjectMapper();
+    private static ObjectMapper objectMapper = JsonMapper.builder().configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, false).build();
+
     public static ArrayList<AisSignal> shipMessages = new ArrayList<AisSignal>();
     @OnOpen
     public void onOpen(Session session) {

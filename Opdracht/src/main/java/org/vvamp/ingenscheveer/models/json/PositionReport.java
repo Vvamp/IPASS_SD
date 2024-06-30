@@ -1,5 +1,8 @@
 package org.vvamp.ingenscheveer.models.json;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({"Cog", "CommunicationState", "Latitude", "Longitude", "MessageID", "NavigationalStatus", "PositionAccuracy", "Raim", "RateOfTurn", "RepeatIndiciator", "Sog", "Spare", "SpecialManoeuvreIndicator", "Timestamp", "UserID", "Valid"})
 public class PositionReport {
     public PositionReport(double cog, int communicationState, double latitude, double longitude, int messageID, int navigationalStatus, boolean positionAccuracy, boolean raim, int rateOfTurn, int repeatIndicator, double sog, int spare, int specialManoeuvreIndicator, int timestamp, int trueHeading, int userID, boolean valid) {
         this.cog = cog;

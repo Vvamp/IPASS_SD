@@ -1,7 +1,9 @@
 package org.vvamp.ingenscheveer.database;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.vvamp.ingenscheveer.database.models.AisData;
 import org.vvamp.ingenscheveer.models.json.AisSignal;
 
@@ -18,14 +20,14 @@ public class DatabaseAisController {
     public DatabaseAisController(String tableName) {
         this.tableName = tableName;
     }
-    private AisData convertToAisData(AisSignal signal) {
+    public AisData convertToAisData(AisSignal signal) {
         String unclean = signal.metaData.time_utc;
         String clean = unclean.replaceAll("\\s\\+[0-9]+\\sUTC", "").replace(" ", "T");
 
         LocalDateTime ltd = LocalDateTime.parse(clean);
         Timestamp ts = Timestamp.from(ltd.toInstant(ZoneOffset.UTC));
 
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = JsonMapper.builder().configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, false).build();
 
         try {
             AisData aisData = new AisData(ts, signal.message.positionReport.sog, signal.message.positionReport.longitude, signal.message.positionReport.latitude, mapper.writeValueAsString(signal));
@@ -56,6 +58,16 @@ public class DatabaseAisController {
             throw new RuntimeException(e);
         }
     }
+    public void writeAisData(AisData signal) {
+        ObjectMapper mapper = JsonMapper.builder().configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, false).build();
+        try {
+            AisSignal s = mapper.readValue(signal.raw_json, AisSignal.class);
+            writeAisData(s);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
     public void writeAisData(AisSignal signal) {
         String sql = "INSERT IGNORE INTO " + tableName + " (timestamp, sog, longitude, latitude, raw_json) VALUES (?, ?, ?, ?, ?)";
@@ -63,7 +75,10 @@ public class DatabaseAisController {
         aisDataList.add(dataItem);
         try (Connection conn = DatabaseConnection.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setTimestamp(1, dataItem.timestamp);
+            long millis = dataItem.timestamp.getTime() / 1000 * 1000 + (dataItem.timestamp.getNanos() / 1000000) / 1 * 1;
+            dataItem.timestamp.setTime(millis);
+            dataItem.timestamp.setNanos((dataItem.timestamp.getNanos() / 1000000) * 1000000);
+            pstmt.setTimestamp(1, dataItem.timestamp); // flooring timestamp so it doesn't round it in db
             pstmt.setDouble(2, dataItem.sog);
             pstmt.setDouble(3, dataItem.longitude);
             pstmt.setDouble(4, dataItem.latitude);

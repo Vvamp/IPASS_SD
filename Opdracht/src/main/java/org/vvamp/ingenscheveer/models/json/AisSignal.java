@@ -2,6 +2,7 @@ package org.vvamp.ingenscheveer.models.json;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
 
+@JsonPropertyOrder({"Message", "MessageType", "MetaData"})
 public class AisSignal {
     @JsonProperty("Message")
     public Message message;

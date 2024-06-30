@@ -1,7 +1,9 @@
 package org.vvamp.ingenscheveer;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.vvamp.ingenscheveer.models.Ferry;
 import org.vvamp.ingenscheveer.models.json.AisSignal;
 
@@ -52,7 +54,8 @@ public class LocalFileStorageController implements StorageController{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        ObjectMapper mapper = new ObjectMapper();
+
+        ObjectMapper mapper = JsonMapper.builder().configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, false).build();
         String json;
         try {
             json = mapper.writeValueAsString(aisSignals);

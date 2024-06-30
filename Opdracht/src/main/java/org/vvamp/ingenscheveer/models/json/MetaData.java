@@ -1,5 +1,8 @@
 package org.vvamp.ingenscheveer.models.json;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({"MMSI", "MMSI_String", "ShipName", "latitude", "longitude", "time_utc"})
 public class MetaData {
 
     public int MMSI;
