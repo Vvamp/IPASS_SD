@@ -50,7 +50,10 @@ function refresh() {
     cspeed.textContent = stats.CurrentSpeed.toFixed(2) + " kts";
     avgspeed.textContent = stats.AverageSpeed.toFixed(2) + " kts";
     crossings.textContent = stats.CrossingCount;
-    lastupdate.textContent = new Date(stats.LastUpdate).toLocaleTimeString();
+    let date = new Date(0);
+    date.setMilliseconds(stats.LastUpdate / 1000);
+    date.setHours(date.getHours() + 1);
+    lastupdate.textContent = date.toLocaleTimeString();
   });
 
   service.getStatus().then((result) => {
@@ -61,7 +64,7 @@ function refresh() {
     } else {
       status = "Aangemeerd (" + result.Arrival.Location + ")";
     }
-    if (status != lastStatus) {
+    if (status.toLowerCase() != lastStatus) {
       cs.loadOvertochten();
     }
     statusItem.textContent = status.toLowerCase();
@@ -70,7 +73,7 @@ function refresh() {
       let date = new Date(0);
       date.setSeconds(result.Departure.epochSeconds);
       vertrekItem.textContent =
-        date.getHours().toString().padStart(2, "0") +
+        (date.getHours() - 1).toString().padStart(2, "0") +
         ":" +
         date.getMinutes().toString().padStart(2, "0") +
         ":" +

@@ -3,6 +3,7 @@ let os = new OvertochtenService();
 export default class Crossings {
   loadOvertochten() {
     const timelinewrapper = document.querySelector(".timeline-node-wrapper");
+    timelinewrapper.innerHTML = "";
     os.getOvertochten().then((overtochten) => {
       if (overtochten == "fail") {
         console.error("Failed to load overtochten");
@@ -22,7 +23,7 @@ export default class Crossings {
         let date = new Date(0);
         date.setSeconds(overtocht.Departure.epochSeconds);
         ptime.innerHTML =
-          date.getHours().toString().padStart(2, "0") +
+          (date.getHours() - 1).toString().padStart(2, "0") +
           ":" +
           date.getMinutes().toString().padStart(2, "0");
         nodeDivA.appendChild(ptime);
@@ -53,7 +54,7 @@ export default class Crossings {
           date = new Date(0);
           date.setSeconds(overtocht.Departure.epochSeconds + 150);
           ptime.innerHTML =
-            date.getHours().toString().padStart(2, "0") +
+            (date.getHours() - 1).toString().padStart(2, "0") +
             ":" +
             date.getMinutes().toString().padStart(2, "0");
         } else {
@@ -61,7 +62,7 @@ export default class Crossings {
           date = new Date(0);
           date.setSeconds(overtocht.Arrival.epochSeconds);
           ptime.innerHTML =
-            date.getHours().toString().padStart(2, "0") +
+            (date.getHours() - 1).toString().padStart(2, "0") +
             ":" +
             date.getMinutes().toString().padStart(2, "0");
         }

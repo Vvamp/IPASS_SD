@@ -29,8 +29,9 @@ public class FerryCrossingResource {
             if(limit <= -1){
                 limit = 50;
             }
-            crossings = Ferry.getFerry().getFerryCrossings().stream().limit(limit).collect(Collectors.toList());
+            crossings = Ferry.getFerry().getFerryCrossings();
             Collections.reverse(crossings);
+            crossings = crossings.stream().limit(limit).collect(Collectors.toList());
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(Map.of("Error", "Failed to retrieve FerryCrossing data")).build();
         }
