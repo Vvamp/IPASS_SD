@@ -7,6 +7,7 @@ import org.vvamp.ingenscheveer.security.authentication.User;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.Objects;
 
 
 public class ScheduleTask {
@@ -90,5 +91,17 @@ public class ScheduleTask {
     }
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ScheduleTask that)) return false;
+        return Objects.equals(start, that.start) && Objects.equals(end, that.end) && Objects.equals(user, that.user) && type == that.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(start, end, user, type);
     }
 }

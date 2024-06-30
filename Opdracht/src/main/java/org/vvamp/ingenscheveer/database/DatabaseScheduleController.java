@@ -13,9 +13,12 @@ import java.util.List;
 public class DatabaseScheduleController {
     private static List<ScheduleTask> scheduleTask = new ArrayList<>();
     private boolean isDirty = true;
-
+    private String tableName;
+    public DatabaseScheduleController(String tableName) {
+        this.tableName = tableName;
+    }
     public int writeScheduleTask(ScheduleTask task) {
-        String sql = "INSERT IGNORE INTO ScheduleTasks (start, end, userId, taskType) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)";
+        String sql = "INSERT IGNORE INTO "+tableName+" (start, end, userId, taskType) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)";
         scheduleTask.add(task);
         try (Connection conn = DatabaseConnection.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -48,13 +51,13 @@ public class DatabaseScheduleController {
             getAllScheduleTask();
         }
 
-        String sql = "SELECT * FROM ScheduleTasks WHERE userId = " + userId;
+        String sql = "SELECT * FROM "+tableName+" WHERE userId = " + userId;
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
             List<ScheduleTask> tasks = new ArrayList<>();
             User user = DatabaseStorageController.getDatabaseUserController().findUserById(userId);
             while (rs.next()) {
                 int id = rs.getInt("id");
-                ScheduleTask data = new ScheduleTask(rs.getTimestamp("start").toLocalDateTime(), rs.getTimestamp("end").toLocalDateTime(), user, TaskType.valueOf(rs.getString("taskType")), id);
+                ScheduleTask data = new ScheduleTask(rs.getTimestamp("start").toInstant().atZone(ZoneOffset.UTC).toLocalDateTime(), rs.getTimestamp("end").toInstant().atZone(ZoneOffset.UTC).toLocalDateTime(), user, TaskType.valueOf(rs.getString("taskType")), id);
                 tasks.add(data);
             }
             System.out.println("get tasks for user " + userId + ", results in " + tasks.size() + " tasks");
@@ -64,8 +67,20 @@ public class DatabaseScheduleController {
         }
     }
 
+    public void deleteAllScheduleTasks() {
+        String sql = "DELETE FROM "+tableName;
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        scheduleTask.clear();
+
+    }
+
     public void deleteScheduleTask(int id) {
-        String sql = "DELETE FROM ScheduleTasks WHERE id = " + id;
+        String sql = "DELETE FROM "+tableName+" WHERE id = " + id;
         try (Connection conn = DatabaseConnection.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.executeUpdate();
@@ -85,7 +100,7 @@ public class DatabaseScheduleController {
             return scheduleTask;
         }
 
-        String sql = "SELECT * FROM ScheduleTasks";
+        String sql = "SELECT * FROM "+tableName;
         List<ScheduleTask> signals = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
@@ -94,7 +109,7 @@ public class DatabaseScheduleController {
                 int id = rs.getInt("id");
                 int userId = rs.getInt("userId");
                 User user = DatabaseStorageController.getDatabaseUserController().findUserById(userId);
-                ScheduleTask data = new ScheduleTask(rs.getTimestamp("start").toLocalDateTime(), rs.getTimestamp("end").toLocalDateTime(), user, TaskType.valueOf(rs.getString("taskType")), id);
+                ScheduleTask data = new ScheduleTask(rs.getTimestamp("start").toInstant().atZone(ZoneOffset.UTC).toLocalDateTime(), rs.getTimestamp("end").toInstant().atZone(ZoneOffset.UTC).toLocalDateTime(), user, TaskType.valueOf(rs.getString("taskType")), id);
                 signals.add(data);
             }
         } catch (SQLException e) {
