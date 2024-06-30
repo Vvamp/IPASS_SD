@@ -26,6 +26,9 @@ function refresh() {
   const statusItem = statsPanel.querySelector(
     '[data-stats-item="status"]'
   ).lastElementChild;
+  const vertrekItem = statsPanel.querySelector(
+    '[data-stats-item="vertrek"]'
+  ).lastElementChild;
 
   const openItem = statsPanel.querySelector(
     '[data-stats-item="isopen"]'
@@ -46,19 +49,37 @@ function refresh() {
     lastupdate.textContent = new Date(stats.LastUpdate).toLocaleTimeString();
   });
 
-  service.getEta().then((eta) => {
-    etaItem.textContent = eta.eta;
-  });
-
   service.getStatus().then((result) => {
     let status = "";
     if (result.Arrival == null) {
-      let direction = result.Departure.Location == "Ingen" ? "Elst" : "Ingen";
+      let direction = result.Departure.Location == "INGEN" ? "ELST" : "INGEN";
       status = "Onderweg (" + direction + ")";
     } else {
       status = "Aangemeerd (" + result.Arrival.Location + ")";
     }
-    statusItem.textContent = status;
+    statusItem.textContent = status.toLowerCase();
+    if (result.Arrival == null) {
+      let date = new Date(0);
+      date.setSeconds(result.Departure.epochSeconds);
+      vertrekItem.textContent =
+        date.getHours().toString().padStart(2, "0") +
+        ":" +
+        date.getMinutes().toString().padStart(2, "0") +
+        ":" +
+        date.getSeconds().toString().padStart(2, "0");
+      vertrekItem.parentElement.style.display = "";
+    } else {
+      vertrekItem.parentElement.style.display = "none";
+    }
+
+    if (result.Arrival == null) {
+      service.getEta().then((eta) => {
+        etaItem.textContent = eta.eta;
+        etaItem.parentElement.style.display = "";
+      });
+    } else {
+      etaItem.parentElement.style.display = "none";
+    }
   });
 
   ds.getDrukte().then((drukte) => {

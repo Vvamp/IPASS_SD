@@ -14,6 +14,10 @@ import java.util.List;
 public class DatabaseAisController {
     private static List<AisData> aisDataList = new ArrayList<>();
     private boolean isDirty = true;
+    private String tableName;
+    public DatabaseAisController(String tableName) {
+        this.tableName = tableName;
+    }
     private AisData convertToAisData(AisSignal signal) {
         String unclean = signal.metaData.time_utc;
         String clean = unclean.replaceAll("\\s\\+[0-9]+\\sUTC", "").replace(" ", "T");
@@ -44,13 +48,11 @@ public class DatabaseAisController {
 
 
     public void SaveAllAisSignals(List<AisSignal> signals) {
-        String sql = "INSERT IGNORE INTO AisSignals (timestamp, sog, longitude, latitude, raw_json) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT IGNORE INTO " + tableName + " (timestamp, sog, longitude, latitude, raw_json) VALUES (?, ?, ?, ?, ?)";
         List<AisData> datas = new ArrayList<>();
         for (AisSignal signal : signals) {
             datas.add(convertToAisData(signal));
         }
-
-        System.out.println("Saving " + datas.size() + " AisSignals");
 
         try (Connection conn = DatabaseConnection.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -69,8 +71,19 @@ public class DatabaseAisController {
 
     }
 
+    public void removeAll(){
+        String sql = "DELETE FROM " + tableName;
+        aisDataList = new ArrayList<>();
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void writeAisData(AisSignal signal) {
-        String sql = "INSERT IGNORE INTO AisSignals (timestamp, sog, longitude, latitude, raw_json) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT IGNORE INTO " + tableName + " (timestamp, sog, longitude, latitude, raw_json) VALUES (?, ?, ?, ?, ?)";
         AisData dataItem = convertToAisData(signal);
         aisDataList.add(dataItem);
         try (Connection conn = DatabaseConnection.getConnection()) {
@@ -93,7 +106,7 @@ public class DatabaseAisController {
             return aisDataList;
         }
 
-        String sql = "SELECT * FROM AisSignals";
+        String sql = "SELECT * FROM " + tableName;
         List<AisData> signals = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {
@@ -115,7 +128,7 @@ public class DatabaseAisController {
     }
 
     public List<AisSignal> getAllAisSignals() {
-        String sql = "SELECT * FROM AisSignals";
+        String sql = "SELECT * FROM " + tableName;
         List<AisSignal> signals = new ArrayList<>();
         List<AisData> data = getAllAisData();
         for (AisData dataSignal : data) {

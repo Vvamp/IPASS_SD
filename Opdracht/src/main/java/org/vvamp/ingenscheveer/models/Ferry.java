@@ -36,7 +36,7 @@ public class Ferry {
     }
 
     public List<FerryCrossing> getFerryCrossings() {
-        List<AisSignal> aisSignals = Main.storageController.load();
+        List<AisSignal> aisSignals = DatabaseStorageController.getDatabaseAisController().getAllAisSignals();
         CrossingController crossingController = new CrossingController();
         List<StatusUpdate> statusUpdates = crossingController.getStatusUpdates(aisSignals);
         ferryCrossings = crossingController.getFerryCrossings(statusUpdates);

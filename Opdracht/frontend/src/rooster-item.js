@@ -20,7 +20,6 @@ export default class RoosterDayItem {
     let dataelement = dataitem.querySelector(".schedule-data-day");
 
     // for each task in the day:
-
     this.tasks.forEach((task) => {
       dataitem.querySelector(
         ".schedule-data-day-date"

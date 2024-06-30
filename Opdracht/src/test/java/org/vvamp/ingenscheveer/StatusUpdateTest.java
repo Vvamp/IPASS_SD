@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.vvamp.ingenscheveer.database.DatabaseStorageController;
 import org.vvamp.ingenscheveer.models.Ferry;
 import org.vvamp.ingenscheveer.models.FerryCrossing;
 import org.vvamp.ingenscheveer.models.StatusUpdate;
@@ -81,6 +82,11 @@ public class StatusUpdateTest {
 
         LocalFileStorageController lfc = new LocalFileStorageController(integrationTestFile.getAbsolutePath());
         List<AisSignal> signals = lfc.load();
+
+        DatabaseStorageController.setUseTest(true);
+        DatabaseStorageController.getDatabaseAisController().removeAll();
+        DatabaseStorageController.getDatabaseAisController().SaveAllAisSignals(signals);
+
         CrossingController crossingController = new CrossingController();
         List<StatusUpdate> statusUpdates = crossingController.getStatusUpdates(signals);
         List<FerryCrossing> ferryCrossings = crossingController.getFerryCrossings(statusUpdates);
@@ -94,8 +100,6 @@ public class StatusUpdateTest {
         } catch (JsonProcessingException e) {
             fail("The crossings api should give back a valid json string");
         }
-
-        Main.storageController = lfc;
 
         FerryCrossingResource ferryCrossingResource = new FerryCrossingResource();
         String json_after = null;

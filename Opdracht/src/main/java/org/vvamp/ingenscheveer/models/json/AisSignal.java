@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -32,7 +34,10 @@ public class AisSignal {
 
     @JsonIgnore
     public int getUtcTimestamp(){
-        return (int) getUtcDate().toInstant().getEpochSecond();
+        String unclean = metaData.time_utc;
+        String clean = unclean.replaceAll("\\s\\+[0-9]+\\sUTC", "").replace(" ", "T");
+        LocalDateTime ltd = LocalDateTime.parse(clean);
+        return (int) ltd.toInstant(ZoneOffset.UTC).getEpochSecond();
 
     }
 }

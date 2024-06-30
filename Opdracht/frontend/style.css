@@ -207,6 +207,7 @@ nav {
 }
 .panel-content-row > p {
   margin: 0.5em 0.5em;
+  text-transform: capitalize;
 }
 
 .panel-row {
@@ -278,7 +279,7 @@ ul > li {
   display: none;
 }
 .start > p:nth-child(2),
-.end > p:nth-child(2) {
+.timeline-node:last-child > p:nth-child(2) {
   display: block;
   position: absolute;
   top: -2em;
@@ -344,15 +345,19 @@ ul > li {
   font-size: 0.7em;
 }
 
-.timeline-edge:nth-last-child(1 of .timeline-edge)::after {
-  /* font-family: "Font Awesome 5 Free"; */
-  content: "onderweg ";
+.underway::after {
+  content: "onderweg";
   background-image: url("ship.png");
   top: 4.5em;
   font-size: 1rem;
 }
-.timeline-edge:nth-last-child(1 of .timeline-edge) {
+.underway {
   border-bottom: 2px dashed white;
+}
+
+.timeline-node > p,
+.timeline-edge > p {
+  text-transform: capitalize;
 }
 
 /* Footer */

@@ -27,10 +27,10 @@
     ></script>
     <script type="module" src="src/map.js"></script>
     <script type="module" src="src/login.js"></script>
-    <script type="module" src="src/main.js"></script>
     <script type="module" src="src/nav.js"></script>
     <script type="module" src="src/modal.js"></script>
     <script type="module" src="src/stats.js"></script>
+    <script type="module" src="src/overtochten.js"></script>
   </head>
   <body>
     <nav>
@@ -157,6 +157,10 @@
               <p>Verwachte Aankomsttijd</p>
               <p>loading...</p>
             </div>
+            <div class="panel-content-row" data-stats-item="vertrek">
+              <p>Vertrektijd</p>
+              <p>loading...</p>
+            </div>
           </div>
         </div>
       </div>
@@ -166,43 +170,7 @@
             <p>Overtochten Tijdlijn</p>
           </div>
           <div class="panel-content">
-            <div class="timeline-node-wrapper">
-              <div class="timeline-node start">
-                <p>12:00</p>
-                <p>Ingen</p>
-                <p></p>
-              </div>
-
-              <div class="timeline-edge travel"></div>
-              <div class="timeline-node arrival">
-                <p>12:00</p>
-                <p>Elst</p>
-              </div>
-              <div class="timeline-edge stay">
-                <p>Elst</p>
-              </div>
-              <div class="timeline-node departure">
-                <p>12:00</p>
-                <p>Elst</p>
-              </div>
-              <div class="timeline-edge travel"></div>
-              <div class="timeline-node arrival">
-                <p>12:00</p>
-                <p>Ingen</p>
-              </div>
-              <div class="timeline-edge stay">
-                <p>Ingen</p>
-              </div>
-              <div class="timeline-node departure">
-                <p>12:00</p>
-                <p>Ingen</p>
-              </div>
-              <div class="timeline-edge travel"></div>
-              <div class="timeline-node end">
-                <p>12:00</p>
-                <p>Elst</p>
-              </div>
-            </div>
+            <div class="timeline-node-wrapper"></div>
           </div>
         </div>
       </div>
