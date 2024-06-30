@@ -629,6 +629,8 @@ input[type="password"] {
   }
 
   /* Media hamburger menu*/
+  /* Credits: https://codepen.io/alvarotrigo/pen/MWEJEWG */
+  /* Slightly edited */
   .menu-button-container {
     display: flex;
   }
