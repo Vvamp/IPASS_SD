@@ -23,7 +23,7 @@ public class DrukteResource {
     public Response addDrukte(DrukteCreateRequest request) {
         Instant utc = Instant.now();
 
-        Drukte dr = new Drukte(request.drukte, LocalDateTime.ofInstant(utc, ZoneOffset.UTC));
+        Drukte dr = new Drukte(request.getDrukte(), LocalDateTime.ofInstant(utc, ZoneOffset.UTC));
         DatabaseStorageController.getDatabaseDrukteController().writeDrukte(dr);
         return Response.ok().build();
     }

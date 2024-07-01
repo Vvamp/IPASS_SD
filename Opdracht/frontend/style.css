@@ -133,7 +133,6 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  width: 100vw;
   margin: 0em auto;
 }
 

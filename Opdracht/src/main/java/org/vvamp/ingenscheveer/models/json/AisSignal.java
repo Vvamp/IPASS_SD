@@ -14,20 +14,44 @@ import java.util.Date;
 
 @JsonPropertyOrder({"Message", "MessageType", "MetaData"})
 public class AisSignal {
+    public Message getMessage() {
+        return message;
+    }
+
+    public void setMessage(Message message) {
+        this.message = message;
+    }
+
+    public MessageType getMessageType() {
+        return messageType;
+    }
+
+    public void setMessageType(MessageType messageType) {
+        this.messageType = messageType;
+    }
+
+    public MetaData getMetaData() {
+        return metaData;
+    }
+
+    public void setMetaData(MetaData metaData) {
+        this.metaData = metaData;
+    }
+
     @JsonProperty("Message")
-    public Message message;
+    private Message message;
 
     @JsonProperty("MessageType")
-    public MessageType messageType = MessageType.Unknown;
+    private MessageType messageType = MessageType.Unknown;
 
     @JsonProperty("MetaData")
-    public MetaData metaData;
+    private MetaData metaData;
 
     @JsonIgnore
-    public Date getUtcDate(){
+    public Date getUtcDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.nnnnnnnnn Z z");
         try {
-            ZonedDateTime dateTime = ZonedDateTime.parse(metaData.time_utc, formatter);
+            ZonedDateTime dateTime = ZonedDateTime.parse(metaData.getTime_utc(), formatter);
             return Date.from(dateTime.toInstant());
         } catch (Exception e) {
             return Date.from(Instant.EPOCH);
@@ -35,8 +59,8 @@ public class AisSignal {
     }
 
     @JsonIgnore
-    public int getUtcTimestamp(){
-        String unclean = metaData.time_utc;
+    public int getUtcTimestamp() {
+        String unclean = metaData.getTime_utc();
         String clean = unclean.replaceAll("\\s\\+[0-9]+\\sUTC", "").replace(" ", "T");
         LocalDateTime ltd = LocalDateTime.parse(clean);
         return (int) ltd.toInstant(ZoneOffset.UTC).getEpochSecond();

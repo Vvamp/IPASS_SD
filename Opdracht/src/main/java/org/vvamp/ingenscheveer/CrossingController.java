@@ -8,31 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CrossingController {
-//    public List<StatusUpdate> getStatusUpdates(List<AisSignal> aisSignals) {
-//        List<StatusUpdate> statusUpdates = new ArrayList<>();
-//
-////        aisSignals = aisSignals.stream().sorted(Comparator.comparing(AisSignal::getUtcTimestamp)).toList(); should already be sorted
-//        for (AisSignal message : aisSignals) {
-//            int messagIndex = aisSignals.indexOf(message);
-//
-//            Location location = message.message.positionReport.latitude > 51.98 ? Location.ELST : Location.INGEN;
-//            StatusUpdate statusUpdate = new StatusUpdate(location, message);
-//            // Add location if its the first or if the status since the previous update changed from sailing to not sailing or the location changed
-//
-//            if (statusUpdates.size() == 0 || statusUpdates.get(statusUpdates.size() - 1) != statusUpdate) {
-//                statusUpdates.add(statusUpdate);
-//
-//            }
-//        }
-//        return statusUpdates;
-//    }
-
     public List<StatusUpdate> getStatusUpdates(List<AisData> aisSignals) {
         List<StatusUpdate> statusUpdates = new ArrayList<>();
         for (AisData message : aisSignals) {
             int messagIndex = aisSignals.indexOf(message);
 
-            Location location = message.latitude > 51.98 ? Location.ELST : Location.INGEN;
+            Location location = message.getLatitude() > 51.98 ? Location.ELST : Location.INGEN;
             StatusUpdate statusUpdate = new StatusUpdate(location, message);
             // Add location if its the first or if the status since the previous update changed from sailing to not sailing or the location changed
 

@@ -18,7 +18,10 @@ public class WebSocketClient {
     private static CountDownLatch latch;
     private static ObjectMapper objectMapper = JsonMapper.builder().configure(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY, false).build();
 
-    public static ArrayList<AisSignal> shipMessages = new ArrayList<AisSignal>();
+    private static ArrayList<AisSignal> shipMessages = new ArrayList<AisSignal>();
+
+
+
     @OnOpen
     public void onOpen(Session session) {
 //        System.out.println("Connected to server");

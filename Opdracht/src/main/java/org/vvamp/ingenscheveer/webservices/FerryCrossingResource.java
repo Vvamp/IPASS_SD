@@ -62,7 +62,7 @@ public class FerryCrossingResource {
 //                Instant.ofEpochSecond(latestCrossing.getDeparture().getEpochSeconds()),
 //                ZoneId.systemDefault()
 //        ).plusMinutes(2).plusSeconds(30);
-        res.eta = latestCrossing.getDeparture().getEpochSeconds() + 150;
+        res.setEta(latestCrossing.getDeparture().getEpochSeconds() + 150);
         return Response.status(Response.Status.OK).entity(res).build();
 
     }

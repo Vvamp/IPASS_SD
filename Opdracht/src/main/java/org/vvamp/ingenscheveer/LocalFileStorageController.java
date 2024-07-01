@@ -17,7 +17,6 @@ import java.util.concurrent.Semaphore;
 
 public class LocalFileStorageController implements StorageController{
     private File file;
-    public String readData = "";
     private Semaphore mutex = new Semaphore(1);
     public LocalFileStorageController(String filename){
         file = new File(filename);
@@ -79,7 +78,6 @@ public class LocalFileStorageController implements StorageController{
     @Override
     public ArrayList<AisSignal> load() {
         String json = "";
-        readData = "";
         try {
             mutex.acquire();
             Scanner myReader = new Scanner(file);
@@ -98,7 +96,6 @@ public class LocalFileStorageController implements StorageController{
         }catch(Exception e){
             mutex.release();
         }
-        readData = json;
         ObjectMapper objectMapper = new ObjectMapper();
         ArrayList<AisSignal> data = null;
         if(json.trim().isEmpty()){

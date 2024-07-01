@@ -21,7 +21,7 @@ public class AuthenticationFilter implements ContainerRequestFilter {
         boolean isSecure = requestCtx.getSecurityContext().isSecure();
         String scheme = requestCtx.getUriInfo().getRequestUri().getScheme();
         // users are quests until valid jqt
-        LoginManager loginManager = Main.loginManager;
+        LoginManager loginManager = Main.getLoginManager();
         MySecurityContext msc = new MySecurityContext(null, scheme);
         String authHeader = requestCtx.getHeaderString(HttpHeaders.AUTHORIZATION);
         if (authHeader != null && authHeader.startsWith("Bearer ")) {

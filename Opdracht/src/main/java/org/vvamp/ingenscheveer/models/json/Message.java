@@ -4,5 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Message extends PositionReport {
     @JsonProperty("PositionReport")
-    public PositionReport positionReport;
+    private PositionReport positionReport;
+
+    public PositionReport getPositionReport() {
+        return positionReport;
+    }
+
+    public void setPositionReport(PositionReport positionReport) {
+        this.positionReport = positionReport;
+    }
 }

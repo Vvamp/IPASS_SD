@@ -32,12 +32,12 @@ public class Statistics {
             return -1;
         }
 
-        return mostRecentSignal.sog;
+        return mostRecentSignal.getSog();
     }
 
     private List<AisData> getAllRecentWithinLimit(int limit) {
         // Get all ais signals from all crossings where timestamp > now-24h
-        List<AisData> signals = crossings.stream().flatMap(c -> c.getAisData().stream()).filter(signal -> signal.getUtcTimestamp() > limit && signal.sog
+        List<AisData> signals = crossings.stream().flatMap(c -> c.getAisData().stream()).filter(signal -> signal.getUtcTimestamp() > limit && signal.getSog()
                 > 0).distinct().collect(Collectors.toList());
 
         if(signals.size() <= 0){
@@ -54,7 +54,7 @@ public class Statistics {
 
         double sum = 0;
         for(AisData signal : signals){
-            sum += signal.sog;
+            sum += signal.getSog();
         }
         double avg = sum/ signals.size();
         return avg;

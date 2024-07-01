@@ -23,7 +23,7 @@ public class StatusUpdate {
     }
 
     public boolean isSailing() {
-        return aisSignal.sog > 0.2;
+        return aisSignal.getSog() > 0.2;
     }
 
     public Location getLocation() {
@@ -32,7 +32,7 @@ public class StatusUpdate {
 
 
     public int getEpochSeconds(){
-        LocalDateTime dt = aisSignal.timestamp.toLocalDateTime();
+        LocalDateTime dt = aisSignal.getTimestamp().toLocalDateTime();
         return (int) dt.toEpochSecond(ZoneOffset.UTC);
     }
     @JsonIgnore

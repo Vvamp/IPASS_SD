@@ -1,5 +1,13 @@
 package org.vvamp.ingenscheveer.models.api;
 
 public class DrukteCreateRequest {
-    public int drukte;
+    private int drukte;
+
+    public int getDrukte() {
+        return drukte;
+    }
+
+    public void setDrukte(int drukte) {
+        this.drukte = drukte;
+    }
 }

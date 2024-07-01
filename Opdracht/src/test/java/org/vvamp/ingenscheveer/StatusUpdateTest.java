@@ -32,23 +32,23 @@ public class StatusUpdateTest {
     @BeforeEach
     public void init() {
         AisSignal aisSignal = new AisSignal();
-        aisSignal.message = new Message();
-        aisSignal.message.positionReport = new PositionReport(180f, 0, 52F, 5F, 1, 0, true, true, -128, 0, 0.31F, 0, 0, 13, 511, 244780155, true);
-        aisSignal.metaData = new MetaData();
-        aisSignal.metaData.time_utc = "2024-06-30 12:12:11.207450155 +0000 UTC";
+        aisSignal.setMessage(new Message());
+        aisSignal.getMessage().positionReport = new PositionReport(180f, 0, 52F, 5F, 1, 0, true, true, -128, 0, 0.31F, 0, 0, 13, 511, 244780155, true);
+        aisSignal.setMetaData(new MetaData());
+        aisSignal.getMetaData().setTime_utc("2024-06-30 12:12:11.207450155 +0000 UTC");
         aisData = DatabaseStorageController.getDatabaseAisController().convertToAisData(aisSignal);
     }
 
     @Test
     public void testIsSailing_true() {
-        aisData.sog = 0.21F;
+        aisData.setSog(0.21F);
         StatusUpdate statusUpdate = new StatusUpdate(Location.UNKNOWN, aisData);
         assertTrue(statusUpdate.isSailing());
     }
 
     @Test
     public void testIsSailing_false() {
-        aisData.sog = 0.19F;
+        aisData.setSog(0.19F);
         StatusUpdate statusUpdate = new StatusUpdate(Location.UNKNOWN, aisData);
         assertFalse(statusUpdate.isSailing());
     }

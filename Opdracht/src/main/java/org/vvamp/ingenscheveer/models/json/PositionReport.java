@@ -25,56 +25,192 @@ public class PositionReport {
     }
     public PositionReport(){}
 
+    public double getCog() {
+        return cog;
+    }
+
+    public void setCog(double cog) {
+        this.cog = cog;
+    }
+
+    public int getCommunicationState() {
+        return communicationState;
+    }
+
+    public void setCommunicationState(int communicationState) {
+        this.communicationState = communicationState;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public int getMessageID() {
+        return messageID;
+    }
+
+    public void setMessageID(int messageID) {
+        this.messageID = messageID;
+    }
+
+    public int getNavigationalStatus() {
+        return navigationalStatus;
+    }
+
+    public void setNavigationalStatus(int navigationalStatus) {
+        this.navigationalStatus = navigationalStatus;
+    }
+
+    public boolean isPositionAccuracy() {
+        return positionAccuracy;
+    }
+
+    public void setPositionAccuracy(boolean positionAccuracy) {
+        this.positionAccuracy = positionAccuracy;
+    }
+
+    public boolean isRaim() {
+        return raim;
+    }
+
+    public void setRaim(boolean raim) {
+        this.raim = raim;
+    }
+
+    public int getRateOfTurn() {
+        return rateOfTurn;
+    }
+
+    public void setRateOfTurn(int rateOfTurn) {
+        this.rateOfTurn = rateOfTurn;
+    }
+
+    public int getRepeatIndicator() {
+        return repeatIndicator;
+    }
+
+    public void setRepeatIndicator(int repeatIndicator) {
+        this.repeatIndicator = repeatIndicator;
+    }
+
+    public double getSog() {
+        return sog;
+    }
+
+    public void setSog(double sog) {
+        this.sog = sog;
+    }
+
+    public int getSpare() {
+        return spare;
+    }
+
+    public void setSpare(int spare) {
+        this.spare = spare;
+    }
+
+    public int getSpecialManoeuvreIndicator() {
+        return specialManoeuvreIndicator;
+    }
+
+    public void setSpecialManoeuvreIndicator(int specialManoeuvreIndicator) {
+        this.specialManoeuvreIndicator = specialManoeuvreIndicator;
+    }
+
+    public int getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(int timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public int getTrueHeading() {
+        return trueHeading;
+    }
+
+    public void setTrueHeading(int trueHeading) {
+        this.trueHeading = trueHeading;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public boolean isValid() {
+        return valid;
+    }
+
+    public void setValid(boolean valid) {
+        this.valid = valid;
+    }
+
     @JsonProperty("Cog")
-    public double cog;
+    private double cog;
 
     @JsonProperty("CommunicationState")
-    public int communicationState;
+    private int communicationState;
 
     @JsonProperty("Latitude")
-    public double latitude;
+    private double latitude;
 
     @JsonProperty("Longitude")
-    public double longitude;
+    private double longitude;
 
     @JsonProperty("MessageID")
-    public int messageID;
+    private int messageID;
 
     @JsonProperty("NavigationalStatus")
-    public int navigationalStatus;
+    private int navigationalStatus;
 
     @JsonProperty("PositionAccuracy")
-    public boolean positionAccuracy;
+    private boolean positionAccuracy;
 
     @JsonProperty("Raim")
-    public boolean raim;
+    private boolean raim;
 
     @JsonProperty("RateOfTurn")
-    public int rateOfTurn;
+    private int rateOfTurn;
 
     @JsonProperty("RepeatIndicator")
-    public int repeatIndicator;
+    private int repeatIndicator;
 
     @JsonProperty("Sog")
-    public double sog;
+    private double sog;
 
     @JsonProperty("Spare")
-    public int spare;
+    private int spare;
 
     @JsonProperty("SpecialManoeuvreIndicator")
-    public int specialManoeuvreIndicator;
+    private int specialManoeuvreIndicator;
 
     @JsonProperty("Timestamp")
-    public int timestamp;
+    private int timestamp;
 
     @JsonProperty("TrueHeading")
-    public int trueHeading;
+    private int trueHeading;
 
     @JsonProperty("UserID")
-    public int userID;
+    private int userID;
 
     @JsonProperty("Valid")
-    public boolean valid;
+    private boolean valid;
 
 
 }

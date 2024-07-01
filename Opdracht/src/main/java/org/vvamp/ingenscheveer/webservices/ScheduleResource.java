@@ -53,21 +53,21 @@ public class ScheduleResource {
     @RolesAllowed("boss")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response addScheduleItemForUser(TaskCreateRequest request){
-        User user = User.getUserByName(request.username);
+        User user = User.getUserByName(request.getUsername());
         if (user == null) return Response.status(Response.Status.BAD_REQUEST).build();
         user.loadSchedule();
         Schedule schedule = user.getSchedule();
         if (schedule == null) return Response.status(Response.Status.BAD_REQUEST).build();
 
         TaskType type;
-        if(request.role.equals("dienst")) {
+        if(request.getRole().equals("dienst")) {
             type = TaskType.Dienst;
         }else{
             type = TaskType.Kniphulp;
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-        LocalDateTime begin = LocalDateTime.parse(request.start, formatter);
-        LocalDateTime end = LocalDateTime.parse(request.end, formatter);
+        LocalDateTime begin = LocalDateTime.parse(request.getStart(), formatter);
+        LocalDateTime end = LocalDateTime.parse(request.getEnd(), formatter);
         ScheduleTask scheduleTask = new ScheduleTask(begin, end, user, type);
         schedule.scheduleTask(scheduleTask);
         return Response.ok().build();
@@ -80,7 +80,7 @@ public class ScheduleResource {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response deleteSchedule(TaskDeleteRequest request) {
         var test = Schedule.getGlobalSchedule();
-        ScheduleTask task = Schedule.getGlobalSchedule().getTaskById(request.uuid);
+        ScheduleTask task = Schedule.getGlobalSchedule().getTaskById(request.getUuid());
         if (task == null) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }

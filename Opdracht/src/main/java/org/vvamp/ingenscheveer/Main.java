@@ -20,8 +20,11 @@ import java.util.concurrent.ScheduledExecutorService;
 public class Main implements ServletContextListener {
 
     private ScheduledExecutorService executorService;
-    public static StorageController storageController= new LocalFileStorageController("cache.json");
-    public static LoginManager loginManager = new LoginManager();
+    public static LoginManager getLoginManager() {
+        return loginManager;
+    }
+
+    private static LoginManager loginManager = new LoginManager();
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
@@ -30,10 +33,6 @@ public class Main implements ServletContextListener {
         ZoneId.systemDefault().normalized();
 
         loginManager.populate();
-
-//        List<AisSignal> signals = storageController.load();
-//        DatabaseStorageController.getDatabaseAisController().SaveAllAisSignals(signals);
-
         List<AisData> newSignals = DatabaseStorageController.getDatabaseAisController().getAllAisData(); // precache
 
         executorService = Executors.newSingleThreadScheduledExecutor();
