@@ -1,7 +1,6 @@
 package org.vvamp.ingenscheveer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -33,7 +32,7 @@ public class StatusUpdateTest {
     public void init() {
         AisSignal aisSignal = new AisSignal();
         aisSignal.setMessage(new Message());
-        aisSignal.getMessage().positionReport = new PositionReport(180f, 0, 52F, 5F, 1, 0, true, true, -128, 0, 0.31F, 0, 0, 13, 511, 244780155, true);
+        aisSignal.getMessage().setPositionReport(new PositionReport(180f, 0, 52F, 5F, 1, 0, true, true, -128, 0, 0.31F, 0, 0, 13, 511, 244780155, true));
         aisSignal.setMetaData(new MetaData());
         aisSignal.getMetaData().setTime_utc("2024-06-30 12:12:11.207450155 +0000 UTC");
         aisData = DatabaseStorageController.getDatabaseAisController().convertToAisData(aisSignal);
@@ -95,7 +94,7 @@ public class StatusUpdateTest {
         }
         DatabaseStorageController.setUseTest(true);
         DatabaseStorageController.getDatabaseAisController().removeAll();
-        for(AisData dataItem : data){
+        for (AisData dataItem : data) {
             DatabaseStorageController.getDatabaseAisController().writeAisData(dataItem);
         }
 
