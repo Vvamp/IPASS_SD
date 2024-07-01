@@ -42,7 +42,7 @@ function refresh() {
   ).lastElementChild;
 
   service.getIsOpen().then((result) => {
-    if (result.isOpen) {
+    if (result.open) {
       openItem.textContent = "Ja (Sluit om " + result.closingTime + ")";
     } else {
       openItem.textContent = "Nee (Opent om " + result.openingTime + ")";

@@ -76,7 +76,7 @@ public class DatabaseTokenController {
     }
 
     public List<String> getAllTokens() {
-        return getAllTokens(false);
+        return getAllTokens(true);
     }
 
 }

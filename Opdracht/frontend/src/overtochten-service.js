@@ -3,9 +3,8 @@ export default class OvertochtenService {
     let fetchoptions = {
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + window.localStorage.getItem("loginToken"),
-      },
+        "Content-Type": "application/json"
+            },
     };
 
     let url = "/api/crossings?limit=4";
