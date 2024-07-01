@@ -5,8 +5,10 @@
 
 \usepackage{geometry}
 \geometry{a4paper}
+\usepackage{rotating}
 \usepackage[utf8]{inputenc}
 \usepackage{enumitem}
+\usepackage{outlines}
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{tcolorbox}
@@ -14,6 +16,7 @@
 \usepackage{tabularx}
 \hyphenation{wacht-tijd}
 \hyphenation{wacht-tijden}
+\hyphenation{gewenste}
 \setlength{\textheight}{240truemm}
 % For better header handling
 \usepackage{fancyhdr}
@@ -26,6 +29,8 @@
 
 % For colored text
 \usepackage{xcolor}
+\usepackage[backend=biber, style=apa]{biblatex}
+\addbibresource{references.bib} 
 
 \title{IPASS Plan van Aanpak}
 \author{Vincent van Setten}
@@ -75,8 +80,10 @@
           \textbf{Versie} & \textbf{Datum} & \textbf{Omschrijving}  \\
           \hline
           1.0  & 04-06-2024 & Eerste Versie \\
+          \hline
           2.0 & 30-06-2024 & Tweede Versie \\
           \hline
+          2.1 & 01-07-2024 & Laatste Versie \\
   
       \end{tabular}
       \caption{Versiegeschiedenis}
@@ -112,9 +119,11 @@ Ook worden de risico's en de planning van het project beschreven.
 
 In het use case diagram in figuur \ref{fig:ucd} zie je de verschillende use cases. Deze zijn gekleurd naar het MoSCoW model. Rode use cases zijn Must haves, oranje use cases zijn Should haves, gele use cases zijn Could haves en groene use cases zijn Won't haves.
 Het use case diagram laat alleen de daadwerkelijke geimplementeerde use cases zien. 
+In het use case diagram zijn de aparte use cases van "Rooster bijhouden/inzien" en "Drukte bijhouden/inzien" samengevoegd in 1 voor het overzicht. Het zijn wel individuele use cases en zo zijn ze ook uitgewerkt in de use case beschrijvingen.
+\par\smallskip
 Terugblikkend op het Plan van Aanpak is er vrij veel geimplementeerd.
 Van de Must Haves is alles geimplementeerd. van de Should Haves is ook alles geimplementeerd. Van de Could Haves zijn de roosters geimplementeerd, maar de geschatte drukte, snelheid van invididuele schippers en integratie met weersomstandigheden niet. Van de Won't Haves is niks geimplementeerd.
-Alle statistieken van de Must haves, could haves and should haves zijn geimplementeerd onder de enkele use case 'statistieken inzien'.
+Alle statistieken van de Must haves, Could haves and Should haves zijn geimplementeerd onder de enkele use case 'statistieken inzien'.
 
 
 \subsection{Actoren}
@@ -137,6 +146,7 @@ Alle statistieken van de Must haves, could haves and should haves zijn geimpleme
 \end{table}
 
 \subsection{Use case beschrijvingen en wireframes}
+\label{sec:ucb}
 \subsubsection{UC01 - Bekijk locatie veerpont}
 \begin{table}[H]
     \centering
@@ -164,17 +174,271 @@ Alle statistieken van de Must haves, could haves and should haves zijn geimpleme
     \caption{Use Case Beschrijving UC01 - Bekijk locatie veerpont}
 \end{table}
 
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/wireframe_startpagina.png}
     \caption{Wireframe UC01 - Locatie veerpont bekijken}
     \label{fig:wf1}
 \end{figure}
+In figuur \ref{fig:wf1} is linksboven in te zien waar op de voorpagina de kaart zou moeten komen.
+
+
+
+\subsubsection{UC02 - Statistieken inzien}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|l|X|}
+        \hline
+        \textbf{ID:} UC02 & \textbf{Use Case Naam:} Statistieken inzien  \\
+        \hline
+        \textbf{Actoren:} & Klant \\
+        \hline
+        \textbf{Samenvatting:}  & De klant kan statistieken over de veerpont inzien \\
+        \hline 
+        \textbf{Precondities:} & De veerpont stuurt AIS signalen en deze worden via de API ontvangen. \\
+        \hline
+        \textbf{Scenario:} & \begin{enumerate}
+            \item De klant opent de webapplicatie
+            \item Systeem haalt de ais data binnen.
+            \item Systeem berekent de statistieken over de data.
+            \item Systeem laat de statistieken zien in een tabel.
+            \item De klant kan de statistieken inzien.
+        \end{enumerate} \\
+        \hline 
+        \textbf{Postcondities:} & nvt \\ 
+        \hline
+
+    \end{tabularx}
+    \caption{Use Case Beschrijving UC02 - Statistieken inzien}
+\end{table}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/wireframe_startpagina.png}
+    \caption{Wireframe UC02 - Statistieken inzien}
+    \label{fig:wf2}
+\end{figure}
+In figuur \ref{fig:wf2} is rechtboven te zien waar op de voorpagina de statistieken zullen staan.
+
+
+\subsubsection{UC03 - Recente overtochten inzien}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|l|X|}
+        \hline
+        \textbf{ID:} UC03 & \textbf{Use Case Naam:} Recente overtochten inzien  \\
+        \hline
+        \textbf{Actoren:} & Klant \\
+        \hline
+        \textbf{Samenvatting:}  & De klant kan een lijst van recente overtochten zien\\
+        \hline 
+        \textbf{Precondities:} & De veerpont stuurt AIS signalen en deze worden via de API ontvangen. \\
+        \hline
+        \textbf{Scenario:} & \begin{enumerate}
+            \item De klant opent de webapplicatie.
+            \item Systeem haalt de ais data binnen.
+            \item Systeem berekent aan de hand van de ais signalen de overtochten.
+            \item Systeem toont een tijdlijn met de overtochten.
+            \item De klant kan tijdlijn van overtochten inzienn.
+        \end{enumerate} \\
+        \hline 
+        \textbf{Postcondities:} & nvt \\ 
+        \hline
+
+    \end{tabularx}
+    \caption{Use Case Beschrijving UC03 - Recente overtochten inzien}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/wireframe_startpagina.png}
+    \caption{Wireframe UC03 - Recente overtochten inzien}
+    \label{fig:wf3}
+\end{figure}
+In figuur \ref{fig:wf3} is in het midden te zien waar de overtochten tijdlijn komt te staan.
+
+
+\subsubsection{UC04 - Rooster bijhouden}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|l|X|}
+        \hline
+        \textbf{ID:} UC04 & \textbf{Use Case Naam:} Rooster bijhouden  \\
+        \hline
+        \textbf{Actoren:} & Baas \\
+        \hline
+        \textbf{Samenvatting:}  & De baas kan een rooster aanmaken en bewerken voor de schippers \\
+        \hline 
+        \textbf{Precondities:} & \begin{enumerate}
+            \item De server en website staan aan en zijn verbonden met de database,
+            \item De baas is ingelogd.
+        \end{enumerate} \\
+        \hline
+        \textbf{Scenario:} & \begin{outline}[enumerate]
+            \1 De baas opent de website.
+            \1 De baas klikt op de knop 'Rooster'.
+            \1 De baas selecteert de week waarvoor hij het rooster wil aanpassen.
+            \1 Systeem haalt de rooster items op voor die week.
+            \1 Systeem toont de rooster items.
+            \1 Als de baas een nieuw rooster wil aanmaken.
+                \2[6.1] De baas klikt op de plus knop.
+                \2[6.2] Systeem toont de popup 'rooster item toevoegen'
+                \2[6.3] De baas vult in het eerste veld de gebruikersnaam van de gewenste werknemer in.
+                \2[6.4] De baas vult de begin datum en tijd van de dienst in.
+                \2[6.5] De baas vult de eind datum en tijd van de dienst in.
+                \2[6.6] De baas vult in of het een hulpdienst of reguliere dienst betreft.
+                \2[6.7] De baas klikt op de knop 'voeg toe'
+                \2[6.8] Systeem de taak in de database.
+                \2[6.9] Systeem herlaadt de pagina.
+            \1 Als de baas een rooster raak wil verwijderen.
+                \2[7.1] Baas klikt op het 'verwijder' knopje naast een taak.
+                \2[7.2] Systeem verwijdert de taak uit de database.
+                \2[7.3] Systeem herlaadt de pagina.
+            
+        \end{outline} \\
+        \hline 
+        \textbf{Postcondities:} & De nieuwe staat van het rooster is opgeslagen in de database. \\ 
+        \hline
+
+    \end{tabularx}
+    \caption{Use Case Beschrijving UC04 - Rooster bijhouden}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/wireframe_rooster_maken_1.drawio.png}
+    \caption{Wireframe UC04 - Rooster bijhouden}
+    \label{fig:wf4}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/wireframe_rooster_maken_2.drawio.png}
+    \caption{Wireframe UC04 - Rooster bijhouden (Nieuw Rooster Item)}
+    \label{fig:wf5}
+\end{figure}
+Het scherm in figuur \ref{fig:wf5} wordt getoont wanneer de baas klikt op de plus knop rechtbovens in figuur \ref{fig:wf4}.
+
+
+\subsubsection{UC05 - Rooster inzien}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|l|X|}
+        \hline
+        \textbf{ID:} UC05 & \textbf{Use Case Naam:} Rooster inzien  \\
+        \hline
+        \textbf{Actoren:} & Schipper \\
+        \hline
+        \textbf{Samenvatting:}  & De schipper kan zijn persoonlijke rooster inzien \\
+        \hline 
+        \textbf{Precondities:} & \begin{enumerate}
+            \item De server en website staan aan en zijn verbonden met de database,
+            \item De schipper is ingelogd.
+        \end{enumerate} \\
+        \hline
+        \textbf{Scenario:} & \begin{outline}[enumerate]
+            \1 De schipper opent de website.
+            \1 De schipper klikt op de knop 'Rooster'.
+            \1 De schipper selecteert de week waarvoor hij het rooster wil aanpassen.
+            \1 Systeem haalt de rooster items op voor die week.
+            \1 Systeem toont de rooster items.
+        \end{outline} \\
+        \hline 
+        \textbf{Postcondities:} & nvt \\ 
+        \hline
+
+    \end{tabularx}
+    \caption{Use Case Beschrijving UC05 - Rooster inzien}
+\end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/wireframe_rooster_inzien.drawio.png}
+    \caption{Wireframe UC05 - Rooster inzien}
+    \label{fig:wf7}
+\end{figure}
+
+\subsubsection{UC06 - Drukte bijhouden}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|l|X|}
+        \hline
+        \textbf{ID:} UC06 & \textbf{Use Case Naam:} Drukte bijhouden  \\
+        \hline
+        \textbf{Actoren:} & Schipper \\
+        \hline
+        \textbf{Samenvatting:}  & De schipper kan de drukte op de pont bijhouden. \\
+        \hline 
+        \textbf{Precondities:} & \begin{enumerate}
+            \item De server en website staan aan en zijn verbonden met de database,
+            \item De schipper is ingelogd.
+        \end{enumerate} \\
+        \hline
+        \textbf{Scenario:} & \begin{outline}[enumerate]
+            \1 De schipper opent de website.
+            \1 De schipper klikt op de knop 'Drukte'.
+            \1 De schipper klikt selecteert hoeveel banen er in gebruik zijn.
+            \1 De schipper klikt op de knop 'Verstuur'
+            \1 Het systeem stuurt de drukte naar de database 
+        \end{outline} \\
+        \hline 
+        \textbf{Postcondities:} & De drukte indicatie is opgeslagen in de database. \\ 
+        \hline
+
+    \end{tabularx}
+    \caption{Use Case Beschrijving UC06 - Drukte bijhouden}
+\end{table}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/wireframe_drukte_bijhouden.drawio.png}
+    \caption{Wireframe UC06 - Drukte bijhouden}
+    \label{fig:wf8}
+\end{figure}
+
+
+
+\subsubsection{UC07 - Drukte inzien}
+\begin{table}[H]
+    \centering
+    \begin{tabularx}{\textwidth}{|l|X|}
+        \hline
+        \textbf{ID:} UC07 & \textbf{Use Case Naam:} Drukte inzien  \\
+        \hline
+        \textbf{Actoren:} & Baas \\
+        \hline
+        \textbf{Samenvatting:}  & De baas kan de drukte op de pont inzien. \\
+        \hline 
+        \textbf{Precondities:} & \begin{enumerate}
+            \item De server en website staan aan en zijn verbonden met de database,
+            \item De baas is ingelogd.
+        \end{enumerate} \\
+        \hline
+        \textbf{Scenario:} & \begin{outline}[enumerate]
+            \1 De baas opent de website.
+            \1 De baas klikt op de knop 'Drukte'.
+            \1 Het systeem haalt de drukte op uit de database.
+            \1 De baas ziet de drukte op het scherm.
+        \end{outline} \\
+        \hline 
+        \textbf{Postcondities:} & nvt \\ 
+        \hline
+
+    \end{tabularx}
+    \caption{Use Case Beschrijving UC07 - Drukte inzien}
+\end{table}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{images/wireframe_drukte_inzien.drawio.png}
+    \caption{Wireframe UC07 - Drukte inzien}
+    \label{fig:wf9}
+\end{figure}
+
+
+
 
 \section{Modellen}
 \subsection{Domeinmodel}
 \begin{figure}[H]
-    \centering
     \includegraphics[width=1\textwidth]{images/FunctioneelKlassendiagram.png}
     \caption{Functioneel Domeinmodel - Ingensche Veer}
     \label{fig:dm}
@@ -183,7 +447,7 @@ In het domeinmodel in figuur \ref{fig:dm} zie je elke klassen in mijn implementa
 In het midden van het model zijn een aantal Database controller klassen. De klasse 'DatabaseStorageController' is de storage controller die weer verschillende DatabaseController klassen heeft. Deze klassen maken verbinding met hun eigen database tabel. Zo is DatabaseAisController verantwoordelijk voor de tabel met de AIS signalen in de database.
 Rechtsonderin het diagram is de AisSignal klassen te zien, samen met de subklassen. Dit zijn simpelweg json implemtatie klassen, om de inkomende json data te kunnen parsen.
 De testklassen zijn buiten beschouwing gelaten in dit diagram, omdat deze niet relevant zijn voor het domeinmodel en het diagram onnodig nog groter maken.
-
+\textit{In het diagram zijn de meeste getter en setter methodes expres weggelaten om het overzicht te behouden. Enkele non-triviale of ongebruikelijke getters en setters staan er nog wel in.}
 
 \subsection{Business Rules}
 Bij het domeinmodel in  figuur \ref{fig:dm} horen de volgende business rules:
@@ -225,6 +489,32 @@ Ik zal de entiteiten hieronder kort toelichten.
     \item MySQL
 \end{enumerate}
 
+De volgende maven packages zijn gebruikt.
+\begin{enumerate}
+    \item \textbf{javax.websocket.javax.websocket-api} versie 1.1
+    \item \textbf{com.fasterxml.jackson.core.jackson-databind} versie 2.16.1
+    \item \textbf{com.mysql.mysql-connector-j} versie 8.4.0
+    \item \textbf{javax.servlet.javax.servlet-api} versie 4.0.1
+    \item \textbf{org.junit.jupiter.junit-jupiter} versie 5.8.2
+    \item \textbf{org.glassfish.jersey.media.jersey-media-json-jackson} versie 2.35
+    \item \textbf{org.glassfish.jersey.containers.jersey-container-servlet} versie 2.35
+    \item \textbf{io.jsonwebtoken.jjwt} versie 0.9.1
+    \item \textbf{org.glassfish.jersey.inject.jersey-hk2} versie 2.35
+    \item \textbf{org.glassfish.javax.json} versie 1.1.4
+    \item \textbf{org.slf4j.slf4j-nop} versie 1.7.36
+\end{enumerate}
+
+Voor de website heb ik de openlayers framework gebruikt om een kaart te tonen.
+Dit is versie 9.2.4 en gebruikt de 'BSD 2-Clause "Simplified" License' \parencite{ol_license}. Dit is geimporteerd als een module in package.json, dus deze wordt automatisch geinstalleerd via npm install.
+\par\smallskip
+Verder gebruik ik alleen FontAwesome voor wat icons, deze is uitgegeven onder verschillende licenties \parencite{fontawesome_license}:
+\begin{itemize}
+    \item[Icons]: CC BY 4.0
+    \item[Fonts]: SIL Open Font License (OFL) 1.1
+    \item[Code]: MIT 
+\end{itemize}
+De gebruikte versie is 5.15.4 en wordt automatisch geladen via de html head.
+
 \section{Overdracht} 
 \subsection{Installatie}
 \begin{enumerate}
@@ -235,10 +525,20 @@ Ik zal de entiteiten hieronder kort toelichten.
     \item Ga terug naar de source folder 
     \item Open het project in intellij idea 
     \item Laad de maven dependencies in de pom.xml 
-    \item Stel de applicatie in als tomcat applicatie
-    \item Run de applicatie
+    \item Stel de applicatie in als tomcat applicatie volgens \href{https://canvas.hu.nl/courses/39721/pages/installatie-en-configuratie-tomcat-server-intellij-idea?module_item_id=1068106}{de guide op canvas}
+    \item Run de applicatie via intellij idea
 \end{enumerate}
+Om te deployen naar azure, run het commando `mvn clean package azure-webapp:deploy`.
+
+\subsection{Gebruik}
+Na de installatie, ga naar de website (localhost:8080) of de live versie: (veerdienst.vincentvansetten.com).
+Je kan inloggen via de inlog knop met de gegevens in hoofdstuk \ref{sec:wachtwoorden}.
+Vervolgens is de website simpel te navigeren. Mochten dingen onduidelijk zijn, is dit te volgen via de use case beschrijvingen in \ref{sec:ucb}
+
+
 \subsection{Wachtwoorden}
+\subsubsection{Applicatie}
+\label{sec:wachtwoorden}
 \begin{itemize}
     \item \textbf{Vincent}: admin 
     \item \textbf{Stephan}: schipper 
@@ -246,8 +546,19 @@ Ik zal de entiteiten hieronder kort toelichten.
     \item \textbf{Baas}: baas
 \end{itemize}
 
+\subsubsection{Database}
+De database wordt gehost op een persoonlijke AWS Lightsail instance.
+Hiervan zijn de gegevens:
+\begin{itemize}
+    \item[\textbf{Host}] ls-7f9ed97743e4c2462a9cba2e281c691d588fc281.c3co6m68qdal.eu-central-1.rds.amazonaws.com
+    \item[\textbf{Port}] 3306
+    \item[\textbf{Gebruiker}] dbmasteruser
+    \item[\textbf{Wachtwoord}] simplepw 
+    \item[\textbf{Database}] veerdienst   
+\end{itemize}
+
 
 \section{Referenties}
-Er zijn geen referenties.
+\printbibliography
 
 \end{document}
