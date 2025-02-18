@@ -25,7 +25,7 @@ public class WebSocketClient {
     @OnOpen
     public void onOpen(Session session) {
 //        System.out.println("Connected to server");
-        String message = "{\"APIKey\":\"3c9a8ccfe72d2907179fdbc0bb5a68811af1fdd7\",\"BoundingBoxes\":[[[50,5],[53,8]]],\"FiltersShipMMSI\":[\"244780155\"], \"FilterMessageTypes\": [\"PositionReport\"]}";
+        String message = "{\"APIKey\":\"642615ebb912e3975369877e2166ff2f7466ddcc\",\"BoundingBoxes\":[[[50,5],[53,8]]],\"FiltersShipMMSI\":[\"244780155\"], \"FilterMessageTypes\": [\"PositionReport\"]}";
 //        String message = "{\"APIKey\":\"3c9a8ccfe72d2907179fdbc0bb5a68811af1fdd7\",\"BoundingBoxes\":[[[50,5],[53,8]]],\"FiltersShipMMSI\":[\"244780155\"]}";
         sendMessage(session, message);
     }
