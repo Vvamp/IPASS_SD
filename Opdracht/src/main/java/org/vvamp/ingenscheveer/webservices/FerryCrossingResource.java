@@ -32,7 +32,7 @@ public class FerryCrossingResource {
             crossings = Ferry.getFerry().getFerryCrossings();
             Collections.reverse(crossings);
             crossings = crossings.stream().limit(limit)
-                    .map(i -> new FerryCrossing(i.getDeparture(), i.getArrival(), null))
+//                    .map(i -> new FerryCrossing(i.getDeparture(), i.getArrival(), null))
                     .collect(Collectors.toList());
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(Map.of("Error", "Failed to retrieve FerryCrossing data")).build();
