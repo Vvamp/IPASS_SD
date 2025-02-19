@@ -52,7 +52,7 @@ public class FerryCrossingResource {
             Collections.reverse(crossings);
 
             // Define start and end timestamps for today
-            LocalDateTime now = LocalDateTime.now().minusDays(1);
+            LocalDateTime now = LocalDateTime.now();
             LocalDateTime start = now.withHour(0).withMinute(0).withSecond(0).withNano(0);
             LocalDateTime end = now.withHour(23).withMinute(59).withSecond(59).withNano(999_999_999);
             long startTS = start.toEpochSecond(ZoneOffset.UTC);
