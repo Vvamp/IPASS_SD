@@ -77,8 +77,11 @@ function refresh() {
     if (result.Arrival == null) {
       let direction = result.Departure.Location == "INGEN" ? "ELST" : "INGEN";
       status = "Onderweg (" + direction + ")";
+      cspeed.parentElement.classList.remove("hidden");
     } else {
       status = "Aangemeerd (" + result.Arrival.Location + ")";
+      cspeed.parentElement.classList.add("hidden");
+
     }
     if (status.toLowerCase() != lastStatus) {
       cs.loadOvertochten();
@@ -94,9 +97,9 @@ function refresh() {
         date.getMinutes().toString().padStart(2, "0") +
         ":" +
         date.getSeconds().toString().padStart(2, "0");
-      vertrekItem.parentElement.style.display = "";
+      vertrekItem.parentElement.classList.remove("hidden");
     } else {
-      vertrekItem.parentElement.style.display = "none";
+      vertrekItem.parentElement.classList.add("hidden");
     }
 
     if (result.Arrival == null) {
@@ -109,10 +112,10 @@ function refresh() {
           date.getMinutes().toString().padStart(2, "0") +
           ":" +
           date.getSeconds().toString().padStart(2, "0");
-        etaItem.parentElement.style.display = "";
+        etaItem.parentElement.classList.remove("hidden");
       });
     } else {
-      etaItem.parentElement.style.display = "none";
+      etaItem.parentElement.classList.add("hidden");
     }
   });
 
@@ -137,5 +140,5 @@ function refresh() {
   });
 }
 cs.loadOvertochten();
-
+refresh();
 setInterval(refresh, 5000);

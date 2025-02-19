@@ -12,14 +12,6 @@
     <meta name="author" content="Vincent van Setten" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Veerdienst Ingen-Elst | Home</title>
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"
-      defer
-    ></script> -->
     <link rel="stylesheet" href="node_modules/ol/ol.css" />
     <script
       src="https://kit.fontawesome.com/67f6f13cd8.js"
@@ -31,6 +23,8 @@
     <script type="module" src="src/modal.js"></script>
     <script type="module" src="src/stats.js"></script>
     <script type="module" src="src/overtochten.js"></script>
+    <script type="module" src="/src/general/footer.js"></script>
+
   </head>
   <body>
     <nav>
@@ -49,9 +43,10 @@
         <div class="menu-button"></div
       ></label>
       <div id="nav-right">
+        <a class="bluebutton" id="ais-button" href="/data/overtochten">Overtochten</a>
         <a class="bluebutton hidden" id="rooster-button">Rooster</a>
         <a class="bluebutton hidden" id="drukte-button">Drukte</a>
-        <a class="bluebutton" id="login-button">Login</a>
+        <a class="bluebutton hidden" id="login-button">Login</a>
         <a class="bluebutton hidden" id="logout-button">Log out</a>
       </div>
       <template id="modal-template">
@@ -94,45 +89,45 @@
             <p>Statistieken</p>
           </div>
           <div class="panel-content">
-            <div class="panel-content-row" data-stats-item="status">
-              <p>Status</p>
-              <p>loading...</p>
-            </div>
             <div class="panel-content-row" data-stats-item="isopen">
               <p>Pont in vaart</p>
-              <p>loading...</p>
+              <p>Informatie ophalen...</p>
             </div>
-            <div class="panel-content-row" data-stats-item="currentspeed">
+            <div class="panel-content-row" data-stats-item="status">
+              <p>Status</p>
+              <p>Informatie ophalen...</p>
+            </div>
+            <div class="panel-content-row hidden" data-stats-item="vertrek">
+              <p>Vertrektijd</p>
+              <p>Informatie ophalen...</p>
+            </div>
+            <div class="panel-content-row hidden" data-stats-item="eta">
+              <p>Verwachte Aankomsttijd</p>
+              <p>Informatie ophalen...</p>
+            </div>
+            <div class="panel-content-row hidden" data-stats-item="currentspeed">
               <p>Huidige snelheid</p>
-              <p>loading...</p>
+              <p>Informatie ophalen...</p>
             </div>
             <div class="panel-content-row" data-stats-item="avgspeed">
               <p>Gem. snelheid (24u)</p>
-              <p>loading...</p>
+              <p>Informatie ophalen...</p>
             </div>
             <div class="panel-content-row" data-stats-item="maxspeed">
               <p>Max. snelheid (24u)</p>
-              <p>loading...</p>
+              <p>Informatie ophalen...</p>
             </div>
             <div class="panel-content-row" data-stats-item="crossings">
               <p>Overtochten afgelopen uur</p>
-              <p>loading...</p>
+              <p>Informatie ophalen...</p>
             </div>
-            <div class="panel-content-row" data-stats-item="lastupdate">
-              <p>Laatste update</p>
-              <p>loading...</p>
-            </div>
-            <div class="panel-content-row" data-stats-item="drukte">
+            <div class="panel-content-row hidden" data-stats-item="drukte">
               <p>Drukte</p>
-              <p>loading...</p>
+              <p>Informatie ophalen...</p>
             </div>
-            <div class="panel-content-row" data-stats-item="eta">
-              <p>Verwachte Aankomsttijd</p>
-              <p>loading...</p>
-            </div>
-            <div class="panel-content-row" data-stats-item="vertrek">
-              <p>Vertrektijd</p>
-              <p>loading...</p>
+            <div class="panel-content-row" data-stats-item="lastupdate" style="margin-top: auto">
+              <p>Laatste update</p>
+              <p>Informatie ophalen...</p>
             </div>
           </div>
         </div>
@@ -155,51 +150,63 @@
           <div class="panel-content">
             <div class="panel-content-row">
               <p>Voetgangers</p>
-              <p>€ 0,80</p>
+              <p>€ 1,00</p>
             </div>
             <div class="panel-content-row">
-              <p>Auto / Kleine Bestelbus / Brommobiel</p>
-              <p>€ 2,70</p>
+              <p>Fiets / Brommobiel</p>
+              <p>€ 1,80</p>
             </div>
             <div class="panel-content-row">
               <p>Motor</p>
-              <p>€ 2,00</p>
+              <p>€ 2,20</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Auto</p>
+              <p>€ 2,90</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Grote Personenwagens (Dodge Ram) / Bestelbus</p>
+              <p>€ 3,10</p>
+            </div>
+            <div class="panel-content-row">
+              <p>Grote Bestelbus</p>
+              <p>€ 3,30</p>
             </div>
             <div class="panel-content-row">
               <p>Camper</p>
               <p>€ 4,20</p>
             </div>
             <div class="panel-content-row">
-              <p>Aanhanger</p>
-              <p>€ 2,70</p>
-            </div>
-            <div class="panel-content-row">
-              <p>Grote Bestelbus / Bakwagen</p>
+              <p>Bakwagen</p>
               <p>€ 6,00</p>
             </div>
             <div class="panel-content-row">
               <p>Kleine Vragenwagen (2-as, max. 5 ton laadvermogen)</p>
-              <p>€ 8,00</p>
+              <p>€ 8,20</p>
             </div>
             <div class="panel-content-row">
               <p>Grote Vragenwagen (3-as, max. 10 ton laadvermogen)</p>
-              <p>€ 10,00</p>
+              <p>€ 10,50</p>
             </div>
             <div class="panel-content-row">
-              <p>Kleine Bus ( + € 0,50 p.p. )</p>
-              <p>€ 8,00</p>
+              <p>Kleine Bus ( + € 0,10 p.p. )</p>
+              <p>€ 5,70</p>
             </div>
             <div class="panel-content-row">
-              <p>Grote Bus ( + € 0,50 p.p. ) (max. 12 meter)</p>
-              <p>€ 25,00</p>
+              <p>Grote Bus ( + € 0,10 p.p. )</p>
+              <p>€ 15,00</p>
             </div>
             <div class="panel-content-row">
-              <p>Kleine Tractor (2800kg) (Aanhanger + € 3,00)</p>
-              <p>€ 5,00</p>
+              <p>Kleine Tractor (2800kg) (Aanhanger + € 3,30)</p>
+              <p>€ 5,20</p>
             </div>
             <div class="panel-content-row">
               <p>Grote Tractor (3500kg) (Aanhanger + € 5,00)</p>
-              <p>€ 7,00</p>
+              <p>€ 7,50</p>
+            </div>
+            <div class="panel-content-row">
+              <p><b>Voertuig + Aanhanger</b></p>
+              <p><i><b>2x tarief trekkend voertuig</b></i></p>
             </div>
           </div>
         </div>
@@ -214,27 +221,43 @@
             <div class="panel-content">
               <div class="panel-content-row">
                 <p>Fiets - 10 overtochten</p>
-                <p>€ 13,50 (€ 1,35 per overtocht)</p>
+                <p>€ 14,50 (€ 1,45 / overtocht)</p>
               </div>
               <div class="panel-content-row">
                 <p>Fiets - 40 overtochten</p>
-                <p>€ 40,00 (€ 1,00 per overtocht)</p>
-              </div>
-              <div class="panel-content-row">
-                <p>Auto - 10 overtochten</p>
-                <p>€ 22,00 (€ 2,20 per overtocht)</p>
-              </div>
-              <div class="panel-content-row">
-                <p>Auto - 40 overtochten</p>
-                <p>€ 65,00 (€ 1,63 per overtocht)</p>
+                <p>€ 43,00 (€ 1,08 / overtocht)</p>
               </div>
               <div class="panel-content-row">
                 <p>Motor - 10 overtochten</p>
-                <p>€ 16,00 (€ 1,60 per overtocht)</p>
+                <p>€ 17,50 (€ 1,75 / overtocht)</p>
               </div>
               <div class="panel-content-row">
                 <p>Motor - 40 overtochten</p>
-                <p>€ 48,00 (€ 1,20 per overtocht)</p>
+                <p>€ 51,00 (€ 1,28 / overtocht)</p>
+              </div>
+              <div class="panel-content-row">
+                <p>Auto - 10 overtochten</p>
+                <p>€ 23,00 (€ 2,30 / overtocht)</p>
+              </div>
+              <div class="panel-content-row">
+                <p>Auto - 40 overtochten</p>
+                <p>€ 69,50 (€ 1,74 / overtocht)</p>
+              </div>
+              <div class="panel-content-row">
+                <p>Grote Auto - 10 overtochten</p>
+                <p>€ 25,00 (€ 2,50 / overtocht)</p>
+              </div>
+              <div class="panel-content-row">
+                <p>Grote Auto - 40 overtochten</p>
+                <p>€ 74,00 (€ 1,85 / overtocht)</p>
+              </div>
+              <div class="panel-content-row">
+                <p>Grote Bestelbus - 10 overtochten</p>
+                <p>€ 26,50 (€ 2,65 / overtocht)</p>
+              </div>
+              <div class="panel-content-row">
+                <p>Grote Bestelbus - 40 overtochten</p>
+                <p>€ 79,00 (€ 1,98 / overtocht)</p>
               </div>
             </div>
           </div>
@@ -244,7 +267,7 @@
             </div>
             <div class="panel-content">
               <div class="panel-content-row">
-                <p>Maandag t/m vrijdag</p>
+                <p>Maandag <i style="text-transform: lowercase;">t/m</i> vrijdag</p>
                 <p>06:00 - 23:00 (22:50 laatste afvaart)</p>
               </div>
               <div class="panel-content-row">
@@ -253,23 +276,18 @@
               </div>
               <div class="panel-content-row">
                 <p>Zondag</p>
-                <p>09:00 - 23:00 (22:50 laatste afvaaart)</p>
+                <p>09:00 - 23:00 (22:50 laatste afvaart)</p>
               </div>
               <div class="panel-content-row">
                 <p>Nationale Feestdagen</p>
-                <p>09:00 - 23:00 (22:50 laatste afvaaart)</p>
+                <p>09:00 - 23:00 (22:50 laatste afvaart)</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row" style="min-height: 1vh">
-        <footer>
-          <p>
-            &copy; 2024 Vincent van Setten / In opdracht van Hogeschool Utrecht
-            / Voor Veerdienst Ingen-Elst b.v.
-          </p>
-        </footer>
+      <div class="row">
+        <site-footer></site-footer>
       </div>
     </div>
     <template id="backdrop-template">

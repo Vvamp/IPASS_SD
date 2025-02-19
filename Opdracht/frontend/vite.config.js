@@ -10,6 +10,7 @@ export default defineConfig({
         skipperschedule: resolve(__dirname, "/rooster/skipper/index.html"),
         skipperdrukte: resolve(__dirname, "/drukte/skipper/index.html"),
         bossdrukte: resolve(__dirname, "/drukte/boss/index.html"),
+        ais: resolve(__dirname, "/data/overtochten/index.html"),
       },
     },
     outDir: "../src/main/webapp/",

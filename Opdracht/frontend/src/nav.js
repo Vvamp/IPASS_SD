@@ -18,7 +18,7 @@ function reloadNav() {
     roosterButton.setAttribute("href", "/rooster/" + service.getRole());
     drukteButton.setAttribute("href", "/drukte/" + service.getRole());
   } else {
-    loginButton.classList.remove("hidden");
+    loginButton.classList.add("hidden");
     logoutbutton.classList.add("hidden");
     roosterButton.classList.add("hidden");
     roosterButton.removeAttribute("href");

@@ -134,12 +134,15 @@ nav {
   flex-direction: column;
   justify-content: start;
   margin: 0em auto;
+  min-height: calc(100vh - 10vh - 2em); /* 100vh - nav*/
+  align-items: stretch;
 }
 
 .row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-grow: 1;
   padding: 3em;
   border-bottom: 3px solid black;
   background-color: white;
@@ -368,8 +371,9 @@ ul > li {
 
 /* Footer */
 
-.row:has(> footer) {
+.row:has(> site-footer) {
   padding: 1em 3em;
+  flex-grow: 0;
 }
 
 /* Form */

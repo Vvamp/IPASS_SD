@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "gridjs": "^6.2.0",
     "ol": "^8.2.0"
   },
   "devDependencies": {

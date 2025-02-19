@@ -1,9 +1,12 @@
 package org.vvamp.ingenscheveer.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.vvamp.ingenscheveer.database.models.AisData;
 
 import java.util.ArrayList;
+
 
 public class FerryCrossing {
 //    private Location departureLocation;
@@ -37,6 +40,10 @@ public class FerryCrossing {
 
     public StatusUpdate getDeparture() {
         return departure;
+    }
+
+    public void setAisSignals(ArrayList<AisData> aisSignals) {
+        this.aisSignals = aisSignals;
     }
 
     public StatusUpdate getArrival() {
