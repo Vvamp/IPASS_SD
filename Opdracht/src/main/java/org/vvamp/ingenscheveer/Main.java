@@ -15,11 +15,14 @@ import java.util.List;
 import java.util.TimeZone;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @WebListener
 public class Main implements ServletContextListener {
 
     private ScheduledExecutorService executorService;
+    private ScheduledExecutorService gcTimer;
+
     public static LoginManager getLoginManager() {
         return loginManager;
     }
@@ -39,6 +42,13 @@ public class Main implements ServletContextListener {
         executorService.submit(() -> {
             WebSocketClient.main(new String[0]);
         });
+
+        gcTimer = Executors.newSingleThreadScheduledExecutor();
+        gcTimer.scheduleAtFixedRate(this::pruneSignals,0,15, TimeUnit.MINUTES);
+    }
+
+    private void pruneSignals() {
+
     }
 
     @Override

@@ -86,6 +86,38 @@ public class FerryCrossingResource {
         }
     }
 
+    @GET
+    @Path("today/count")
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response getCrossingsTodayCount() {
+        try {
+            List<FerryCrossing> crossings;
+            crossings = Ferry.getFerry().getFerryCrossings();
+            Collections.reverse(crossings);
+
+            // Define start and end timestamps for today
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime start = now.withHour(0).withMinute(0).withSecond(0).withNano(0);
+            LocalDateTime end = now.withHour(23).withMinute(59).withSecond(59).withNano(999_999_999);
+            long startTS = start.toEpochSecond(ZoneOffset.UTC);
+            long endTS = end.toEpochSecond(ZoneOffset.UTC);
+
+            // Filter crossings once and store in a list to avoid consuming the stream
+            List<FerryCrossing> filteredCrossings = crossings.stream()
+                    .filter(c -> c.getDeparture().getEpochSeconds() >= startTS && c.getDeparture().getEpochSeconds() <= endTS)
+                    .map(i -> new FerryCrossing(i.getDeparture(), i.getArrival(), null))
+                    .collect(Collectors.toList());
+
+            int count = filteredCrossings.size(); // Get the total count after filtering
+            return Response.status(Response.Status.OK).entity(count).build();
+
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                    .entity(Map.of("error", "Failed to retrieve FerryCrossing data"))
+                    .build();
+        }
+    }
+
 
     @GET
     @Path("latest")

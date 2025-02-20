@@ -98,7 +98,7 @@ public class DatabaseAisController {
             return aisDataList;
         }
 
-        String sql = "SELECT * FROM " + tableName + " ORDER BY timestamp";
+        String sql = "SELECT * FROM " + tableName + " WHERE timestamp > " + LocalDateTime.now().minusDays(1).toEpochSecond(ZoneOffset.UTC)*1000 + " ORDER BY timestamp"; // get max 1 day back
         List<AisData> signals = new ArrayList<>();
 
         try (Connection conn = DatabaseConnection.getConnection(); PreparedStatement pstmt = conn.prepareStatement(sql); ResultSet rs = pstmt.executeQuery()) {

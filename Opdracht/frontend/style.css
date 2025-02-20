@@ -21,7 +21,8 @@ html {
 /* Nav */
 
 nav {
-  background-color: var(--ship-blue);
+  /* background-color: var(--ship-blue); */
+  background-image: linear-gradient(var(--ship-blue), #358dac);
   color: white;
   padding: 1em;
   display: flex;
@@ -270,6 +271,10 @@ ul > li {
   padding: 2em 0.5em;
 }
 
+.panel#timeline{
+  background-color: #2f2f2f;
+}
+
 .timeline-node {
   position: relative;
   width: 4em;
@@ -301,7 +306,7 @@ ul > li {
 
 .timeline-edge {
   border-bottom: 2px solid white;
-  width: 5em;
+  /* width: 5em; */
   height: 3em;
   text-align: center;
   flex-grow: 3;
@@ -311,14 +316,28 @@ ul > li {
 }
 
 .timeline-edge.travel {
-  border-bottom: 2px solid white;
-  font-size: 0em;
+  border-bottom: 3px solid #5ef0ff;
+  /* font-size: 0em; */
+  min-width: 2em;
+}
+
+.timeline-edge.travel::after{
+  font-family: "Font Awesome 5 Free";
+  content: '';
+  position: absolute;
+  bottom: .4em;
+  font-weight: 700;
+  font-size: .9em;
+  
+  /*center*/
+  left:0;
+  right:0;
 }
 
 .timeline-edge.stay {
-  border-bottom: 2px dotted white;
+  border-bottom: 1px dotted lightgray;
   flex-grow: 1;
-  min-width: 10em;
+  min-width: 2em;
 }
 
 .timeline-node.start,
@@ -336,14 +355,16 @@ ul > li {
 .timeline-node.arrival::after,
 .timeline-node.end::after {
   font-family: "Font Awesome 5 Free";
-  content: "";
+  /* content: ""; */
+  content: "";
   position: absolute;
   top: 4.5em;
 }
 .timeline-node.departure::after,
 .timeline-node.start::after {
   font-family: "Font Awesome 5 Free";
-  content: "";
+  /* content: ""; */
+  content: "";
   position: absolute;
   top: 4.5em;
 }
@@ -361,7 +382,7 @@ ul > li {
   font-size: 1rem;
 }
 .underway {
-  border-bottom: 2px dashed white;
+  border-bottom: 3px dashed #5ef0ff;
 }
 
 .timeline-node > p,
@@ -556,6 +577,23 @@ input[type="password"] {
 
   .row {
     flex-direction: column;
+    padding: 0em;
+    border-bottom: 0px;
+    background-color: white;
+    margin-bottom: 1rem;
+  }
+  body{
+    background-color: white;
+  }
+
+  .panel-content-row{
+    flex-direction: column;
+  }
+  /* .panel-row > .panel{
+    margin: 0;
+  } */
+  .row:has(> site-footer){
+    margin-bottom: 0;
   }
 
   #map {
@@ -564,6 +602,18 @@ input[type="password"] {
 
   .row > div {
     flex-basis: 100%;
+    margin: 0;
+    filter: none;
+  }
+
+  .panel{
+    border-radius: 0;
+    margin-bottom: 1rem;
+    border: none;
+  }
+
+  #tarieven{
+    margin-bottom: 1rem;
   }
 
   .timeline-node-wrapper {
@@ -590,29 +640,36 @@ input[type="password"] {
     width: 3em;
     height: 5em;
     top: 0em;
-    left: -5em;
+    left: -1.5em;
+  }
+
+  .timeline-edge.travel::after{
+    bottom: 0;
+    top: 2.05em;
+    left: 5em;
   }
 
   .timeline-edge > p {
     position: absolute;
-    top: 0.6em;
+    top: 0em;
     right: -4em;
   }
 
   .timeline-edge.travel {
-    border-bottom: 0px solid white;
-    border-right: 2px solid white;
+    border-bottom: 0px solid #5ef0ff;
+    border-right: 3px solid #5ef0ff;
     min-height: 2rem;
   }
 
   .timeline-edge.stay {
     border-bottom: 0px dotted white;
-    border-right: 2px dotted white;
+    border-right: 1px dotted lightgray;
+    height: 3em;
   }
 
   .timeline-edge.underway {
-    border-bottom: 0px dashed white;
-    border-right: 2px dashed white;
+    border-bottom: 0px dashed #5ef0ff;
+    border-right: 3px dashed #5ef0ff;
     top: 0em;
     left: -1.5em;
   }
@@ -672,4 +729,8 @@ input[type="password"] {
   #nav-right > a:not(:last-child) {
     /* border-bottom: 1px solid #444; */
   }
+}
+
+.gridjs{
+  font-family: Arial, Helvetica, sans-serif;
 }

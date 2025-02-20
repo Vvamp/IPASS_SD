@@ -35,7 +35,12 @@ public class CrossingController {
                     ferryCrossings.add(ferryCrossing);
                 }
             } else if (!statusUpdate.isSailing() && wasSailing && ferryCrossings.size() > 0) {
-                ferryCrossings.get(ferryCrossings.size() - 1).setArrival(statusUpdate);
+                if(ferryCrossings.get(ferryCrossings.size()-1).getDeparture().getLocation() != statusUpdate.getLocation()) {
+                    ferryCrossings.get(ferryCrossings.size() - 1).setArrival(statusUpdate);
+                }else{
+                    ferryCrossings.remove(ferryCrossings.size()-1); // if this status update marked a 'stop sailing' but the locations were the same, it was not an actual crossing but a bug
+                }
+                // Only set arrival if it's the opposite shore. Otherwise, it's not a real 'crossing'
             }
 
             if (ferryCrossings.size() > 0) {

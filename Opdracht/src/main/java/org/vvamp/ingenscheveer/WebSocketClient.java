@@ -3,6 +3,7 @@ package org.vvamp.ingenscheveer;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 import org.vvamp.ingenscheveer.database.DatabaseStorageController;
 import org.vvamp.ingenscheveer.models.json.AisSignal;
 
@@ -14,6 +15,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
@@ -93,8 +95,10 @@ public class WebSocketClient {
             shipMessages.add(data);
             DatabaseStorageController.getDatabaseAisController().writeAisData(data);
             pingHealthcheck();
-        } catch (Exception e) {
+        }catch(Exception e) {
             System.err.println("Failed to deserialize message: " + e.getMessage());
+            reconnect();
+
         }
     }
 
