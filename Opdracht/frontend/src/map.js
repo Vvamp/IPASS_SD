@@ -91,6 +91,7 @@ function loadShipLocation() {
 function init() {
   resetLocation();
   setInterval(loadShipLocation, 5000);
+  loadShipLocation();
 }
 if (window.addEventListener) {
   // W3C standard

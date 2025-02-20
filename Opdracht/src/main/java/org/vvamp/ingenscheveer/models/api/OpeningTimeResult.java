@@ -28,4 +28,14 @@ public class OpeningTimeResult{
     private boolean isOpen;
     private String openingTime;
     private String closingTime;
+
+    public String getNow() {
+        return now;
+    }
+
+    public void setNow(String now) {
+        this.now = now;
+    }
+
+    private String now;
 }

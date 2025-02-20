@@ -1,0 +1,69 @@
+{
+  "name": "Geldersweert Tracker",
+  "short_name": "Geldersweert Tracker",
+  "start_url": "/",
+  "display_override": [
+    "window-controls-overlay"
+  ],
+  "display": "standalone",
+  "description": "Volg het Ingensche Veer!",
+  "lang": "nl",
+  "dir": "auto",
+  "theme_color": "#4f93ab",
+  "background_color": "#000000",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "public/pwa/manifest-icon-192.maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "public/pwa/manifest-icon-192.maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "public/pwa/manifest-icon-512.maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "public/pwa/manifest-icon-512.maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "iv1.jpg",
+      "sizes": "1795x942",
+      "type": "image/jpg",
+      "platform": "wide",
+      "description": "Web view"
+    },
+    {
+      "src": "iv2.jpg",
+      "sizes": "422x928",
+      "type": "image/jpg",
+      "description": "Mobile view"
+    }
+  ],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Overtochten",
+      "url": "/data/overtochten",
+      "description": "Lijst met overtochten"
+    }
+  ],
+  "id": "com.vincentvansetten.gt",
+  "categories": [
+    "travel",
+    "utilities"
+  ]
+}

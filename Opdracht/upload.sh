@@ -1,1 +1,1 @@
-mvn clean package && scp target/IngenscheVeer-1.0.war ubuntu@35.158.27.63:/home/ubuntu/veerdienst/IngenscheVeer-1.0.war && ssh $aws 'docker cp veerdienst/IngenscheVeer-1.0.war veerdienst:/usr/local/tomcat/webapps/ROOT.war && docker restart veerdienst && echo "ok"'
+cd frontend && npm run build && cd .. && mvn clean package && scp target/IngenscheVeer-1.0.war ubuntu@35.158.27.63:/home/ubuntu/veerdienst/IngenscheVeer-1.0.war && ssh $aws 'docker cp veerdienst/IngenscheVeer-1.0.war veerdienst:/usr/local/tomcat/webapps/ROOT.war && docker restart veerdienst && echo "ok"'
