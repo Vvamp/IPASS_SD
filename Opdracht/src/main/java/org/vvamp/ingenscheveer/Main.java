@@ -38,10 +38,10 @@ public class Main implements ServletContextListener {
         loginManager.populate();
         List<AisData> newSignals = DatabaseStorageController.getDatabaseAisController().getAllAisData(); // precache
 
-//        executorService = Executors.newSingleThreadScheduledExecutor();
-//        executorService.submit(() -> {
-//            WebSocketClient.main(new String[0]);
-//        });
+        executorService = Executors.newSingleThreadScheduledExecutor();
+        executorService.submit(() -> {
+            WebSocketClient.main(new String[0]);
+        });
 
         gcTimer = Executors.newSingleThreadScheduledExecutor();
         gcTimer.scheduleAtFixedRate(this::pruneSignals,0,15, TimeUnit.MINUTES);

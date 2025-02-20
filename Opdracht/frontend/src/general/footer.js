@@ -3,7 +3,7 @@ class SiteFooter extends HTMLElement {
       this.innerHTML = `
         <footer>
           <p>
-            &copy; 2024-${new Date().getFullYear()} Vincent van Setten
+            &copy; 2024-${new Date().getFullYear()} Vincent van Setten <sub>v1.4.0</sub>
           </p>
         </footer>
       `;
