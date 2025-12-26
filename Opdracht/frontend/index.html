@@ -34,9 +34,6 @@
       crossorigin="anonymous"
     ></script>
     <script type="module" src="src/map.js"></script>
-    <script type="module" src="src/login.js"></script>
-    <script type="module" src="src/nav.js"></script>
-    <script type="module" src="src/modal.js"></script>
     <script type="module" src="src/stats.js"></script>
     <script type="module" src="src/overtochten.js"></script>
     <script type="module" src="/src/general/footer.js"></script>
@@ -68,41 +65,7 @@
       ></label>
       <div id="nav-right">
         <a class="bluebutton" id="ais-button" href="/data/overtochten">Overtochten</a>
-        <a class="bluebutton hidden" id="rooster-button">Rooster</a>
-        <a class="bluebutton hidden" id="drukte-button">Drukte</a>
-        <a class="bluebutton hidden" id="login-button">Login</a>
-        <a class="bluebutton hidden" id="logout-button">Log out</a>
       </div>
-      <template id="modal-template">
-        <div class="modal">
-          <span class="modal-close"></span>
-          <div class="modal-content">
-            <template id="login-modal-template">
-              <h1 class="modal-title">Login</h1>
-              <form id="login-form" class="modal-form">
-                <label for="username">Gebruikersnaam</label>
-                <input
-                  placeholder="Vul uw gebruikersnaam in"
-                  type="text"
-                  id="username"
-                  name="username"
-                  required
-                />
-                <label for="password">Wachtwoord</label>
-                <input
-                  placeholder="Vul uw wachtwoord in"
-                  type="password"
-                  id="password"
-                  name="password"
-                  required
-                />
-                <span class="login-form-indicator"></span>
-                <button class="bluebutton" type="submit">Login</button>
-              </form>
-            </template>
-          </div>
-        </div>
-      </template>
     </nav>
 
     <div class="content-wrapper">
@@ -143,10 +106,6 @@
             </div>
             <div class="panel-content-row" data-stats-item="crossings">
               <p>Overtochten afgelopen uur</p>
-              <p>Informatie ophalen...</p>
-            </div>
-            <div class="panel-content-row hidden" data-stats-item="drukte">
-              <p>Drukte</p>
               <p>Informatie ophalen...</p>
             </div>
             <div class="panel-content-row" data-stats-item="lastupdate" style="margin-top: auto">

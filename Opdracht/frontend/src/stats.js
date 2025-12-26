@@ -1,10 +1,8 @@
 import StatsService from "./stats-service.js";
-import DrukteService from "./drukte-service.js";
 import Crossings from "./overtochten.js";
 
 const cs = new Crossings();
 const service = new StatsService();
-const ds = new DrukteService();
 let lastStatus = "";
 function refresh() {
   const statsPanel = document.querySelector("#statistics");
@@ -22,9 +20,6 @@ function refresh() {
   ).lastElementChild;
   const lastupdate = statsPanel.querySelector(
     '[data-stats-item="lastupdate"]'
-  ).lastElementChild;
-  const drukteItem = statsPanel.querySelector(
-    '[data-stats-item="drukte"]'
   ).lastElementChild;
 
   const etaItem = statsPanel.querySelector(
@@ -119,25 +114,6 @@ function refresh() {
     }
   });
 
-  ds.getDrukte().then((drukte) => {
-    switch (drukte.Severity) {
-      case 1:
-        drukteItem.textContent = "Rustig";
-        break;
-      case 2:
-        drukteItem.textContent = "Gemiddeld";
-        break;
-      case 3:
-        drukteItem.textContent = "Druk";
-        break;
-      case 4:
-        drukteItem.textContent = "Monster drukte";
-        break;
-      default:
-        drukteItem.textContent = "Onbekend";
-        break;
-    }
-  });
 }
 cs.loadOvertochten();
 refresh();

@@ -13,28 +13,11 @@
     <meta name="author" content="Vincent van Setten" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Veerdienst Ingen-Elst | Drukte</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/ol@v8.2.0/dist/ol.js"
-      defer
-    ></script>
 
-    <!-- <link
-      rel="stylesheet"
-      href="https://unpkg.com/gridjs/dist/theme/mermaid.min.css"
-    />
-    <script
-      src="https://unpkg.com/gridjs/dist/gridjs.umd.js"
-      defer
-    ></script> -->
     <script
       src="https://kit.fontawesome.com/67f6f13cd8.js"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="/src/aislist.js"></script>
     <script type="module" src="/src/general/footer.js"></script>
   </head>
   <body>
@@ -57,25 +40,32 @@
         <a class="bluebutton" id="ais-button" href="/data/overtochten"
           >Overtochten</a
         >
+
       </div>
-  
+
     </nav>
-    <style>
-      .gridjs-td {
-        text-transform: capitalize !important;
-      }
-    </style>
     <div class="content-wrapper">
-      <div class="row" style="min-height: 67vh">
-        <div class="panel" id="overtochtlist">
-          <div class="panel-title">
-            <p>Overtochten van Vandaag</p>
-          </div>
-          <div class="panel-content">
-            <div id="table"></div>
-          </div>
-        </div>
-      </div>
+      <h1>Hello test</h1>
+      <ol id="list"></ol>
+      <script>
+          const evtSource = new EventSource("/api/events");
+          evtSource.onmessage = (event) => {
+          // const newElement = document.createElement("li");
+          // const eventList = document.getElementById("list");
+
+          // newElement.textContent = `message: ${event.data}`;
+          // eventList.appendChild(newElement);
+          console.log("Message received! " + event.data)
+};
+
+      evtSource.onerror = (err) => console.error("SSE Error ❌", err);
+
+      evtSource.addEventListener("message-to-client", (event) => {
+    console.log(`Named Event Received: ${event.data}`);
+});
+
+      </script>
+
       <div class="row">
         <site-footer></site-footer>
       </div>
